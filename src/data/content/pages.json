@@ -1,0 +1,2520 @@
+[
+  {
+    "slug": "",
+    "path": "/",
+    "title": "Home",
+    "wpId": "2",
+    "wpSlug": "home",
+    "sections": [
+      {
+        "background": {
+          "color": "#2b323a",
+          "overlay": "rgba(0,0,0,0.78)",
+          "video": "N8qlzl-KrNo"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h2",
+              "text": "Award Winning",
+              "color": "#ffffff"
+            },
+            {
+              "type": "heading",
+              "level": "h4",
+              "text": "Luxury Holiday Villa Specialists"
+            }
+          ],
+          [
+            {
+              "type": "button",
+              "label": "Speak to our specialists",
+              "href": "/contact"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h2",
+            "text": "Award Winning",
+            "color": "#ffffff"
+          },
+          {
+            "type": "heading",
+            "level": "h4",
+            "text": "Luxury Holiday Villa Specialists"
+          },
+          {
+            "type": "button",
+            "label": "Speak to our specialists",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "background": {},
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "South of France",
+              "color": "#5185a1"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Experience the essence of opulence amidst the azure beauty of the South of France. At Elegant Address, we offer a bespoke travel service that immerses you in the unparalleled allure of this stunning region.",
+                "Discover the legendary beaches, Michelin-starred dining, and cultural treasures of the South of France while indulging in the epitome of luxury through our handpicked selection of properties."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Discover South of France",
+              "href": "/south-of-france"
+            },
+            {
+              "type": "gallery",
+              "images": [
+                "images/destinations/south-of-france.jpg",
+                "images/destinations/barbados.jpg"
+              ]
+            }
+          ],
+          [
+            {
+              "type": "gallery",
+              "images": [
+                "images/destinations/barbados.jpg",
+                "images/destinations/south-of-france.jpg"
+              ]
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Barbados",
+              "color": "#5185a1"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Barbados beckons with its turquoise waters, powder-soft beaches, and vibrant culture that invites you to unwind and explore.",
+                "Let us introduce you to the enchanting beauty of Barbados. Our portfolio boasts an exclusive collection of luxurious properties that offer front-row access to this Caribbean paradise. Experience the splendour of Barbados in true style, whether you seek a tranquil escape, a family retreat, or a romantic getaway."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Discover Barbados",
+              "href": "/barbados"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "South of France",
+            "color": "#5185a1"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Experience the essence of opulence amidst the azure beauty of the South of France. At Elegant Address, we offer a bespoke travel service that immerses you in the unparalleled allure of this stunning region.",
+              "Discover the legendary beaches, Michelin-starred dining, and cultural treasures of the South of France while indulging in the epitome of luxury through our handpicked selection of properties."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Discover South of France",
+            "href": "/south-of-france"
+          },
+          {
+            "type": "gallery",
+            "images": [
+              "images/destinations/south-of-france.jpg",
+              "images/destinations/barbados.jpg"
+            ]
+          },
+          {
+            "type": "gallery",
+            "images": [
+              "images/destinations/barbados.jpg",
+              "images/destinations/south-of-france.jpg"
+            ]
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Barbados",
+            "color": "#5185a1"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Barbados beckons with its turquoise waters, powder-soft beaches, and vibrant culture that invites you to unwind and explore.",
+              "Let us introduce you to the enchanting beauty of Barbados. Our portfolio boasts an exclusive collection of luxurious properties that offer front-row access to this Caribbean paradise. Experience the splendour of Barbados in true style, whether you seek a tranquil escape, a family retreat, or a romantic getaway."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Discover Barbados",
+            "href": "/barbados"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#333333",
+          "image": "images/backgrounds/penthouse-pool.jpg",
+          "overlay": "#0a0a0a"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Our Story",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
+                "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday experiences in some of the most magnificent properties in the world."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Learn more",
+              "href": "/about"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Our Story",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
+              "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday experiences in some of the most magnificent properties in the world."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Learn more",
+            "href": "/about"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Featured Properties",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Indulge in the lap of luxury with Elegant Address's curated collection of over 1200 exquisite properties. Our portfolio includes opulent villas, exclusive estates, and private retreats that redefine the art of accommodation."
+              ]
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Each property is meticulously selected for its unique charm, luxurious amenities, and breathtaking settings. Whether it's an infinity pool overlooking the Mediterranean or a beachfront oasis in Barbados, we invite you to explore the epitome of luxury living."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Featured Properties",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Indulge in the lap of luxury with Elegant Address's curated collection of over 1200 exquisite properties. Our portfolio includes opulent villas, exclusive estates, and private retreats that redefine the art of accommodation."
+            ]
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Each property is meticulously selected for its unique charm, luxurious amenities, and breathtaking settings. Whether it's an infinity pool overlooking the Mediterranean or a beachfront oasis in Barbados, we invite you to explore the epitome of luxury living."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "gallery",
+              "images": [
+                "images/destinations/barbados.jpg",
+                "images/destinations/south-of-france.jpg",
+                "images/destinations/barbados-alt-1.jpg",
+                "images/destinations/south-of-france-alt-1.jpg",
+                "images/destinations/barbados-alt-2.jpg",
+                "images/destinations/south-of-france-alt-2.jpg"
+              ]
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "gallery",
+            "images": [
+              "images/destinations/barbados.jpg",
+              "images/destinations/south-of-france.jpg",
+              "images/destinations/barbados-alt-1.jpg",
+              "images/destinations/south-of-france-alt-1.jpg",
+              "images/destinations/barbados-alt-2.jpg",
+              "images/destinations/south-of-france-alt-2.jpg"
+            ]
+          }
+        ]
+      },
+      {
+        "background": {},
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Why Choose Elegant Address",
+              "color": "#5185a1"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "With over 1,200 hand picked luxury villas, chateaus and apartments across South of France and Barbados, Elegant Address is proud to offer some of the most exclusive properties available which you will not find anywhere else.",
+                "Each of our clients is provided with a personal consultant who will ensure that every requirement and detail is taken care of to make sure you have your perfect holiday in your dream villa.",
+                "Our unparalleled levels of service was recently awarded the UK’s most prestigious accolade, The Queen’s Award for Enterprise in International Trade, which Suzan Thompson was delighted to be awarded by Her Majesty the Queen."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Discover South of France",
+              "href": "/south-of-france"
+            },
+            {
+              "type": "image",
+              "src": "images/awards/queens-award-presentation.jpeg"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Why Choose Elegant Address",
+            "color": "#5185a1"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "With over 1,200 hand picked luxury villas, chateaus and apartments across South of France and Barbados, Elegant Address is proud to offer some of the most exclusive properties available which you will not find anywhere else.",
+              "Each of our clients is provided with a personal consultant who will ensure that every requirement and detail is taken care of to make sure you have your perfect holiday in your dream villa.",
+              "Our unparalleled levels of service was recently awarded the UK’s most prestigious accolade, The Queen’s Award for Enterprise in International Trade, which Suzan Thompson was delighted to be awarded by Her Majesty the Queen."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Discover South of France",
+            "href": "/south-of-france"
+          },
+          {
+            "type": "image",
+            "src": "images/awards/queens-award-presentation.jpeg"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1",
+          "video": "IxF55qB4CuQ"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Experience the Extraordinary – Contact Us Today",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Speak to us today to discuss your requirements. We will help you discover the beauty of South of France and Barbados."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Contact Us",
+              "href": "/contact"
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Experience the Extraordinary – Contact Us Today",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Speak to us today to discuss your requirements. We will help you discover the beauty of South of France and Barbados."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Contact Us",
+            "href": "/contact"
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "south-of-france",
+    "path": "/south-of-france",
+    "title": "France",
+    "wpId": "11",
+    "wpSlug": "france",
+    "sections": [
+      {
+        "background": {
+          "color": "#333333",
+          "image": "images/destinations/south-of-france-alt-1.jpg",
+          "overlay": "#0a0a0a"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h2",
+              "text": "South of France - Where Luxury Finds its Home",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Welcome to the epitome of luxury in the heart of the South of France. This enchanting region, known for its sun-kissed landscapes and glamorous atmosphere, is where dreams become reality. Explore the allure of the Côte d'Azur, a destination synonymous with sophistication and prestige."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h2",
+            "text": "South of France - Where Luxury Finds its Home",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Welcome to the epitome of luxury in the heart of the South of France. This enchanting region, known for its sun-kissed landscapes and glamorous atmosphere, is where dreams become reality. Explore the allure of the Côte d'Azur, a destination synonymous with sophistication and prestige."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "gallery",
+              "images": [
+                "images/properties/property-13-poolside.png",
+                "images/properties/property-01-infinity-pool.jpeg",
+                "images/properties/property-02-estate-lawn.jpeg",
+                "images/properties/property-03-courtyard-pool.jpeg"
+              ]
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "1,200+ properties in our portfolio",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Whether you desire a villa perched on a hillside overlooking the Mediterranean or a historic estate in the heart of a charming Provençal village, our portfolio of 1200+ properties offers an array of choices that cater to your every whim."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "gallery",
+            "images": [
+              "images/properties/property-13-poolside.png",
+              "images/properties/property-01-infinity-pool.jpeg",
+              "images/properties/property-02-estate-lawn.jpeg",
+              "images/properties/property-03-courtyard-pool.jpeg"
+            ]
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "1,200+ properties in our portfolio",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Whether you desire a villa perched on a hillside overlooking the Mediterranean or a historic estate in the heart of a charming Provençal village, our portfolio of 1200+ properties offers an array of choices that cater to your every whim."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#ffffff"
+        },
+        "groups": [
+          [
+            {
+              "type": "text",
+              "paragraphs": [
+                "Expertise: With over 14 years of experience, our team possesses an intimate knowledge of the South of France, ensuring your property needs are meticulously planned to exceed all expectations.",
+                "Personalization: We understand that every trip is unique. Our tailor-made approach ensures your South of France experience is precisely tailored to your preferences, desires, and expectations."
+              ]
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Exclusive Access: Through our local partnerships and connections, we can give you access to the most coveted experiences, whether it's securing reservations at renowned restaurants or arranging private tours of historic sites.",
+                "Exceptional Service: From the moment you reach out to us, you'll experience our unwavering commitment to providing unparalleled service."
+              ]
+            }
+          ],
+          [
+            {
+              "type": "cards",
+              "items": [
+                {
+                  "label": "Saint Jean Cap Ferrat",
+                  "image": "images/destinations/south-of-france-alt-2.jpg",
+                  "href": ""
+                },
+                {
+                  "label": "Cap d'Antibes",
+                  "image": "images/destinations/south-of-france-alt-2.jpg",
+                  "href": ""
+                },
+                {
+                  "label": "Cannes",
+                  "image": "images/destinations/south-of-france-alt-2.jpg",
+                  "href": ""
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "type": "cards",
+              "items": [
+                {
+                  "label": "Villafranche and Villages",
+                  "image": "images/destinations/south-of-france-alt-2.jpg",
+                  "href": ""
+                },
+                {
+                  "label": "Saint Tropez",
+                  "image": "images/destinations/south-of-france-alt-2.jpg",
+                  "href": ""
+                },
+                {
+                  "label": "Mougins and Villages",
+                  "image": "images/destinations/south-of-france-alt-2.jpg",
+                  "href": ""
+                }
+              ]
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "text",
+            "paragraphs": [
+              "Expertise: With over 14 years of experience, our team possesses an intimate knowledge of the South of France, ensuring your property needs are meticulously planned to exceed all expectations.",
+              "Personalization: We understand that every trip is unique. Our tailor-made approach ensures your South of France experience is precisely tailored to your preferences, desires, and expectations."
+            ]
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Exclusive Access: Through our local partnerships and connections, we can give you access to the most coveted experiences, whether it's securing reservations at renowned restaurants or arranging private tours of historic sites.",
+              "Exceptional Service: From the moment you reach out to us, you'll experience our unwavering commitment to providing unparalleled service."
+            ]
+          },
+          {
+            "type": "cards",
+            "items": [
+              {
+                "label": "Saint Jean Cap Ferrat",
+                "image": "images/destinations/south-of-france-alt-2.jpg",
+                "href": ""
+              },
+              {
+                "label": "Cap d'Antibes",
+                "image": "images/destinations/south-of-france-alt-2.jpg",
+                "href": ""
+              },
+              {
+                "label": "Cannes",
+                "image": "images/destinations/south-of-france-alt-2.jpg",
+                "href": ""
+              }
+            ]
+          },
+          {
+            "type": "cards",
+            "items": [
+              {
+                "label": "Villafranche and Villages",
+                "image": "images/destinations/south-of-france-alt-2.jpg",
+                "href": ""
+              },
+              {
+                "label": "Saint Tropez",
+                "image": "images/destinations/south-of-france-alt-2.jpg",
+                "href": ""
+              },
+              {
+                "label": "Mougins and Villages",
+                "image": "images/destinations/south-of-france-alt-2.jpg",
+                "href": ""
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Featured Properties",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Discover a selection of our featured properties, a curated collection of over 1200+ exquisite properties. Our portfolio includes opulent villas, exclusive estates, and private retreats that redefine the art of accommodation."
+              ]
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Each property is meticulously selected for its unique charm, luxurious amenities, and breathtaking settings. Whether it's an infinity pool overlooking the Mediterranean or a beachfront oasis to host the party of a lifetime."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Featured Properties",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Discover a selection of our featured properties, a curated collection of over 1200+ exquisite properties. Our portfolio includes opulent villas, exclusive estates, and private retreats that redefine the art of accommodation."
+            ]
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Each property is meticulously selected for its unique charm, luxurious amenities, and breathtaking settings. Whether it's an infinity pool overlooking the Mediterranean or a beachfront oasis to host the party of a lifetime."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "gallery",
+              "images": [
+                "images/destinations/barbados.jpg",
+                "images/destinations/south-of-france.jpg",
+                "images/destinations/barbados-alt-1.jpg",
+                "images/destinations/south-of-france-alt-1.jpg",
+                "images/destinations/barbados-alt-2.jpg",
+                "images/destinations/south-of-france-alt-2.jpg"
+              ]
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "gallery",
+            "images": [
+              "images/destinations/barbados.jpg",
+              "images/destinations/south-of-france.jpg",
+              "images/destinations/barbados-alt-1.jpg",
+              "images/destinations/south-of-france-alt-1.jpg",
+              "images/destinations/barbados-alt-2.jpg",
+              "images/destinations/south-of-france-alt-2.jpg"
+            ]
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1",
+          "video": "IxF55qB4CuQ"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Our Story",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
+                "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday experiences in some of the most magnificent properties in the world."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ],
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Get in touch to discuss your needs",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Speak to us today to discuss your requirements. We will help you discover the stunning South of France."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Contact Us",
+              "href": "/contact"
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Our Story",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
+              "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday experiences in some of the most magnificent properties in the world."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Get in touch to discuss your needs",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Speak to us today to discuss your requirements. We will help you discover the stunning South of France."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Contact Us",
+            "href": "/contact"
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "barbados",
+    "path": "/barbados",
+    "title": "Barbados",
+    "wpId": "15",
+    "wpSlug": "barbados",
+    "sections": [
+      {
+        "background": {
+          "color": "#333333",
+          "image": "images/backgrounds/barbados-alt.jpg",
+          "overlay": "#0a0a0a"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h2",
+              "text": "Barbados",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Welcome to the Caribbean paradise of Barbados, where every day is bathed in golden sunshine, and the crystal-clear waters of the Caribbean Sea beckon you to explore. Known for its luxurious beaches, vibrant culture, and warm hospitality, Barbados is a destination that embodies the very essence of paradise.",
+                "This enchanting island is a harmonious blend of pristine landscapes, captivating culture, and the unmistakable allure of the Caribbean, where a rich history meets modern elegance"
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h2",
+            "text": "Barbados",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Welcome to the Caribbean paradise of Barbados, where every day is bathed in golden sunshine, and the crystal-clear waters of the Caribbean Sea beckon you to explore. Known for its luxurious beaches, vibrant culture, and warm hospitality, Barbados is a destination that embodies the very essence of paradise.",
+              "This enchanting island is a harmonious blend of pristine landscapes, captivating culture, and the unmistakable allure of the Caribbean, where a rich history meets modern elegance"
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "gallery",
+              "images": [
+                "images/properties/property-13-poolside.png",
+                "images/properties/property-01-infinity-pool.jpeg",
+                "images/properties/property-02-estate-lawn.jpeg",
+                "images/properties/property-03-courtyard-pool.jpeg"
+              ]
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "1,200+ properties in our portfolio",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Our portfolio of luxurious villas is designed to offer you an unparalleled experience on this breathtaking island. Whether you crave the serenity of a secluded beachfront retreat or the sophistication of an estate overlooking the Caribbean Sea, we've got the property to suit your needs."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "gallery",
+            "images": [
+              "images/properties/property-13-poolside.png",
+              "images/properties/property-01-infinity-pool.jpeg",
+              "images/properties/property-02-estate-lawn.jpeg",
+              "images/properties/property-03-courtyard-pool.jpeg"
+            ]
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "1,200+ properties in our portfolio",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Our portfolio of luxurious villas is designed to offer you an unparalleled experience on this breathtaking island. Whether you crave the serenity of a secluded beachfront retreat or the sophistication of an estate overlooking the Caribbean Sea, we've got the property to suit your needs."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#ffffff"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Why Choose Elegant Address",
+              "color": "#5185a1"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Local Expertise: With over 14 years of experience, our team possesses an intimate understanding of the island's treasures, ensuring your time in Barbados is filled with the finest experiences.",
+                "Personalized Luxury: We believe that the property should reflect your individual preferences and style. Our tailored approach ensures your property precisely suits your desires and expectations."
+              ]
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Exclusive Privileges: Through our local connections, we offer you access to the most coveted experiences on the island.",
+                "Unmatched Service: We pride ourselves on delivering exceptional service from the moment you get in touch with us, making your Barbados vacation seamless and unforgettable."
+              ]
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Why Choose Elegant Address",
+            "color": "#5185a1"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Local Expertise: With over 14 years of experience, our team possesses an intimate understanding of the island's treasures, ensuring your time in Barbados is filled with the finest experiences.",
+              "Personalized Luxury: We believe that the property should reflect your individual preferences and style. Our tailored approach ensures your property precisely suits your desires and expectations."
+            ]
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Exclusive Privileges: Through our local connections, we offer you access to the most coveted experiences on the island.",
+              "Unmatched Service: We pride ourselves on delivering exceptional service from the moment you get in touch with us, making your Barbados vacation seamless and unforgettable."
+            ]
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Featured Properties",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Discover a selection of our featured properties, a hand-picked collection of exquisite properties to suit your needs. Our portfolio includes opulent villas, exclusive estates, and private retreats that redefine the art of accommodation."
+              ]
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Each property is meticulously selected for its unique charm, luxurious amenities, and breathtaking settings. Whether it’s an infinity pool overlooking the Mediterranean or a beachfront oasis to host the party of a lifetime."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Featured Properties",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Discover a selection of our featured properties, a hand-picked collection of exquisite properties to suit your needs. Our portfolio includes opulent villas, exclusive estates, and private retreats that redefine the art of accommodation."
+            ]
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Each property is meticulously selected for its unique charm, luxurious amenities, and breathtaking settings. Whether it’s an infinity pool overlooking the Mediterranean or a beachfront oasis to host the party of a lifetime."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "gallery",
+              "images": [
+                "images/destinations/barbados.jpg",
+                "images/destinations/south-of-france.jpg",
+                "images/destinations/barbados-alt-1.jpg",
+                "images/destinations/south-of-france-alt-1.jpg",
+                "images/destinations/barbados-alt-2.jpg",
+                "images/destinations/south-of-france-alt-2.jpg"
+              ]
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "gallery",
+            "images": [
+              "images/destinations/barbados.jpg",
+              "images/destinations/south-of-france.jpg",
+              "images/destinations/barbados-alt-1.jpg",
+              "images/destinations/south-of-france-alt-1.jpg",
+              "images/destinations/barbados-alt-2.jpg",
+              "images/destinations/south-of-france-alt-2.jpg"
+            ]
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1",
+          "video": "IxF55qB4CuQ"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Our Story",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in Barbados and the French Riviera.",
+                "The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ],
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Get in touch to discuss your needs",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Speak to us today to discuss your requirements. We will help you discover the beauty of Barbados."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Contact Us",
+              "href": "/contact"
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Our Story",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in Barbados and the French Riviera.",
+              "The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Get in touch to discuss your needs",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Speak to us today to discuss your requirements. We will help you discover the beauty of Barbados."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Contact Us",
+            "href": "/contact"
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "about",
+    "path": "/about",
+    "title": "About",
+    "wpId": "44",
+    "wpSlug": "about",
+    "sections": [
+      {
+        "background": {
+          "color": "#333333",
+          "image": "images/backgrounds/penthouse-pool.jpg",
+          "overlay": "#0a0a0a"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Our Story",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Welcome to Elegant Address Luxury Property Group, where excellence is not just a promise but a legacy.",
+                "With 14 years of unwavering dedication, we have evolved into the United Kingdom's foremost independent property consultancy for the enchanting South of France and Barbados. Our journey is a testament to our commitment to surpassing every expectation in the realm of luxury real estate."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Our Story",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Welcome to Elegant Address Luxury Property Group, where excellence is not just a promise but a legacy.",
+              "With 14 years of unwavering dedication, we have evolved into the United Kingdom's foremost independent property consultancy for the enchanting South of France and Barbados. Our journey is a testament to our commitment to surpassing every expectation in the realm of luxury real estate."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#ffffff",
+          "image": "images/destinations/south-of-france-alt-1.jpg",
+          "overlay": "#000000"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "What we aim to achieve",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "All of our knowledge has been built first-hand from our frequent trips to all of our specialist regions. Our experts are passionate about the South of France and Barbados, and would all be delighted to offer advice and their personal recommendations on restaurants, sightseeing, and more.",
+                "Our aim is to give all of our clients the same, exceptional experience in creating a unique experience tailored to their needs."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "What we aim to achieve",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "All of our knowledge has been built first-hand from our frequent trips to all of our specialist regions. Our experts are passionate about the South of France and Barbados, and would all be delighted to offer advice and their personal recommendations on restaurants, sightseeing, and more.",
+              "Our aim is to give all of our clients the same, exceptional experience in creating a unique experience tailored to their needs."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Our Incredible Founder",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera.",
+                "The aim was simple, to provide clients in the prestigious property market with an unrivalled service that offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            },
+            {
+              "type": "image",
+              "src": "images/awards/queens-award-presentation.jpeg"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Our Incredible Founder",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera.",
+              "The aim was simple, to provide clients in the prestigious property market with an unrivalled service that offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          },
+          {
+            "type": "image",
+            "src": "images/awards/queens-award-presentation.jpeg"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1",
+          "video": "IxF55qB4CuQ"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Get in touch to discuss your needs",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Speak to us today to discuss your requirements. We will help you discover the beauty of South of France and Barbados."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Contact Us",
+              "href": "/contact"
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Get in touch to discuss your needs",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Speak to us today to discuss your requirements. We will help you discover the beauty of South of France and Barbados."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Contact Us",
+            "href": "/contact"
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "contact",
+    "path": "/contact",
+    "title": "Contact",
+    "wpId": "48",
+    "wpSlug": "contact",
+    "sections": [
+      {
+        "background": {
+          "color": "#5185a1",
+          "image": "images/backgrounds/barbados.png",
+          "overlay": "#000000"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h2",
+              "text": "Elegant Address",
+              "color": "#ffffff"
+            },
+            {
+              "type": "heading",
+              "level": "h4",
+              "text": "at your service..."
+            }
+          ],
+          [
+            {
+              "type": "text",
+              "paragraphs": [
+                "As our services are completely bespoke to deliver the ideal holiday villa for you, it's important we really get to know you and understand your requirements. Fill in your details and we'll get back to you shortly to arrange a call. Thank you."
+              ]
+            },
+            {
+              "type": "form",
+              "formId": "6"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h2",
+            "text": "Elegant Address",
+            "color": "#ffffff"
+          },
+          {
+            "type": "heading",
+            "level": "h4",
+            "text": "at your service..."
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "As our services are completely bespoke to deliver the ideal holiday villa for you, it's important we really get to know you and understand your requirements. Fill in your details and we'll get back to you shortly to arrange a call. Thank you."
+            ]
+          },
+          {
+            "type": "form",
+            "formId": "6"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Why choose Elegant Address",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Email Us",
+              "href": "#"
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Why choose Elegant Address",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Email Us",
+            "href": "#"
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "approach",
+    "path": "/approach",
+    "title": "Approach",
+    "wpId": "38766",
+    "wpSlug": "approach",
+    "sections": [
+      {
+        "background": {
+          "color": "#2b323a",
+          "overlay": "rgba(0,0,0,0.78)",
+          "video": "N8qlzl-KrNo"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h2",
+              "text": "Everything. Designed.",
+              "color": "#ffffff"
+            },
+            {
+              "type": "heading",
+              "level": "h4",
+              "text": "Elegant Address are dedicated to our customers"
+            }
+          ],
+          [
+            {
+              "type": "button",
+              "label": "Speak to our specialists",
+              "href": "/contact"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h2",
+            "text": "Everything. Designed.",
+            "color": "#ffffff"
+          },
+          {
+            "type": "heading",
+            "level": "h4",
+            "text": "Elegant Address are dedicated to our customers"
+          },
+          {
+            "type": "button",
+            "label": "Speak to our specialists",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "gallery",
+              "images": [
+                "images/lifestyle/supercar.jpeg",
+                "images/properties/property-03-courtyard-pool.jpeg",
+                "images/lifestyle/yacht.jpg",
+                "images/lifestyle/yacht-alt.jpg"
+              ]
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Unrivalled service",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "At Elegant Address, we don't just arrange vacations; we curate exceptional experiences.",
+                "With over 14 years of dedicated service in providing stunning properties, we have perfected the art of delivering exactly what our clients are looking for. From the moment you connect with us to the final farewell, our commitment to unrivalled service ensures every detail is attended to, allowing you to relax and relish your holiday."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "gallery",
+            "images": [
+              "images/lifestyle/supercar.jpeg",
+              "images/properties/property-03-courtyard-pool.jpeg",
+              "images/lifestyle/yacht.jpg",
+              "images/lifestyle/yacht-alt.jpg"
+            ]
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Unrivalled service",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "At Elegant Address, we don't just arrange vacations; we curate exceptional experiences.",
+              "With over 14 years of dedicated service in providing stunning properties, we have perfected the art of delivering exactly what our clients are looking for. From the moment you connect with us to the final farewell, our commitment to unrivalled service ensures every detail is attended to, allowing you to relax and relish your holiday."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#333333",
+          "image": "images/destinations/sunset-terrace.jpeg",
+          "overlay": "#0a0a0a"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "A tailor-made experience",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Your holiday should be as unique as you are. That's why we specialize in crafting tailor-made experiences that match your preferences, desires, and dreams.",
+                "We take the time to understand your individual needs and aspirations, ensuring that every aspect of your trip is personalised to perfection. Whether you seek relaxation, adventure, or a blend of both, we have the properties available to resonate with you personally."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "A tailor-made experience",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Your holiday should be as unique as you are. That's why we specialize in crafting tailor-made experiences that match your preferences, desires, and dreams.",
+              "We take the time to understand your individual needs and aspirations, ensuring that every aspect of your trip is personalised to perfection. Whether you seek relaxation, adventure, or a blend of both, we have the properties available to resonate with you personally."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "gallery",
+              "images": [
+                "images/properties/property-13-poolside.png",
+                "images/properties/property-01-infinity-pool.jpeg",
+                "images/properties/property-02-estate-lawn.jpeg",
+                "images/properties/property-03-courtyard-pool.jpeg"
+              ]
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "1,200+ properties in our portfolio",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "With an extensive portfolio of over 1200 properties in the South of France and Barbados, we offer an unparalleled selection of luxurious villas.",
+                "Each property in our portfolio is handpicked for its exceptional features, including stunning settings, and unique amenities. We provide our clients with choices that are as diverse and extraordinary as the destinations themselves, ensuring your stay is nothing short of spectacular."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "gallery",
+            "images": [
+              "images/properties/property-13-poolside.png",
+              "images/properties/property-01-infinity-pool.jpeg",
+              "images/properties/property-02-estate-lawn.jpeg",
+              "images/properties/property-03-courtyard-pool.jpeg"
+            ]
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "1,200+ properties in our portfolio",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "With an extensive portfolio of over 1200 properties in the South of France and Barbados, we offer an unparalleled selection of luxurious villas.",
+              "Each property in our portfolio is handpicked for its exceptional features, including stunning settings, and unique amenities. We provide our clients with choices that are as diverse and extraordinary as the destinations themselves, ensuring your stay is nothing short of spectacular."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "background": {},
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Expert Advice for Your Journey",
+              "color": "#5185a1"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Beyond luxurious accommodations, our expertise extends to every aspect of your trip. Here's how we can offer advice on various aspects of your vacation:"
+              ]
+            }
+          ],
+          [
+            {
+              "type": "image",
+              "src": "images/lifestyle/rolls-royce.jpg"
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Luxury Travel",
+              "color": "#5185a1"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Our experts can recommend the most luxurious transportation options, from private jets to chauffeur-driven limousines, ensuring you travel in style and comfort."
+              ]
+            },
+            {
+              "type": "image",
+              "src": "images/lifestyle/dining.jpg"
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Exclusive Dining",
+              "color": "#5185a1"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Discover the finest culinary experiences with our extensive local knowledge for the ultimate gastronomic gems, offering bespoke dining tailored to your tastes."
+              ]
+            },
+            {
+              "type": "image",
+              "src": "images/lifestyle/yacht-alt.jpg"
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Bespoke Trips",
+              "color": "#5185a1"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "We can give you access to local experts offering unique cultural excursions, outdoor adventures, and exclusive access to local events and festivals."
+              ]
+            }
+          ],
+          [
+            {
+              "type": "image",
+              "src": "images/lifestyle/shopping.jpg"
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Personal Shopping",
+              "color": "#5185a1"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Experience personalized shopping experiences, from high-end boutiques to local artisan markets. South of France and Barbados have so much to offer!"
+              ]
+            },
+            {
+              "type": "image",
+              "src": "images/lifestyle/cocktail.jpg"
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Nightlife",
+              "color": "#5185a1"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Unlock the vibrant nightlife of your destination with our insights into the hottest clubs, bars, and entertainment venues, ensuring your nights are as memorable as your days."
+              ]
+            },
+            {
+              "type": "image",
+              "src": "images/lifestyle/private-jet.jpg"
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Full Concierge",
+              "color": "#5185a1"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "With 14 years experience, we can advise you with everything from securing coveted reservations to arranging private guided tours, spa treatments, and more."
+              ]
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Expert Advice for Your Journey",
+            "color": "#5185a1"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Beyond luxurious accommodations, our expertise extends to every aspect of your trip. Here's how we can offer advice on various aspects of your vacation:"
+            ]
+          },
+          {
+            "type": "image",
+            "src": "images/lifestyle/rolls-royce.jpg"
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Luxury Travel",
+            "color": "#5185a1"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Our experts can recommend the most luxurious transportation options, from private jets to chauffeur-driven limousines, ensuring you travel in style and comfort."
+            ]
+          },
+          {
+            "type": "image",
+            "src": "images/lifestyle/dining.jpg"
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Exclusive Dining",
+            "color": "#5185a1"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Discover the finest culinary experiences with our extensive local knowledge for the ultimate gastronomic gems, offering bespoke dining tailored to your tastes."
+            ]
+          },
+          {
+            "type": "image",
+            "src": "images/lifestyle/yacht-alt.jpg"
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Bespoke Trips",
+            "color": "#5185a1"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "We can give you access to local experts offering unique cultural excursions, outdoor adventures, and exclusive access to local events and festivals."
+            ]
+          },
+          {
+            "type": "image",
+            "src": "images/lifestyle/shopping.jpg"
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Personal Shopping",
+            "color": "#5185a1"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Experience personalized shopping experiences, from high-end boutiques to local artisan markets. South of France and Barbados have so much to offer!"
+            ]
+          },
+          {
+            "type": "image",
+            "src": "images/lifestyle/cocktail.jpg"
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Nightlife",
+            "color": "#5185a1"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Unlock the vibrant nightlife of your destination with our insights into the hottest clubs, bars, and entertainment venues, ensuring your nights are as memorable as your days."
+            ]
+          },
+          {
+            "type": "image",
+            "src": "images/lifestyle/private-jet.jpg"
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Full Concierge",
+            "color": "#5185a1"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "With 14 years experience, we can advise you with everything from securing coveted reservations to arranging private guided tours, spa treatments, and more."
+            ]
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1",
+          "video": "IxF55qB4CuQ"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Get in touch to discuss your needs",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "At Elegant Address, our commitment to excellence goes beyond accommodations. We are your trusted partner in crafting extraordinary journeys that create memories to last a lifetime. Contact us today, and let us transform your travel dreams into reality."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Contact Us",
+              "href": "/contact"
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Get in touch to discuss your needs",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "At Elegant Address, our commitment to excellence goes beyond accommodations. We are your trusted partner in crafting extraordinary journeys that create memories to last a lifetime. Contact us today, and let us transform your travel dreams into reality."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Contact Us",
+            "href": "/contact"
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "featured-properties",
+    "path": "/featured-properties",
+    "title": "Featured Properties",
+    "wpId": "38792",
+    "wpSlug": "featured-properties",
+    "sections": [
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h2",
+              "text": "Featured Properties",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+              ]
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h2",
+            "text": "Featured Properties",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+            ]
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1",
+          "video": "IxF55qB4CuQ"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Get in touch to discuss your needs",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Contact Us",
+              "href": "/contact"
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Get in touch to discuss your needs",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Contact Us",
+            "href": "/contact"
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "cannes-congress",
+    "path": "/cannes-congress",
+    "title": "Cannes Congress",
+    "wpId": "38868",
+    "wpSlug": "cannes-congress",
+    "sections": [
+      {
+        "background": {
+          "color": "#333333",
+          "image": "images/destinations/south-of-france-alt-1.jpg",
+          "overlay": "#0a0a0a"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h2",
+              "text": "Cannes Congress - A Hub of Cultural Excellence",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Every year, Cannes draws filmmakers, artists, and enthusiasts from around the globe for its prestigious festivals and events. Explore the allure of Cannes, a place where creativity, glamour, and innovation converge."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h2",
+            "text": "Cannes Congress - A Hub of Cultural Excellence",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Every year, Cannes draws filmmakers, artists, and enthusiasts from around the globe for its prestigious festivals and events. Explore the allure of Cannes, a place where creativity, glamour, and innovation converge."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "gallery",
+              "images": [
+                "images/properties/property-13-poolside.png",
+                "images/properties/property-01-infinity-pool.jpeg",
+                "images/properties/property-02-estate-lawn.jpeg",
+                "images/properties/property-03-courtyard-pool.jpeg"
+              ]
+            },
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "1,200+ properties in our portfolio",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Our collection of Cannes properties includes opulent villas, elegant apartments, and exclusive estates, all chosen to provide you with the utmost comfort, convenience, and style during your Cannes stay. Whether you prefer a beachfront retreat or a penthouse with panoramic views of the city, our collection of luxury villa rentals cater to your needs."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "gallery",
+            "images": [
+              "images/properties/property-13-poolside.png",
+              "images/properties/property-01-infinity-pool.jpeg",
+              "images/properties/property-02-estate-lawn.jpeg",
+              "images/properties/property-03-courtyard-pool.jpeg"
+            ]
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "1,200+ properties in our portfolio",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Our collection of Cannes properties includes opulent villas, elegant apartments, and exclusive estates, all chosen to provide you with the utmost comfort, convenience, and style during your Cannes stay. Whether you prefer a beachfront retreat or a penthouse with panoramic views of the city, our collection of luxury villa rentals cater to your needs."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#ffffff"
+        },
+        "groups": [
+          [
+            {
+              "type": "text",
+              "paragraphs": [
+                "When it comes to your Cannes Congress and Festival experience, choosing Elegant Address is selecting a partner dedicated to making your visit exceptional. With over 14 years of expertise in Cannes, we bring unparalleled local knowledge to the table. Our commitment to personalisation ensures that your accommodations align perfectly with your preferences, offering a tailored luxury experience."
+              ]
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "All of our knowledge has been built first-hand from our frequent trips to all of our specialist regions. Our experts are passionate about the South of France and Barbados, and would all be delighted to offer advice and their personal recommendations on restaurants, sightseeing, and more."
+              ]
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "text",
+            "paragraphs": [
+              "When it comes to your Cannes Congress and Festival experience, choosing Elegant Address is selecting a partner dedicated to making your visit exceptional. With over 14 years of expertise in Cannes, we bring unparalleled local knowledge to the table. Our commitment to personalisation ensures that your accommodations align perfectly with your preferences, offering a tailored luxury experience."
+            ]
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "All of our knowledge has been built first-hand from our frequent trips to all of our specialist regions. Our experts are passionate about the South of France and Barbados, and would all be delighted to offer advice and their personal recommendations on restaurants, sightseeing, and more."
+            ]
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Featured Properties",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Discover a selection of our featured properties, a curated collection of over 1200+ exquisite properties. Our portfolio includes opulent villas, exclusive estates, and private retreats that redefine the art of accommodation."
+              ]
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Each property is meticulously selected for its unique charm, luxurious amenities, and breathtaking settings. Whether it’s an infinity pool overlooking the Mediterranean or a beachfront oasis to host the party of a lifetime."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Featured Properties",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Discover a selection of our featured properties, a curated collection of over 1200+ exquisite properties. Our portfolio includes opulent villas, exclusive estates, and private retreats that redefine the art of accommodation."
+            ]
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Each property is meticulously selected for its unique charm, luxurious amenities, and breathtaking settings. Whether it’s an infinity pool overlooking the Mediterranean or a beachfront oasis to host the party of a lifetime."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1"
+        },
+        "groups": [
+          [
+            {
+              "type": "gallery",
+              "images": [
+                "images/destinations/barbados.jpg",
+                "images/destinations/south-of-france.jpg",
+                "images/destinations/barbados-alt-1.jpg",
+                "images/destinations/south-of-france-alt-1.jpg",
+                "images/destinations/barbados-alt-2.jpg",
+                "images/destinations/south-of-france-alt-2.jpg"
+              ]
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "gallery",
+            "images": [
+              "images/destinations/barbados.jpg",
+              "images/destinations/south-of-france.jpg",
+              "images/destinations/barbados-alt-1.jpg",
+              "images/destinations/south-of-france-alt-1.jpg",
+              "images/destinations/barbados-alt-2.jpg",
+              "images/destinations/south-of-france-alt-2.jpg"
+            ]
+          }
+        ]
+      },
+      {
+        "background": {
+          "color": "#5185a1",
+          "video": "IxF55qB4CuQ"
+        },
+        "groups": [
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Our Story",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
+                "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Arrange a consultation",
+              "href": "/contact"
+            }
+          ],
+          [
+            {
+              "type": "heading",
+              "level": "h3",
+              "text": "Get in touch to discuss your needs",
+              "color": "#ffffff"
+            },
+            {
+              "type": "text",
+              "paragraphs": [
+                "Our dedicated specialist would be delighted to talk about our luxury villa and apartment rentals in Cannes and answer any of your questions."
+              ]
+            },
+            {
+              "type": "button",
+              "label": "Contact Us",
+              "href": "/contact"
+            },
+            {
+              "type": "button",
+              "label": "Call us on +44 (0)1244 629 963",
+              "href": "tel:+441244629963"
+            }
+          ]
+        ],
+        "blocks": [
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Our Story",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
+              "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Arrange a consultation",
+            "href": "/contact"
+          },
+          {
+            "type": "heading",
+            "level": "h3",
+            "text": "Get in touch to discuss your needs",
+            "color": "#ffffff"
+          },
+          {
+            "type": "text",
+            "paragraphs": [
+              "Our dedicated specialist would be delighted to talk about our luxury villa and apartment rentals in Cannes and answer any of your questions."
+            ]
+          },
+          {
+            "type": "button",
+            "label": "Contact Us",
+            "href": "/contact"
+          },
+          {
+            "type": "button",
+            "label": "Call us on +44 (0)1244 629 963",
+            "href": "tel:+441244629963"
+          }
+        ]
+      }
+    ]
+  }
+]

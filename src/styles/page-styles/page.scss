@@ -1,0 +1,26 @@
+@use '../variable' as v;
+
+.page {
+  // Offset the fixed header on every page except the home hero, which
+  // deliberately runs underneath it.
+  > div:first-child .section:not(.section--hero) {
+    padding-top: calc(v.$logo-height + 60px);
+  }
+}
+
+// Pages that exist in WordPress with empty content. Kept alive so the
+// URL and nav stay honest rather than 404ing.
+.page--stub {
+  padding-block: clamp(160px, 18vw, 260px) clamp(80px, 10vw, 140px);
+  text-align: center;
+
+  h1 {
+    font-family: v.$font-display;
+    font-size: v.$h2-size;
+    font-weight: v.$h2-weight;
+  }
+}
+
+.page__stub-note {
+  color: v.$footer-secondary;
+}

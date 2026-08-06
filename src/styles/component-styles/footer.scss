@@ -1,0 +1,110 @@
+@use '../variable' as v;
+
+.footer {
+  background: v.$footer-bg;
+  color: v.$footer-text;
+  font-size: 15px;
+}
+
+.footer__inner {
+  display: grid;
+  gap: 40px;
+  padding-block: clamp(48px, 6vw, 80px);
+
+  // redux: footer_columns = 4
+  @media (min-width: v.$bp-phone)  { grid-template-columns: repeat(2, 1fr); }
+  @media (min-width: v.$bp-tablet) { grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr; }
+}
+
+.footer__logo {
+  width: auto;
+  max-width: 240px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.footer__description {
+  max-width: 42ch;
+  color: v.$footer-secondary;
+}
+
+.footer__badges {
+  max-width: 260px;
+  margin-top: 24px;
+  opacity: 0.65;
+  filter: grayscale(1) invert(1);
+}
+
+.footer__heading {
+  margin-bottom: 16px;
+  color: v.$white;
+  // redux: sidebar_footer_h_font_family — Merriweather 700 15px/25px
+  font-family: v.$font-display;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 25px;
+}
+
+.footer__list {
+  margin: 0 0 20px;
+  padding: 0;
+  list-style: none;
+
+  li { margin-bottom: 10px; }
+
+  a {
+    color: v.$footer-text;
+
+    &:hover { color: v.$white; }
+  }
+}
+
+.footer__label {
+  display: block;
+  color: v.$footer-secondary;
+  font-size: 13px;
+}
+
+.footer__address {
+  margin-bottom: 20px;
+  font-style: normal;
+
+  span { display: block; }
+}
+
+.footer__hours {
+  color: v.$footer-secondary;
+  font-size: 14px;
+}
+
+// ── Copyright bar ────────────────────────────────────────────────────
+.footer__copyright {
+  background: v.$copyright-bg;
+  color: v.$copyright-text;
+  font-size: 13px;
+}
+
+.footer__copyright-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 22px;
+
+  p { margin: 0; }
+}
+
+.footer__social {
+  display: flex;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  a {
+    color: v.$copyright-text;
+
+    &:hover { color: v.$white; }
+  }
+}

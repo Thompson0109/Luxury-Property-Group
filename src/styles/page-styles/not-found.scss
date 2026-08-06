@@ -1,0 +1,14 @@
+@use '../variable' as v;
+
+.not-found {
+  padding-block: clamp(140px, 18vw, 220px);
+  text-align: center;
+}
+
+.not-found__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 32px;
+}

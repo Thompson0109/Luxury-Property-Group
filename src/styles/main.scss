@@ -1,0 +1,7 @@
+@use './variable' as v;
+
+// Minimal placeholder shown while a lazy route chunk loads
+.route-fallback {
+  min-height: 100vh;
+  background: v.$white;
+}

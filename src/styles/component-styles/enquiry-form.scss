@@ -1,0 +1,79 @@
+@use '../variable' as v;
+
+.enquiry-form {
+  width: 100%;
+  max-width: 640px;
+}
+
+.enquiry-form__grid {
+  display: grid;
+  gap: 16px;
+  margin-bottom: 24px;
+
+  @media (min-width: v.$bp-phone) { grid-template-columns: repeat(2, 1fr); }
+}
+
+.enquiry-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  grid-column: 1 / -1;
+
+  // redux: the CF7 markup used a two-up inline row for name + phone
+  &--half {
+    @media (min-width: v.$bp-phone) { grid-column: span 1; }
+  }
+
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    border-radius: v.$btn-radius;
+    background: v.$white;
+    color: v.$extra-1;
+    font-family: v.$font-body;
+    font-size: 14px;   // redux: form-input-font-size
+    transition: border-color 0.25s v.$ease-out, box-shadow 0.25s v.$ease-out;
+
+    &:focus {
+      border-color: v.$accent;
+      box-shadow: 0 0 0 3px rgba(81, 133, 161, 0.22);
+      outline: none;
+    }
+  }
+
+  textarea { resize: vertical; }
+
+  &.is-invalid input,
+  &.is-invalid textarea { border-color: #b3413a; }
+}
+
+.enquiry-form__error {
+  margin: 0;
+  color: #b3413a;
+  font-size: 13px;
+}
+
+.enquiry-form__notice {
+  margin-top: 16px;
+  font-size: 14px;
+
+  &--error { color: #b3413a; }
+}
+
+.enquiry-form--sent {
+  padding: 32px;
+  border-radius: v.$btn-radius;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+// On the accent-coloured contact band the labels sit on dark ground.
+.section--on-dark .enquiry-form label { color: v.$white; }

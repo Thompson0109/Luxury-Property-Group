@@ -1,0 +1,234 @@
+@use '../variable' as v;
+
+.section {
+  position: relative;
+  padding-block: clamp(64px, 8vw, 130px);
+  background-position: center;
+  background-size: cover;
+  color: v.$extra-1;
+  overflow: hidden;
+}
+
+.section__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+.section--has-image .section__overlay { opacity: 0.72; }
+
+.section__inner {
+  position: relative;
+  z-index: 2;
+}
+
+// Text has to invert on photographic, video and accent backgrounds.
+.section--on-dark {
+  color: v.$white;
+
+  .section__heading,
+  .section__text { color: v.$white; }
+
+  a:not(.btn) {
+    color: v.$white;
+    text-decoration: underline;
+  }
+}
+
+// ── Hero ─────────────────────────────────────────────────────────────
+.section--hero {
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+  padding-block: 140px 100px;
+  text-align: center;
+
+  .section__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section__group { align-items: center; text-align: center; }
+}
+
+.section__scroll-cue {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  z-index: 3;
+  translate: -50% 0;
+
+  span {
+    display: block;
+    width: 14px;
+    height: 14px;
+    border-right: 2px solid rgba(255, 255, 255, 0.85);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+    rotate: 45deg;
+    animation: section-cue 2s v.$ease-inout infinite;
+  }
+}
+
+@keyframes section-cue {
+  0%, 100% { transform: translateY(0);   opacity: 0.5; }
+  50%      { transform: translateY(8px); opacity: 1; }
+}
+
+// ── Groups ───────────────────────────────────────────────────────────
+.section__group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+
+  & + & { margin-top: clamp(48px, 6vw, 90px); }
+}
+
+// A row holding two groups where one leads with a gallery is a
+// media/copy split — lay them side by side and let the source order
+// decide which side the media sits on.
+.section--split .section__inner {
+  display: grid;
+  gap: clamp(32px, 5vw, 72px);
+
+  @media (min-width: v.$bp-tablet) {
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+  }
+}
+
+.section--split .section__group + .section__group { margin-top: 0; }
+
+// ── Blocks ───────────────────────────────────────────────────────────
+.section__heading {
+  margin: 0;
+  color: v.$accent;
+}
+
+.section__heading--h2 {
+  font-size: v.$h2-size;
+
+  @media (max-width: v.$bp-tablet) { font-size: v.scale(v.$h2-size, v.$h2-tablet); }
+  @media (max-width: v.$bp-phone)  { font-size: v.scale(v.$h2-size, v.$h2-phone); }
+}
+
+.section__heading--h4 {
+  color: inherit;
+  font-family: v.$font-body;
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.section__text {
+  max-width: 62ch;
+
+  strong { font-weight: 700; }
+}
+
+.section__image img,
+.section__gallery-item img {
+  width: 100%;
+  border-radius: v.$btn-radius;
+  object-fit: cover;
+}
+
+.section__gallery {
+  display: grid;
+  gap: 16px;
+  width: 100%;
+  margin: 0;
+}
+
+.section__gallery--pair {
+  grid-template-columns: repeat(2, 1fr);
+
+  .section__gallery-item { margin: 0; }
+  .section__gallery-item img { aspect-ratio: 3 / 4; }
+}
+
+.section__gallery--grid {
+  grid-template-columns: repeat(2, 1fr);
+
+  @media (min-width: v.$bp-tablet) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .section__gallery-item { margin: 0; }
+  .section__gallery-item img { aspect-ratio: 4 / 3; }
+}
+
+// ── Region cards ─────────────────────────────────────────────────────
+.section__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.section__card-link {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 220px;
+  border-radius: v.$btn-radius;
+  overflow: hidden;
+  text-align: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55));
+    transition: background 0.35s v.$ease-out;
+  }
+
+  &:hover::after {
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.4));
+  }
+}
+
+.section__card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale 0.6s v.$ease-out;
+}
+
+.section__card-link:hover .section__card-image { scale: 1.06; }
+
+.section__card-label {
+  position: relative;
+  z-index: 2;
+  padding: 0 16px;
+  color: v.$white;
+  font-family: v.$font-display;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+// ── Video backdrop ───────────────────────────────────────────────────
+.video-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+
+  iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    // Cover the band regardless of aspect ratio.
+    width: 100vw;
+    height: 56.25vw;
+    min-height: 100%;
+    min-width: 177.77vh;
+    translate: -50% -50%;
+    border: 0;
+  }
+}
