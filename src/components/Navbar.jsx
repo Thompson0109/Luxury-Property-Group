@@ -109,8 +109,7 @@ export default function Navbar() {
     <header
       className={[
         'navbar',
-        isScrolled ? 'is-scrolled' : '',
-        isTransparent ? 'is-transparent' : '',
+        isTransparent ? '' : 'is-scrolled',
         isOpen ? 'is-open' : '',
       ].filter(Boolean).join(' ')}
     >
