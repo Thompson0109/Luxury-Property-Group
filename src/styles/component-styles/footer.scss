@@ -3,13 +3,13 @@
 .footer {
   background: v.$footer-bg;
   color: v.$footer-text;
-  font-size: 15px;
+  font-size: v.$body-size;   // measured: footer inherits the 17px body size
 }
 
 .footer__inner {
   display: grid;
   gap: 40px;
-  padding-block: clamp(48px, 6vw, 80px);
+  padding-block: v.band(v.$pad-md);
 
   // redux: footer_columns = 4
   @media (min-width: v.$bp-phone)  { grid-template-columns: repeat(2, 1fr); }
@@ -78,10 +78,13 @@
 }
 
 // ── Copyright bar ────────────────────────────────────────────────────
+// measured: the copyright strip shares the footer ground rather than
+// sitting on a darker band.
 .footer__copyright {
-  background: v.$copyright-bg;
+  background: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   color: v.$copyright-text;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .footer__copyright-inner {
@@ -90,7 +93,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding-block: 22px;
+  padding-block: v.$copyright-pad;   // measured: 20px
 
   p { margin: 0; }
 }
