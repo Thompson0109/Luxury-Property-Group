@@ -1,3 +1,4 @@
+@use 'sass:list';
 @use './variable' as v;
 
 // ─── Reset ───────────────────────────────────────────────────────────
@@ -10,7 +11,7 @@ html {
 
 body {
   margin: 0;
-  background: v.$white;
+  background: v.$page-bg;
   color: v.$extra-1;
   font-family: v.$font-body;
   font-size: v.$body-size;
@@ -25,33 +26,27 @@ h1, h2, h3, h4, h5, h6 {
   color: inherit;
 }
 
+// Open Sans, uppercase, tracked — the eyebrow role on this site rather
+// than the largest heading.
 h1 {
   font-family: v.$font-body;
-  font-size: v.$h1-size;
-  font-weight: v.$h1-weight;
-  line-height: v.$h1-lh;
+  font-weight: 500;
   letter-spacing: v.$h1-tracking;
   text-transform: uppercase;
+  @include v.type-tiers(v.$h1-tiers...);
 }
 
 h2 {
   font-family: v.$font-display;
-  font-size: v.$h2-size;
-  font-weight: v.$h2-weight;
-  line-height: v.$h2-lh;
-
-  @media (max-width: v.$bp-tablet) { font-size: v.scale(v.$h2-size, v.$h2-tablet); }
-  @media (max-width: v.$bp-phone)  { font-size: v.scale(v.$h2-size, v.$h2-phone); }
+  font-weight: 400;
+  @include v.type-tiers(v.$h2-tiers...);
 }
 
 h3 {
   font-family: v.$font-display;
-  font-size: v.$h3-size;
-  font-weight: v.$h3-weight;
-  line-height: v.$h3-lh;
-
-  @media (max-width: v.$bp-tablet) { font-size: v.scale(v.$h3-size, v.$h3-tablet); }
-  @media (max-width: v.$bp-phone)  { font-size: v.scale(v.$h3-size, v.$h3-phone); }
+  font-weight: 700;
+  margin-bottom: 8px;   // measured
+  @include v.type-tiers(v.$h3-tiers...);
 }
 
 h4 {
@@ -64,18 +59,26 @@ h4 {
 p { margin: 0 0 1.15em; }
 p:last-child { margin-bottom: 0; }
 
+// measured: bold copy reverts to the body face, not the display face
+b, strong {
+  font-family: v.$font-body;
+  font-weight: 700;
+}
+
 a {
   color: v.$accent;
   text-decoration: none;
-  transition: color 0.25s v.$ease-out;
+  transition: color v.$dur-header v.$ease-out;
 
   &:hover { color: v.$accent-hover; }
 }
 
+// measured: every image on the live site is square-cornered
 img {
   display: block;
   max-width: 100%;
   height: auto;
+  border-radius: 0;
 }
 
 button { font: inherit; cursor: pointer; }
@@ -106,10 +109,7 @@ button { font: inherit; cursor: pointer; }
   color: v.$white;
   transition: top 0.2s v.$ease-out;
 
-  &:focus {
-    top: v.$gutter;
-    color: v.$white;
-  }
+  &:focus { top: v.$gutter; color: v.$white; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -132,36 +132,38 @@ button { font: inherit; cursor: pointer; }
 
 .container--narrow { max-width: 900px; }
 
+// ─── Button ──────────────────────────────────────────────────────────
+// Salient's `see-through-2`: an outline button in the *display* face,
+// sentence case, that fills solid on hover. Not the filled, uppercase,
+// shadowed button a generic theme would use.
 .btn {
   display: inline-block;
-  padding: 1em 2.4em;
-  border: 1px solid v.$accent;
+  padding: v.$btn-padding;
+  border: v.$btn-border solid rgba(81, 133, 161, 0.75);
   border-radius: v.$btn-radius;
-  background: v.$accent;
-  box-shadow: v.$btn-shadow;
-  color: v.$white;
-  font-family: v.$font-body;
-  font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  line-height: 1.2;
-  text-transform: uppercase;
-  transition: background 0.3s v.$ease-out, border-color 0.3s v.$ease-out,
-              color 0.3s v.$ease-out, transform 0.3s v.$ease-out;
+  background: transparent;
+  color: v.$accent;
+  font-family: v.$font-display;
+  font-size: v.$btn-size;
+  font-weight: v.$btn-weight;
+  letter-spacing: v.$btn-tracking;
+  line-height: 1.4;
+  text-transform: none;
+  transition: background-color v.$dur-base v.$ease-out,
+              border-color v.$dur-base v.$ease-out,
+              color v.$dur-base v.$ease-out;
 
   &:hover {
-    background: v.$accent-hover;
-    border-color: v.$accent-hover;
+    background: v.$accent;
+    border-color: v.$accent;
     color: v.$white;
-    transform: translateY(-2px);
   }
 }
 
-// On accent-coloured or photographic bands the filled button disappears,
-// so it inverts to a white outline.
+// On photographic or dark bands the outline is white and fills white,
+// dropping the label back to the accent.
 .btn--inverse {
-  border-color: v.$white;
-  background: transparent;
+  border-color: rgba(255, 255, 255, 0.75);
   color: v.$white;
 
   &:hover {
@@ -171,14 +173,14 @@ button { font: inherit; cursor: pointer; }
   }
 }
 
-// Outline variant for light backgrounds (404, secondary actions).
 .btn--ghost {
+  border-color: rgba(81, 133, 161, 0.75);
   background: transparent;
-  box-shadow: none;
   color: v.$accent;
 
   &:hover {
     background: v.$accent;
+    border-color: v.$accent;
     color: v.$white;
   }
 }
