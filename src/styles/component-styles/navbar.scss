@@ -1,16 +1,20 @@
 @use '../variable' as v;
 
+// measured: the live header is fully transparent and 140px tall at rest,
+// then collapses to a white 107px bar with a wide soft shadow on scroll.
 .navbar {
   position: fixed;
   inset: 0 0 auto;
   z-index: 100;
-  background: v.$header-bg;
-  box-shadow: v.$shadow-header;
-  transition: background 0.35s v.$ease-out, box-shadow 0.35s v.$ease-out;
+  background: transparent;
+  box-shadow: none;
+  transition: background-color v.$dur-header v.$ease-out,
+              box-shadow v.$dur-header v.$ease-out,
+              transform v.$dur-header v.$ease-out;
 
-  &.is-transparent {
-    background: transparent;
-    box-shadow: none;
+  &.is-scrolled {
+    background: v.$header-bg;
+    box-shadow: v.$shadow-header;
   }
 }
 
@@ -22,24 +26,30 @@
   width: 100%;
   max-width: v.$container-max;
   margin-inline: auto;
-  padding: 12px v.$gutter;
+  min-height: v.$header-height;
+  padding: 0 v.$gutter;
+  transition: min-height v.$dur-header v.$ease-out;
+}
+
+.navbar.is-scrolled .navbar__inner {
+  min-height: v.$header-height-small;
 }
 
 .navbar__logo img {
   width: auto;
-  height: v.$logo-height;
-  transition: height 0.35s v.$ease-out;
+  height: v.$logo-height;          // measured: 80px at rest
+  transition: height v.$dur-header v.$ease-out;
 
   @media (max-width: v.$bp-tablet) { height: v.$logo-height-mob; }
 }
 
-.navbar.is-scrolled .navbar__logo img { height: 56px; }
+.navbar.is-scrolled .navbar__logo img { height: v.$logo-height-small; }  // measured: 74px
 
 // ── Links ────────────────────────────────────────────────────────────
 .navbar__links {
   display: flex;
   align-items: center;
-  gap: v.$menu-item-gap * 2;
+  gap: v.$nav-item-gap;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -59,9 +69,11 @@
     color: v.$extra-1;
     font-family: v.$font-nav;
     font-size: v.$nav-size;
-    font-weight: 400;
-    line-height: v.$nav-lh;
-    transition: color 0.25s v.$ease-out;
+    font-weight: v.$nav-weight;
+    letter-spacing: normal;
+    line-height: 1.5;
+    text-transform: none;
+    transition: color v.$dur-header v.$ease-out;
   }
 
   > a.is-active { color: v.$accent; }
@@ -70,7 +82,8 @@
   > .navbar__submenu-toggle:hover { color: v.$accent; }
 }
 
-.navbar.is-transparent .navbar__item {
+// measured: links are white over the hero, #303030 once .small-nav lands.
+.navbar:not(.is-scrolled) .navbar__item {
   > a,
   > .navbar__submenu-toggle { color: v.$white; }
 
@@ -104,8 +117,8 @@
   opacity: 0;
   translate: 0 8px;
   visibility: hidden;
-  transition: opacity 0.25s v.$ease-out, translate 0.25s v.$ease-out,
-              visibility 0.25s;
+  transition: opacity v.$dur-header v.$ease-out, translate v.$dur-header v.$ease-out,
+              visibility v.$dur-header;
 
   a {
     display: block;
@@ -162,9 +175,9 @@
   &::after  { top: 8px; }
 }
 
-.navbar.is-transparent .navbar__bars,
-.navbar.is-transparent .navbar__bars::before,
-.navbar.is-transparent .navbar__bars::after { background: v.$white; }
+.navbar:not(.is-scrolled) .navbar__bars,
+.navbar:not(.is-scrolled) .navbar__bars::before,
+.navbar:not(.is-scrolled) .navbar__bars::after { background: v.$white; }
 
 .navbar.is-open .navbar__bars {
   background: transparent;
@@ -183,7 +196,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 96px v.$gutter 40px;
+    padding: #{v.$header-height} v.$gutter 40px;
     background: v.$header-bg;
     opacity: 0;
     visibility: hidden;
