@@ -1,13 +1,22 @@
 @use '../variable' as v;
 
+// Row padding on the live site is viewport-relative — inline
+// `calc(100vw * n)` — so the rhythm breathes with the window rather
+// than snapping between clamp stops.
 .section {
   position: relative;
-  padding-block: clamp(64px, 8vw, 130px);
+  padding-block: v.band(v.$pad-base);
   background-position: center;
   background-size: cover;
   color: v.$extra-1;
   overflow: hidden;
 }
+
+// Density modifiers matching the four values observed across the page.
+.section--pad-sm { padding-block: v.band(v.$pad-sm); }
+.section--pad-md { padding-block: v.band(v.$pad-md); }
+.section--pad-xl { padding-block: v.band(v.$pad-xl); }
+.section--pad-none { padding-block: 0; }
 
 .section__overlay {
   position: absolute;
@@ -23,7 +32,6 @@
   z-index: 2;
 }
 
-// Text has to invert on photographic, video and accent backgrounds.
 .section--on-dark {
   color: v.$white;
 
@@ -41,7 +49,7 @@
   display: flex;
   align-items: center;
   min-height: 100svh;
-  padding-block: 140px 100px;
+  padding-block: v.$header-height v.band(v.$pad-base);
   text-align: center;
 
   .section__inner {
@@ -53,26 +61,47 @@
   .section__group { align-items: center; text-align: center; }
 }
 
+// The hero display heading is fluid on the live site (5vw / 1.3), not a
+// fixed size — it tracks the viewport rather than stepping at breakpoints.
+.section--hero .section__heading--display {
+  margin: 0;
+  font-family: v.$font-display;
+  font-size: v.$hero-size;
+  font-weight: 400;
+  line-height: v.$hero-lh;
+  color: v.$white;
+
+  @include v.at-phone { font-size: 34px; }
+}
+
+// Circular scroll cue, as on the live hero.
 .section__scroll-cue {
   position: absolute;
   bottom: 36px;
   left: 50%;
   z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
   translate: -50% 0;
+  animation: section-cue 2s v.$ease-inout infinite;
 
   span {
     display: block;
-    width: 14px;
-    height: 14px;
-    border-right: 2px solid rgba(255, 255, 255, 0.85);
-    border-bottom: 2px solid rgba(255, 255, 255, 0.85);
+    width: 11px;
+    height: 11px;
+    border-right: 1.5px solid rgba(255, 255, 255, 0.9);
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.9);
     rotate: 45deg;
-    animation: section-cue 2s v.$ease-inout infinite;
+    translate: 0 -2px;
   }
 }
 
 @keyframes section-cue {
-  0%, 100% { transform: translateY(0);   opacity: 0.5; }
+  0%, 100% { transform: translateY(0);   opacity: 0.65; }
   50%      { transform: translateY(8px); opacity: 1; }
 }
 
@@ -83,12 +112,9 @@
   align-items: flex-start;
   gap: 18px;
 
-  & + & { margin-top: clamp(48px, 6vw, 90px); }
+  & + & { margin-top: v.band(v.$pad-sm); }
 }
 
-// A row holding two groups where one leads with a gallery is a
-// media/copy split — lay them side by side and let the source order
-// decide which side the media sits on.
 .section--split .section__inner {
   display: grid;
   gap: clamp(32px, 5vw, 72px);
@@ -104,14 +130,29 @@
 // ── Blocks ───────────────────────────────────────────────────────────
 .section__heading {
   margin: 0;
-  color: v.$accent;
+  color: v.$accent;   // measured: h3 renders in the accent
+}
+
+// The eyebrow above a display heading — Open Sans, uppercase, tracked.
+.section__heading--h1 {
+  font-family: v.$font-body;
+  font-weight: 500;
+  letter-spacing: v.$h1-tracking;
+  text-transform: uppercase;
+  color: inherit;
+  @include v.type-tiers(v.$h1-tiers...);
 }
 
 .section__heading--h2 {
-  font-size: v.$h2-size;
+  font-family: v.$font-display;
+  font-weight: 400;
+  @include v.type-tiers(v.$h2-tiers...);
+}
 
-  @media (max-width: v.$bp-tablet) { font-size: v.scale(v.$h2-size, v.$h2-tablet); }
-  @media (max-width: v.$bp-phone)  { font-size: v.scale(v.$h2-size, v.$h2-phone); }
+.section__heading--h3 {
+  font-family: v.$font-display;
+  font-weight: 700;
+  @include v.type-tiers(v.$h3-tiers...);
 }
 
 .section__heading--h4 {
@@ -125,13 +166,15 @@
 .section__text {
   max-width: 62ch;
 
-  strong { font-weight: 700; }
+  strong { font-family: v.$font-body; font-weight: 700; }
 }
 
+// ── Imagery ──────────────────────────────────────────────────────────
+// Square corners throughout, matching the live theme.
 .section__image img,
 .section__gallery-item img {
   width: 100%;
-  border-radius: v.$btn-radius;
+  border-radius: 0;
   object-fit: cover;
 }
 
@@ -142,22 +185,21 @@
   margin: 0;
 }
 
+// measured: gallery tiles render 430x287 — a 3:2 frame.
 .section__gallery--pair {
   grid-template-columns: repeat(2, 1fr);
 
   .section__gallery-item { margin: 0; }
-  .section__gallery-item img { aspect-ratio: 3 / 4; }
+  .section__gallery-item img { aspect-ratio: 3 / 2; }
 }
 
 .section__gallery--grid {
   grid-template-columns: repeat(2, 1fr);
 
-  @media (min-width: v.$bp-tablet) {
-    grid-template-columns: repeat(3, 1fr);
-  }
+  @media (min-width: v.$bp-tablet) { grid-template-columns: repeat(3, 1fr); }
 
   .section__gallery-item { margin: 0; }
-  .section__gallery-item img { aspect-ratio: 4 / 3; }
+  .section__gallery-item img { aspect-ratio: 3 / 2; }
 }
 
 // ── Region cards ─────────────────────────────────────────────────────
@@ -173,7 +215,7 @@
   display: grid;
   place-items: center;
   min-height: 220px;
-  border-radius: v.$btn-radius;
+  border-radius: 0;
   overflow: hidden;
   text-align: center;
 
@@ -182,7 +224,7 @@
     position: absolute;
     inset: 0;
     background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55));
-    transition: background 0.35s v.$ease-out;
+    transition: background v.$dur-base v.$ease-out;
   }
 
   &:hover::after {
@@ -196,7 +238,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: scale 0.6s v.$ease-out;
+  transition: scale v.$dur-base v.$ease-out;
 }
 
 .section__card-link:hover .section__card-image { scale: 1.06; }
@@ -223,7 +265,6 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    // Cover the band regardless of aspect ratio.
     width: 100vw;
     height: 56.25vw;
     min-height: 100%;
