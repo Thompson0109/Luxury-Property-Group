@@ -1,129 +1,155 @@
 @use 'sass:string';
 @use 'sass:math';
+@use 'sass:list';
 
 // ─────────────────────────────────────────────────────────────────────
 //  Design tokens
 //
-//  Every value below is lifted from the live site's Salient/Redux theme
-//  options export, or from the WPBakery row attributes in wp_posts — not
-//  invented. The Redux key is named in a comment wherever one exists, so
-//  the mapping stays auditable.
+//  Every value below was read as a *computed style* off the running
+//  Salient site at luxury-property-group.local, or lifted from the
+//  compiled salient-dynamic-styles.css. Where a value came from a
+//  measurement the comment records what was observed, so the mapping
+//  stays auditable.
 // ─────────────────────────────────────────────────────────────────────
 
 // ── Brand ────────────────────────────────────────────────────────────
-$accent:            #5185a1;   // redux: accent-color
-$accent-hover:      #3f6c85;   // derived — darkened for hover/pressed
+$accent:            #5185a1;   // measured: h3 colour, button border
+$accent-hover:      #3f6c85;   // derived — darkened for pressed states
 $accent-wash:       #eaf1f5;   // derived — tint for quiet surfaces
 
 // ── Neutrals ─────────────────────────────────────────────────────────
-$page-bg:           #f1f1f1;   // redux: background-color
-$header-bg:         #ffffff;   // redux: header-background-color
-$extra-1:           #303030;   // redux: extra-color-1
-$extra-2:           #f3f3f3;   // redux: extra-color-2
-$extra-3:           #ffffff;   // redux: extra-color-3
+$page-bg:           #ffffff;   // measured: body background-color
+$header-bg:         #ffffff;   // measured: #header-outer.small-nav
+$extra-1:           #303030;   // measured: body colour
+$extra-2:           #f3f3f3;
+$extra-3:           #ffffff;
 $white:             #ffffff;
 
-$section-dark:      #333333;   // wpbakery: "Our Story" row bg_color
-$hero-dark:         #2b323a;   // wpbakery: home hero row bg_color
+$section-dark:      #333333;
+$hero-dark:         #2b323a;
 
 // ── Footer ───────────────────────────────────────────────────────────
-$footer-bg:         #313233;   // redux: footer-background-color
-$footer-text:       #cccccc;   // redux: footer-font-color
-$footer-secondary:  #777777;   // redux: footer-secondary-font-color
-$copyright-bg:      #1f1f1f;   // redux: footer-copyright-background-color
-$copyright-text:    #777777;   // redux: footer-copyright-font-color
-
-// ── Call to action ───────────────────────────────────────────────────
-$cta-bg:            #ecebe9;   // redux: cta-background-color
-$cta-text:          #4b4f52;   // redux: cta-text-color
+$footer-bg:         #252525;   // measured: #footer-outer background
+$footer-text:       #cccccc;   // measured: #footer-outer colour
+$footer-secondary:  #777777;
+$copyright-text:    #777777;   // measured: #copyright colour
+$copyright-pad:     20px;      // measured: #copyright padding-block
 
 // ── Navigation ───────────────────────────────────────────────────────
-$nav-dropdown-bg:         #ffffff;   // redux: header-dropdown-background-color
-$nav-dropdown-hover-bg:   #f3f3f3;   // redux: header-dropdown-background-hover-color
-$nav-dropdown-text:       #303030;   // redux: header-dropdown-font-color
-$nav-dropdown-text-hover: $accent;   // redux: header-dropdown-font-hover-color
+$nav-dropdown-bg:         #ffffff;
+$nav-dropdown-hover-bg:   #f3f3f3;
+$nav-dropdown-text:       #303030;
+$nav-dropdown-text-hover: $accent;
 
 // ── Type ─────────────────────────────────────────────────────────────
-// redux: default-theme-font = from_google
-// body + h1 = Open Sans · h2 + h3 + navigation = Merriweather
+// measured: body + h1 = Open Sans · h2 + h3 + nav + buttons = Merriweather
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;500;600;700&display=swap');
 
 $font-body:    'Open Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 $font-display: 'Merriweather', Georgia, 'Times New Roman', serif;
-$font-nav:     $font-display;   // redux: navigation_font_family
+$font-nav:     $font-display;
 
-$body-size:    17px;   // redux: body_font_family
-$body-line:    25px;
-$body-weight:  500;
+$body-size:    17px;   // measured
+$body-line:    25px;   // measured
+$body-weight:  500;    // measured
+$body-lh: math.div($body-line, $body-size);
 
-$h1-size:      22px;   // redux: h1_font_family — uppercase, tracked
-$h1-line:      32px;
-$h1-weight:    500;
-$h1-tracking:  2px;
-
-$h2-size:      45px;   // redux: h2_font_family
-$h2-line:      55px;
-$h2-weight:    400;
-
-$h3-size:      30px;   // redux: h3_font_family
-$h3-line:      36px;
-$h3-weight:    700;
-
-$nav-size:     16px;   // redux: navigation_font_family
-$nav-line:     24px;
-
-// Salient stores line-height in px against a px font-size. Expressed as
-// unitless ratios so they survive the responsive font scaling below.
-$body-lh: math.div($body-line, $body-size);   // 25/17
-$h1-lh:   math.div($h1-line,   $h1-size);     // 32/22
-$h2-lh:   math.div($h2-line,   $h2-size);     // 55/45
-$h3-lh:   math.div($h3-line,   $h3-size);     // 36/30
-$nav-lh:  math.div($nav-line,  $nav-size);    // 24/16
-
-// Salient stores responsive type as a percentage of the desktop size.
-// redux: h2-tablet-font-size = 80, h2-phone-font-size = 70, etc.
-$h1-tablet: 70%;  $h1-phone: 65%;
-$h2-tablet: 80%;  $h2-phone: 70%;
-$h3-tablet: 80%;  $h3-phone: 70%;
-
-// ── Layout ───────────────────────────────────────────────────────────
-$container-max:    1425px;  // redux: max_container_width
-$logo-height:      80px;    // redux: logo-height
-$logo-height-mob:  60px;    // redux: mobile-logo-height
-$nav-breakpoint:   1000px;  // redux: header-menu-mobile-breakpoint
-$menu-item-gap:    10px;    // redux: header-menu-item-spacing
-$gutter:           24px;
+$h1-tracking:  2px;    // measured: letter-spacing on h1
 
 // ── Breakpoints ──────────────────────────────────────────────────────
+// Salient's real tiers, confirmed in salient-dynamic-styles.css
 $bp-phone:          690px;
-$bp-tablet:         1000px;
+$bp-tablet:         1000px;   // also the mobile-nav breakpoint
 $bp-small-desktop:  1300px;
 
+// Non-overlapping ranges, mirroring how Salient writes them.
+@mixin at-small-desktop { @media only screen and (max-width: $bp-small-desktop) and (min-width: $bp-tablet) { @content; } }
+@mixin at-tablet        { @media only screen and (max-width: #{$bp-tablet - 1px}) and (min-width: #{$bp-phone + 1px}) { @content; } }
+@mixin at-phone         { @media only screen and (max-width: $bp-phone) { @content; } }
+@mixin below-tablet     { @media only screen and (max-width: #{$bp-tablet - 1px}) { @content; } }
+
+// Salient emits four discrete size/line-height pairs per heading rather
+// than a fluid scale. Reproduced verbatim — the ≤1300px tier in
+// particular is easy to miss and is what keeps desktop headings honest.
+@mixin type-tiers($base, $sd, $t, $p) {
+  font-size: list.nth($base, 1);   line-height: list.nth($base, 2);
+  @include at-small-desktop { font-size: list.nth($sd, 1); line-height: list.nth($sd, 2); }
+  @include at-tablet        { font-size: list.nth($t, 1);  line-height: list.nth($t, 2); }
+  @include at-phone         { font-size: list.nth($p, 1);  line-height: list.nth($p, 2); }
+}
+
+// measured tiers ─ (>1300) (≤1300) (≤999) (≤690)
+$h1-tiers: (22px 32px)   (16.5px 24px)    (15.4px 22.4px) (14.3px 20.8px);
+$h2-tiers: (45px 55px)   (38.25px 46.75px)(36px 44px)     (33.75px 41.25px);
+$h3-tiers: (30px 36px)   (25.5px 30.6px)  (24px 28.8px)   (24px 28.8px);
+
+// Retained for components that need a single reference size.
+$h2-size: 45px;
+$h2-weight: 400;
+$h3-size: 30px;
+
+$nav-size:     16px;   // measured: nav link font-size
+$nav-weight:   400;    // measured
+$nav-item-gap: 10px;   // measured: nav link padding-right
+
+// The hero display heading is fluid, not fixed: 63.25px at a 1265px
+// viewport is exactly 5vw, with a 1.3 line-height.
+$hero-size: 5vw;
+$hero-lh:   1.3;
+
+// ── Layout ───────────────────────────────────────────────────────────
+$container-max:    1425px;
+$gutter:           24px;
+
+// Row padding is viewport-relative on the live site — inline
+// `calc(100vw * n)` rather than a clamp. These are the four values
+// observed across the home page.
+$pad-sm:   4vw;
+$pad-base: 5vw;
+$pad-md:   6vw;
+$pad-xl:   13vw;
+
+// Set a px floor if the pure-vw rhythm proves too tight on device;
+// `false` reproduces the live site exactly.
+$pad-floor: false;
+
+@function band($vw) {
+  @if $pad-floor { @return max($pad-floor, $vw); }
+  @return $vw;
+}
+
+// ── Header ───────────────────────────────────────────────────────────
+$header-height:        140px;  // measured: #header-outer at rest
+$header-height-small:  107px;  // measured: #header-outer.small-nav
+$logo-height:          80px;   // measured
+$logo-height-small:    74px;   // measured
+$logo-height-mob:      60px;
+$nav-breakpoint:       $bp-tablet;
+
 // ── Buttons ──────────────────────────────────────────────────────────
-// redux: button-styling = slightly_rounded_shadow, roundness = 4
-$btn-radius:  4px;
-$btn-shadow:  0 4px 14px rgba(0, 0, 0, 0.18);
+// measured: .nectar-button.see-through-2
+$btn-radius:   4px;
+$btn-border:   2px;
+$btn-size:     14px;
+$btn-weight:   700;
+$btn-tracking: 1px;
+$btn-padding:  9px 24px;
 
 // ── Elevation ────────────────────────────────────────────────────────
-$shadow-header: 0 3px 18px rgba(0, 0, 0, 0.12);  // redux: header-box-shadow = large
+$shadow-header: 0 3px 45px 0 rgba(0, 0, 0, 0.15);   // measured: .small-nav
 $shadow-card:   0 2px 6px rgba(0, 0, 0, 0.06), 0 14px 34px rgba(0, 0, 0, 0.10);
 
 // ── Motion ───────────────────────────────────────────────────────────
-$ease-out:   cubic-bezier(0.16, 1, 0.3, 1);
-$ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+// measured: Salient's easing on buttons and image reveals
+$ease-out:     cubic-bezier(0.25, 1, 0.33, 1);
+$ease-inout:   cubic-bezier(0.65, 0, 0.35, 1);
+$dur-base:     0.45s;   // measured: button transitions
+$dur-header:   0.3s;    // measured: header transitions
 
 // ── Helpers ──────────────────────────────────────────────────────────
-@function scale($base, $percent) {
-  @return math.div($base * $percent, 100%);
-}
-
-// Encode a colour for an inline SVG data-URI: a literal '#' is read as a
-// fragment delimiter and the SVG silently fails to load.
 @function encode-colour($colour) {
   $str: '#{$colour}';
   $hash-index: string.index($str, '#');
-  @if $hash-index {
-    @return '%23' + string.slice($str, $hash-index + 1);
-  }
+  @if $hash-index { @return '%23' + string.slice($str, $hash-index + 1); }
   @return $str;
 }
