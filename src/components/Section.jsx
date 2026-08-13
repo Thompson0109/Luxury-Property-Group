@@ -4,24 +4,8 @@ import EnquiryForm from './EnquiryForm'
 import { assetUrl } from '@/lib/assets'
 import '@/styles/component-styles/section.scss'
 
-/**
- * Renders one band of a page from the extracted WordPress content model.
- *
- * The WPBakery pages all share the same grammar: a `vc_row` with a
- * background (colour, image or YouTube video) containing one or more
- * columns of headings, copy, buttons and galleries. Rather than hand-
- * writing eight near-identical page components, we render that grammar
- * directly — so re-running the extractor picks up content edits for free.
- *
- * `section.layout` carries the row's geometry, read off the live theme:
- *   pad        vertical padding in vw (Salient emits `calc(100vw * n)`)
- *   fullHeight the row is a 100vh band
- *   cols       spans of every top-level column, e.g. [6, 6] or [8, 4]
- *   fill       'left' | 'right' | 'both' — which columns carry content
- *   center     the row's heading is centred (only the home hero)
- */
 
-// Salient's row padding values, observed across the eight pages.
+// salient's row padding values, observed across the eight pages.
 const PAD_CLASS = {
   0: 'none', 4: 'sm', 5: 'base', 6: 'md', 9: 'lg', 13: 'xl', 24: 'xxl',
 }

@@ -1,13 +1,6 @@
 @use '../variable' as v;
 
-// ─────────────────────────────────────────────────────────────────────
-//  Row geometry
-//
-//  Salient writes row padding inline as `calc(100vw * 0.09)` or
-//  `calc(6vw)` — viewport-relative, not a clamp. Padding is carried on a
-//  custom property so the `--pad-*` modifiers never fight the base rule
-//  on specificity.
-// ─────────────────────────────────────────────────────────────────────
+
 .section {
   --section-pad: #{v.$pad-base};
 
