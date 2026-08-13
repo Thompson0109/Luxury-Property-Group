@@ -1,35 +1,53 @@
 @use '../variable' as v;
 
-// Row padding on the live site is viewport-relative — inline
-// `calc(100vw * n)` — so the rhythm breathes with the window rather
-// than snapping between clamp stops.
+// ─────────────────────────────────────────────────────────────────────
+//  Row geometry
+//
+//  Salient writes row padding inline as `calc(100vw * 0.09)` or
+//  `calc(6vw)` — viewport-relative, not a clamp. Padding is carried on a
+//  custom property so the `--pad-*` modifiers never fight the base rule
+//  on specificity.
+// ─────────────────────────────────────────────────────────────────────
 .section {
+  --section-pad: #{v.$pad-base};
+
   position: relative;
-  padding-block: v.band(v.$pad-base);
+  padding-block: var(--section-pad);
   background-position: center;
   background-size: cover;
   color: v.$extra-1;
   overflow: hidden;
 }
 
-// Density modifiers matching the four values observed across the page.
-.section--pad-sm { padding-block: v.band(v.$pad-sm); }
-.section--pad-md { padding-block: v.band(v.$pad-md); }
-.section--pad-xl { padding-block: v.band(v.$pad-xl); }
-.section--pad-none { padding-block: 0; }
+// measured across the eight pages: 0, 4, 5, 6, 9, 13 and 24vw
+.section--pad-none { --section-pad: 0; }
+.section--pad-sm   { --section-pad: #{v.band(v.$pad-sm)}; }
+.section--pad-base { --section-pad: #{v.band(v.$pad-base)}; }
+.section--pad-md   { --section-pad: #{v.band(v.$pad-md)}; }
+.section--pad-lg   { --section-pad: #{v.band(v.$pad-lg)}; }
+.section--pad-xl   { --section-pad: #{v.band(v.$pad-xl)}; }
+.section--pad-xxl  { --section-pad: #{v.band(v.$pad-xxl)}; }
 
+// `full_height` rows are a viewport band with the content vertically
+// centred — Salient's `vc_row-o-full-height` + `columns-middle`.
+.section--full-height {
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+}
+
+// measured: `.row-bg-overlay` sits at opacity 0.5 on every overlaid row
 .section__overlay {
   position: absolute;
   inset: 0;
   z-index: 1;
-  opacity: 0.8;
+  opacity: 0.5;
 }
-
-.section--has-image .section__overlay { opacity: 0.72; }
 
 .section__inner {
   position: relative;
   z-index: 2;
+  width: 100%;
 }
 
 .section--on-dark {
@@ -45,31 +63,26 @@
 }
 
 // ── Hero ─────────────────────────────────────────────────────────────
+// Every row on the live site carries Salient's `left` alignment class —
+// nothing is centred at row level. Only the home page's display heading
+// opts into centring, via `.section--center`.
 .section--hero {
-  display: flex;
-  align-items: center;
-  min-height: 100svh;
-  padding-block: v.$header-height v.band(v.$pad-base);
-  text-align: center;
-
-  .section__inner {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .section__group { align-items: center; text-align: center; }
+  padding-block: v.$header-height var(--section-pad);
 }
 
-// The hero display heading is fluid on the live site (5vw / 1.3), not a
-// fixed size — it tracks the viewport rather than stepping at breakpoints.
-.section--hero .section__heading--display {
-  margin: 0;
-  font-family: v.$font-display;
+.section--center {
+  text-align: center;
+
+  .section__group { align-items: center; }
+  .section__text { margin-inline: auto; }
+}
+
+// measured: home hero h2 renders 95.25px at a 1905px viewport — exactly
+// 5vw, line-height 1.3. Inner-page heroes use the ordinary 45px h2, so
+// the fluid size is scoped to the centred hero rather than all of them.
+.section--center .section__heading--h2 {
   font-size: v.$hero-size;
-  font-weight: 400;
   line-height: v.$hero-lh;
-  color: v.$white;
 
   @include v.at-phone { font-size: 34px; }
 }
@@ -105,33 +118,49 @@
   50%      { transform: translateY(8px); opacity: 1; }
 }
 
+// ── Columns ──────────────────────────────────────────────────────────
+// Salient rows are a 12-column grid. The three shapes in use here are
+// 12, 6+6 and 8+4. Half-width rows frequently leave one side empty —
+// that is how "Our Story" sits in the left half of a full-bleed image.
+// measured: 60px between columns (30px padding on each column inner).
+.section--cols-6-6 .section__inner,
+.section--cols-8-4 .section__inner {
+  display: grid;
+  gap: 60px;
+  align-items: center;
+}
+
+@media (min-width: v.$bp-tablet) {
+  .section--cols-6-6 .section__inner { grid-template-columns: 1fr 1fr; }
+  .section--cols-8-4 .section__inner { grid-template-columns: 2fr 1fr; }
+
+  .section--fill-left  .section__group { grid-column: 1; }
+  .section--fill-right .section__group { grid-column: 2; }
+}
+
 // ── Groups ───────────────────────────────────────────────────────────
+// measured rhythm inside a column:
+//   heading wrapper margin-bottom 24px + 6px spacer  → 30px
+//   text column margin-bottom 25.5px, button margin-top 35px
+//   (adjacent margins collapse, so text → button is 35px)
 .section__group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 18px;
 
   & + & { margin-top: v.band(v.$pad-sm); }
 }
 
-.section--split .section__inner {
-  display: grid;
-  gap: clamp(32px, 5vw, 72px);
-
-  @media (min-width: v.$bp-tablet) {
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-  }
-}
-
-.section--split .section__group + .section__group { margin-top: 0; }
+.section--cols-6-6 .section__group + .section__group,
+.section--cols-8-4 .section__group + .section__group { margin-top: 0; }
 
 // ── Blocks ───────────────────────────────────────────────────────────
 .section__heading {
-  margin: 0;
-  color: v.$accent;   // measured: h3 renders in the accent
+  margin: 0 0 30px;
+  color: v.$accent;   // measured: h3 renders in the accent on light rows
 }
+
+.section__heading:last-child { margin-bottom: 0; }
 
 // The eyebrow above a display heading — Open Sans, uppercase, tracked.
 .section__heading--h1 {
@@ -164,10 +193,15 @@
 }
 
 .section__text {
-  max-width: 62ch;
+  margin: 0 0 35px;
+  max-width: none;   // the column already sets the measure
 
   strong { font-family: v.$font-body; font-weight: 700; }
 }
+
+.section__text:last-child { margin-bottom: 0; }
+
+.btn + .btn { margin-top: 12px; }
 
 // ── Imagery ──────────────────────────────────────────────────────────
 // Square corners throughout, matching the live theme.
@@ -254,22 +288,33 @@
 }
 
 // ── Video backdrop ───────────────────────────────────────────────────
+// The iframe is sized in JS against the *container*, not the viewport —
+// see VideoBackdrop.jsx. All this layer does is clip, sit behind the
+// content, and hold the poster until playback starts.
 .video-backdrop {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  background-color: v.$section-dark;
+}
 
-  iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100vw;
-    height: 56.25vw;
-    min-height: 100%;
-    min-width: 177.77vh;
-    translate: -50% -50%;
-    border: 0;
-  }
+.video-backdrop__poster {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-size: cover;
+}
+
+.video-backdrop__frame {
+  position: absolute;
+  top: 0;
+  left: 0;
+  max-width: 1000%;   // measured: Salient's own guard against a 100% cap
+  border: 0;
+  opacity: 0;
+  transition: opacity 0.6s v.$ease-out;
+
+  &.is-playing { opacity: 1; }
 }

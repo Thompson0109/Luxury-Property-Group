@@ -127,7 +127,10 @@ button { font: inherit; cursor: pointer; }
   width: 100%;
   max-width: v.$container-max;
   margin-inline: auto;
-  padding-inline: v.$gutter;
+  padding-inline: v.$container-pad;
+
+  @include v.at-tablet { padding-inline: 50px; }
+  @include v.at-phone  { padding-inline: v.$gutter; }
 }
 
 .container--narrow { max-width: 900px; }

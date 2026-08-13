@@ -9,10 +9,22 @@ import '@/styles/component-styles/section.scss'
  *
  * The WPBakery pages all share the same grammar: a `vc_row` with a
  * background (colour, image or YouTube video) containing one or more
- * inner groups of headings, copy, buttons and galleries. Rather than hand-
+ * columns of headings, copy, buttons and galleries. Rather than hand-
  * writing eight near-identical page components, we render that grammar
  * directly — so re-running the extractor picks up content edits for free.
+ *
+ * `section.layout` carries the row's geometry, read off the live theme:
+ *   pad        vertical padding in vw (Salient emits `calc(100vw * n)`)
+ *   fullHeight the row is a 100vh band
+ *   cols       spans of every top-level column, e.g. [6, 6] or [8, 4]
+ *   fill       'left' | 'right' | 'both' — which columns carry content
+ *   center     the row's heading is centred (only the home hero)
  */
+
+// Salient's row padding values, observed across the eight pages.
+const PAD_CLASS = {
+  0: 'none', 4: 'sm', 5: 'base', 6: 'md', 9: 'lg', 13: 'xl', 24: 'xxl',
+}
 
 function Heading({ block }) {
   const { level, text, color } = block
@@ -103,33 +115,38 @@ function Block({ block, inverse }) {
 const leadsWithMedia = (blocks) => blocks[0]?.type === 'gallery'
 
 export default function Section({ section, index, isHero }) {
-  const { background = {}, groups = [] } = section
+  const { background = {}, groups = [], layout = {} } = section
   const { color, image, overlay, video } = background
+  const { pad = 5, fullHeight = false, cols = [12], fill = 'both', center = false } = layout
 
-  // Text has to invert on dark and photographic backgrounds.
+  // Text inverts on dark and photographic backgrounds.
   const onDark = Boolean(video || image || (color && color !== '#ffffff'))
 
   const style = {}
   if (color) style.backgroundColor = color
   if (image) style.backgroundImage = `url(${assetUrl(image)})`
 
-  // A row with exactly two groups is a media/copy split.
-  const isSplit = groups.length === 2 && groups.some(leadsWithMedia)
+  const multiColumn = cols.length > 1
 
   return (
     <section
+      id={`band-${index}`}
       className={[
         'section',
+        `section--pad-${PAD_CLASS[pad] ?? 'base'}`,
+        fullHeight ? 'section--full-height' : '',
         isHero ? 'section--hero' : '',
+        center ? 'section--center' : '',
         onDark ? 'section--on-dark' : '',
         image ? 'section--has-image' : '',
-        isSplit ? 'section--split' : '',
+        multiColumn ? `section--cols-${cols.join('-')}` : '',
+        multiColumn && fill !== 'both' ? `section--fill-${fill}` : '',
       ].filter(Boolean).join(' ')}
       style={style}
     >
-      {video && <VideoBackdrop id={video} />}
+      {video && <VideoBackdrop id={video} poster={image ? assetUrl(image) : undefined} />}
       {overlay && (
-        <div className="section__overlay" style={{ background: overlay }} aria-hidden="true" />
+        <div className="section__overlay" style={{ backgroundColor: overlay }} aria-hidden="true" />
       )}
 
       <div className="container section__inner">
