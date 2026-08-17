@@ -22,6 +22,9 @@
   font-weight: v.$h2-weight;
   line-height: v.$h2-lh;
 
+  @media (max-width: v.$bp-tablet) {
+  font-size: v.scale(v.$h2-size, v.$h2-tablet);
+}
   @media (max-width: v.$bp-tablet) { font-size: v.scale(v.$h2-size, v.$h2-tablet); }
   @media (max-width: v.$bp-phone)  { font-size: v.scale(v.$h2-size, v.$h2-phone); }
 }

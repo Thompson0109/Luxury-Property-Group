@@ -1,7 +1,7 @@
 @use 'sass:string';
 @use 'sass:math';
 @use 'sass:list';
-
+@use 'sass:meta';
 // ─────────────────────────────────────────────────────────────────────
 //  Design tokens
 //
@@ -78,6 +78,10 @@ $bp-small-desktop:  1300px;
   @include at-phone         { font-size: list.nth($p, 1);  line-height: list.nth($p, 2); }
 }
 
+@function scale($value, $target) {
+  @return $target;
+}
+
 // measured tiers ─ (>1300) (≤1300) (≤999) (≤690)
 $h1-tiers: (22px 32px)   (16.5px 24px)    (15.4px 22.4px) (14.3px 20.8px);
 $h2-tiers: (45px 55px)   (38.25px 46.75px)(36px 44px)     (33.75px 41.25px);
@@ -86,7 +90,14 @@ $h3-tiers: (30px 36px)   (25.5px 30.6px)  (24px 28.8px)   (24px 28.8px);
 // Retained for components that need a single reference size.
 $h2-size: 45px;
 $h2-weight: 400;
+$h2-lh: 55px;
+$h2-tablet: 38.25px;
+$h2-phone: 33.75px;
+
+
+
 $h3-size: 30px;
+$h3-weight: 700;
 
 $nav-size:     16px;   // measured: nav link font-size
 $nav-weight:   400;    // measured
@@ -99,6 +110,7 @@ $hero-lh:   1.3;
 
 // ── Layout ───────────────────────────────────────────────────────────
 $container-max:    1425px;
+$container-pad:    90px;
 $gutter:           24px;
 
 // Row padding is viewport-relative on the live site — inline
@@ -107,7 +119,9 @@ $gutter:           24px;
 $pad-sm:   4vw;
 $pad-base: 5vw;
 $pad-md:   6vw;
+$pad-lg:   9vw;    // measured: About "Our Incredible Founder"
 $pad-xl:   13vw;
+$pad-xxl:  24vw;   // measured: Contact form row
 
 // Set a px floor if the pure-vw rhythm proves too tight on device;
 // `false` reproduces the live site exactly.

@@ -51,7 +51,16 @@
             "label": "Speak to our specialists",
             "href": "/contact"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": true,
+          "cols": [
+            12
+          ],
+          "fill": "both",
+          "center": true
+        }
       },
       {
         "background": {},
@@ -162,7 +171,15 @@
             "label": "Discover Barbados",
             "href": "/barbados"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 5,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -211,7 +228,16 @@
             "label": "Learn more",
             "href": "/about"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 13,
+          "fullHeight": false,
+          "cols": [
+            6,
+            6
+          ],
+          "fill": "left"
+        }
       },
       {
         "background": {
@@ -268,7 +294,15 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 4,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -301,7 +335,15 @@
               "images/destinations/south-of-france-alt-2.jpg"
             ]
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {},
@@ -356,7 +398,15 @@
             "type": "image",
             "src": "images/awards/queens-award-presentation.jpeg"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 5,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -412,7 +462,16 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 6,
+          "fullHeight": false,
+          "cols": [
+            8,
+            4
+          ],
+          "fill": "both"
+        }
       }
     ]
   },
@@ -468,7 +527,16 @@
             "label": "Arrange a consultation",
             "href": "/contact"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": true,
+          "cols": [
+            6,
+            6
+          ],
+          "fill": "left"
+        }
       },
       {
         "background": {
@@ -531,7 +599,16 @@
             "label": "Arrange a consultation",
             "href": "/contact"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 4,
+          "fullHeight": false,
+          "cols": [
+            8,
+            4
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -654,7 +731,15 @@
               }
             ]
           }
-        ]
+        ],
+        "layout": {
+          "pad": 5,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -711,7 +796,15 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 4,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -744,7 +837,15 @@
               "images/destinations/south-of-france-alt-2.jpg"
             ]
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -838,7 +939,15 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 6,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       }
     ]
   },
@@ -896,7 +1005,16 @@
             "label": "Arrange a consultation",
             "href": "/contact"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": true,
+          "cols": [
+            6,
+            6
+          ],
+          "fill": "left"
+        }
       },
       {
         "background": {
@@ -959,7 +1077,16 @@
             "label": "Arrange a consultation",
             "href": "/contact"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 4,
+          "fullHeight": false,
+          "cols": [
+            8,
+            4
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -1010,7 +1137,15 @@
               "Unmatched Service: We pride ourselves on delivering exceptional service from the moment you get in touch with us, making your Barbados vacation seamless and unforgettable."
             ]
           }
-        ]
+        ],
+        "layout": {
+          "pad": 5,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -1067,7 +1202,15 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 4,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -1100,7 +1243,15 @@
               "images/destinations/south-of-france-alt-2.jpg"
             ]
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -1194,7 +1345,15 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 6,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       }
     ]
   },
@@ -1252,7 +1411,16 @@
             "label": "Arrange a consultation",
             "href": "/contact"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": true,
+          "cols": [
+            6,
+            6
+          ],
+          "fill": "left"
+        }
       },
       {
         "background": {
@@ -1301,7 +1469,16 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": true,
+          "cols": [
+            6,
+            6
+          ],
+          "fill": "right"
+        }
       },
       {
         "background": {
@@ -1356,7 +1533,16 @@
             "type": "image",
             "src": "images/awards/queens-award-presentation.jpeg"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 9,
+          "fullHeight": false,
+          "cols": [
+            6,
+            6
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -1412,7 +1598,16 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 6,
+          "fullHeight": false,
+          "cols": [
+            8,
+            4
+          ],
+          "fill": "both"
+        }
       }
     ]
   },
@@ -1478,7 +1673,15 @@
             "type": "form",
             "formId": "6"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 6,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -1533,7 +1736,16 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 24,
+          "fullHeight": false,
+          "cols": [
+            8,
+            4
+          ],
+          "fill": "both"
+        }
       }
     ]
   },
@@ -1589,7 +1801,15 @@
             "label": "Speak to our specialists",
             "href": "/contact"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": true,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -1654,7 +1874,16 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 5,
+          "fullHeight": false,
+          "cols": [
+            6,
+            6
+          ],
+          "fill": "right"
+        }
       },
       {
         "background": {
@@ -1703,7 +1932,16 @@
             "label": "Arrange a consultation",
             "href": "/contact"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": true,
+          "cols": [
+            6,
+            6
+          ],
+          "fill": "left"
+        }
       },
       {
         "background": {
@@ -1768,7 +2006,16 @@
             "label": "Arrange a consultation",
             "href": "/contact"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 4,
+          "fullHeight": false,
+          "cols": [
+            6,
+            6
+          ],
+          "fill": "right"
+        }
       },
       {
         "background": {},
@@ -1997,7 +2244,15 @@
               "With 14 years experience, we can advise you with everything from securing coveted reservations to arranging private guided tours, spa treatments, and more."
             ]
           }
-        ]
+        ],
+        "layout": {
+          "pad": 4,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -2053,7 +2308,16 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 6,
+          "fullHeight": false,
+          "cols": [
+            8,
+            4
+          ],
+          "fill": "both"
+        }
       }
     ]
   },
@@ -2119,7 +2383,15 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 4,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -2175,7 +2447,16 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 6,
+          "fullHeight": false,
+          "cols": [
+            8,
+            4
+          ],
+          "fill": "both"
+        }
       }
     ]
   },
@@ -2231,7 +2512,16 @@
             "label": "Arrange a consultation",
             "href": "/contact"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": true,
+          "cols": [
+            6,
+            6
+          ],
+          "fill": "left"
+        }
       },
       {
         "background": {
@@ -2294,7 +2584,16 @@
             "label": "Arrange a consultation",
             "href": "/contact"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 4,
+          "fullHeight": false,
+          "cols": [
+            8,
+            4
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -2329,7 +2628,15 @@
               "All of our knowledge has been built first-hand from our frequent trips to all of our specialist regions. Our experts are passionate about the South of France and Barbados, and would all be delighted to offer advice and their personal recommendations on restaurants, sightseeing, and more."
             ]
           }
-        ]
+        ],
+        "layout": {
+          "pad": 5,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -2386,7 +2693,15 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 4,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -2419,7 +2734,15 @@
               "images/destinations/south-of-france-alt-2.jpg"
             ]
           }
-        ]
+        ],
+        "layout": {
+          "pad": 0,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       },
       {
         "background": {
@@ -2513,7 +2836,15 @@
             "label": "Call us on +44 (0)1244 629 963",
             "href": "tel:+441244629963"
           }
-        ]
+        ],
+        "layout": {
+          "pad": 6,
+          "fullHeight": false,
+          "cols": [
+            12
+          ],
+          "fill": "both"
+        }
       }
     ]
   }
