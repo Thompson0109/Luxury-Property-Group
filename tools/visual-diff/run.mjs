@@ -3,6 +3,7 @@ import path from 'node:path';
 import { chromium } from 'playwright';
 import config from './config.mjs';
 import { captureOne } from './capture.mjs';
+import { preflight } from './preflight.mjs';
 import { compareCaptures } from './compare.mjs';
 import { writeReport } from './report.mjs';
 
@@ -35,14 +36,42 @@ const pct = (n) => `${(n * 100).toFixed(2)}%`;
 async function main() {
   await mkdir(config.outDir, { recursive: true });
 
-  const browser = await chromium.launch();
+  // Confirm the candidate is up and is serving current code before
+  // spending four minutes measuring it.
+  let serving;
+  try {
+    serving = await preflight(config);
+  } catch (error) {
+    console.error(`\n${error.message}\n`);
+    process.exit(1);
+  }
+
+  // One browser for the whole run, but not a single point of failure: a
+  // renderer crash on one capture used to take the other 31 with it,
+  // since every subsequent newContext() throws on a dead browser. A run
+  // that loses one page should still return 31 usable measurements.
+  let browser = await chromium.launch();
+
+  async function withLiveBrowser(work) {
+    try {
+      return await work(browser);
+    } catch (error) {
+      if (browser.isConnected()) throw error;
+
+      console.log('        browser died — relaunching and retrying once');
+      try { await browser.close(); } catch { /* already gone */ }
+      browser = await chromium.launch();
+      return work(browser);
+    }
+  }
+
   const results = [];
   const failures = [];
   const total = routes.length * breakpoints.length;
   let done = 0;
 
   console.log(
-    `Comparing ${config.targets.candidate.baseUrl}\n` +
+    `Comparing ${config.targets.candidate.baseUrl}  — ${serving}\n` +
     `     against ${config.targets.reference.baseUrl}\n` +
     `${routes.length} routes × ${breakpoints.length} breakpoints = ${total} captures\n`,
   );
@@ -55,12 +84,12 @@ async function main() {
         // Sequential rather than parallel: concurrent contexts at
         // different viewport widths make lazy-loading timing erratic,
         // and this is fast enough at 32 captures.
-        const reference = await captureOne(browser, {
+        const reference = await withLiveBrowser((b) => captureOne(b, {
           target: config.targets.reference, route, breakpoint, config,
-        });
-        const candidate = await captureOne(browser, {
+        }));
+        const candidate = await withLiveBrowser((b) => captureOne(b, {
           target: config.targets.candidate, route, breakpoint, config,
-        });
+        }));
 
         const result = await compareCaptures({ reference, candidate, route, breakpoint, config });
         results.push(result);
@@ -78,7 +107,7 @@ async function main() {
     }
   }
 
-  await browser.close();
+  if (browser.isConnected()) await browser.close();
 
   await writeFile(
     path.join(config.outDir, 'results.json'),
@@ -97,7 +126,12 @@ async function main() {
     ? results.reduce((a, r) => a + r.diffRatio, 0) / results.length
     : 0;
 
-  console.log(`\nMean divergence ${pct(mean)} across ${results.length} captures.`);
+  if (!results.length) {
+    console.log(`\nNo captures succeeded — every one of the ${failures.length} failed.`);
+    console.log(`See results.json for the messages; a mean over zero captures is not a number.`);
+  } else {
+    console.log(`\nMean divergence ${pct(mean)} across ${results.length} captures.`);
+  }
   if (failures.length) console.log(`${failures.length} capture(s) failed — see results.json.`);
   console.log(`Report:  ${reportFile}`);
   console.log(`Data:    ${path.join(config.outDir, 'results.json')}`);
