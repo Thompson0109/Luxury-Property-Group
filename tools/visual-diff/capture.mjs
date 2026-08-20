@@ -157,9 +157,28 @@ export async function captureOne(browser, { target, route, breakpoint, config })
   await mkdir(dir, { recursive: true });
   const file = path.join(dir, `${target.key}.png`);
 
-  await page.screenshot({ path: file, fullPage: true, animations: 'disabled' });
-
   const documentHeight = await page.evaluate(() => document.documentElement.scrollHeight);
+
+  // `fullPage` expands to the full *scrollable* area on both axes, and the
+  // two sides do not overflow horizontally by the same amount: Salient's
+  // Flickity carousels lay their cells out past the right edge, so the
+  // WordPress capture comes back 2813px wide at a 1905px viewport while
+  // React — which clips its carousel — comes back at 1905px.
+  //
+  // compare.mjs pads the narrower image to match, and that padding is then
+  // diffed against the reference's overflow region. On the four carousel
+  // routes that charged 32% of every row at desktop and 72% at phone to the
+  // diff before any real comparison happened, which was enough to order the
+  // whole worklist by capture width rather than by visual difference.
+  //
+  // Clipping to the viewport width captures what a visitor actually sees and
+  // guarantees both sides are the same shape.
+  await page.screenshot({
+    path: file,
+    fullPage: true,
+    animations: 'disabled',
+    clip: { x: 0, y: 0, width: breakpoint.width, height: documentHeight },
+  });
 
   await context.close();
 
