@@ -129,8 +129,10 @@ button { font: inherit; cursor: pointer; }
   margin-inline: auto;
   padding-inline: v.$container-pad;
 
-  @include v.at-tablet { padding-inline: 50px; }
-  @include v.at-phone  { padding-inline: v.$gutter; }
+  // Below 1000px Salient pins the measure rather than scaling it, so the
+  // padding goes away and the fixed width centres itself.
+  @include v.at-tablet { max-width: v.$container-tablet; padding-inline: 0; }
+  @include v.at-phone  { max-width: v.$container-phone;  padding-inline: 0; }
 }
 
 .container--narrow { max-width: 900px; }

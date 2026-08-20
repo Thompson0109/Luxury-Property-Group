@@ -109,8 +109,20 @@ $hero-size: 5vw;
 $hero-lh:   1.3;
 
 // ── Layout ───────────────────────────────────────────────────────────
+// Salient does not use one fluid container. It switches between three
+// discrete measures, read off the row wrapper (.row_col_wrap_12) on the
+// live site at four viewports, on /barbados, /about and /:
+//
+//   client >= 1000   min(client - 120, 1305)
+//   client 691-999   660, centred
+//   client <= 690    480, centred
+//
+// Expressing the desktop tier as max-width 1425 (= 1305 + 2x60) with 60px
+// of padding reproduces both halves of that first rule in one declaration.
 $container-max:    1425px;
-$container-pad:    90px;
+$container-pad:    60px;
+$container-tablet: 660px;
+$container-phone:  480px;
 $gutter:           24px;
 
 // Row padding is viewport-relative on the live site — inline
