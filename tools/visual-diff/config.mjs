@@ -21,14 +21,14 @@ export default {
     reference: {
       key: 'reference',
       name: 'WordPress',
-      baseUrl: process.env.WP_URL ?? 'https://elegant-address.letsgrowdemo.agency',
+      baseUrl: process.env.WP_URL ?? 'http://luxury-property-group.local',
       // Top-level WPBakery rows. Nested rows are filtered out at capture time.
       sectionSelector: '.wpb_row',
     },
     candidate: {
       key: 'candidate',
       name: 'React',
-      baseUrl: process.env.REACT_URL ?? 'http://localhost:5173',
+      baseUrl: process.env.REACT_URL ?? 'http://localhost:4173/',
       sectionSelector: '.section',
     },
   },
