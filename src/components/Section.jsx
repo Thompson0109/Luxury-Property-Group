@@ -95,8 +95,29 @@ function Block({ block, inverse }) {
   }
 }
 
-/** A group leading with a gallery gets the media on the left. */
-const leadsWithMedia = (blocks) => blocks[0]?.type === 'gallery'
+const MEDIA_TYPES = new Set(['gallery', 'image'])
+
+/**
+ * Salient pairs copy with media across a two-column inner row rather than
+ * stacking them, and the order of the blocks says which side the media
+ * takes — a group that leads with a gallery puts the media on the left.
+ *
+ * Measured on the home page: two 653px columns, each carrying Salient's
+ * 30px of inline padding, vertically centred against each other, with
+ * 35px between two stacked rows.
+ *
+ * Returns null for any other group shape, and the caller falls back to
+ * the ordinary stacked group.
+ */
+function asSplit(blocks) {
+  const media = blocks.filter((b) => MEDIA_TYPES.has(b.type))
+  if (media.length !== 1) return null
+
+  const copy = blocks.filter((b) => !MEDIA_TYPES.has(b.type))
+  if (!copy.length) return null
+
+  return { media: media[0], copy, mediaFirst: MEDIA_TYPES.has(blocks[0].type) }
+}
 
 export default function Section({ section, index, isHero }) {
   const { background = {}, groups = [], layout = {} } = section
@@ -110,7 +131,13 @@ export default function Section({ section, index, isHero }) {
   if (color) style.backgroundColor = color
   if (image) style.backgroundImage = `url(${assetUrl(image)})`
 
-  const multiColumn = cols.length > 1
+  // A split group lays out its own two columns, so the row-level grid has
+  // to stand down or the two would nest.
+  const splits = groups.map(asSplit)
+  const allSplit = splits.length > 0 && splits.every(Boolean)
+  const splitRatio = cols.length === 2 ? `section__split--${cols.join('-')}` : ''
+
+  const multiColumn = cols.length > 1 && !allSplit
 
   return (
     <section
@@ -134,19 +161,39 @@ export default function Section({ section, index, isHero }) {
       )}
 
       <div className="container section__inner">
-        {groups.map((blocks, gi) => (
-          <div
-            key={gi}
-            className={[
-              'section__group',
-              leadsWithMedia(blocks) ? 'section__group--media-first' : '',
-            ].filter(Boolean).join(' ')}
-          >
-            {blocks.map((block, bi) => (
-              <Block key={`${gi}-${bi}`} block={block} inverse={onDark} />
-            ))}
-          </div>
-        ))}
+        {groups.map((blocks, gi) => {
+          const split = splits[gi]
+
+          if (split) {
+            return (
+              <div
+                key={gi}
+                className={[
+                  'section__split',
+                  splitRatio,
+                  split.mediaFirst ? 'section__split--media-first' : '',
+                ].filter(Boolean).join(' ')}
+              >
+                <div className="section__split-copy">
+                  {split.copy.map((block, bi) => (
+                    <Block key={`${gi}-c${bi}`} block={block} inverse={onDark} />
+                  ))}
+                </div>
+                <div className="section__split-media">
+                  <Block block={split.media} inverse={onDark} />
+                </div>
+              </div>
+            )
+          }
+
+          return (
+            <div key={gi} className="section__group">
+              {blocks.map((block, bi) => (
+                <Block key={`${gi}-${bi}`} block={block} inverse={onDark} />
+              ))}
+            </div>
+          )
+        })}
       </div>
 
       {isHero && (
