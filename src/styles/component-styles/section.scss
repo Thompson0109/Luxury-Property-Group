@@ -116,10 +116,14 @@
 // 12, 6+6 and 8+4. Half-width rows frequently leave one side empty —
 // that is how "Our Story" sits in the left half of a full-bleed image.
 // measured: 60px between columns (30px padding on each column inner).
+// Salient splits a row on exact 12-column boundaries with no gutter
+// between the tracks: the air comes from 30px of inline padding on each
+// column, which .section__group carries below. A grid gap would move both
+// split points inwards and shorten every measure.
 .section--cols-6-6 .section__inner,
 .section--cols-8-4 .section__inner {
   display: grid;
-  gap: 60px;
+  gap: 0;
   align-items: center;
 }
 
@@ -136,10 +140,13 @@
 //   heading wrapper margin-bottom 24px + 6px spacer  → 30px
 //   text column margin-bottom 25.5px, button margin-top 35px
 //   (adjacent margins collapse, so text → button is 35px)
+// measured: every Salient column carries 30px of inline padding, which is
+// what puts body copy at 1245px inside the 1305px row.
 .section__group {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  padding-inline: 30px;
 
   & + & { margin-top: v.band(v.$pad-sm); }
 }
@@ -319,19 +326,82 @@
   .section__gallery-item img { aspect-ratio: 3 / 2; }
 }
 
+// ── Two text columns ─────────────────────────────────────────────────
+// The inner row escapes the enclosing column's padding — Salient pulls it
+// out with a negative margin — so the two tracks span the full 1305px row
+// and each re-applies the 30px column padding. Net measure 593px, which
+// is what the live site renders.
+.section__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-self: stretch;          // the group is a flex column, so fill it
+  margin-inline: -30px;
+
+  > * { padding-inline: 30px; }
+
+  @include v.below-tablet { grid-template-columns: 1fr; }
+}
+
+// ── Feature tiles ────────────────────────────────────────────────────
+// Salient lays these out as an inner vc_row of vc_col-sm-4 columns.
+// Measured on /approach at 1905px: three 435px columns filling the
+// 1305px row, a 3:2 image, 21px down to the heading and 38px to the copy.
+.section__tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+
+  @include v.below-tablet {
+    grid-template-columns: 1fr;
+    row-gap: 25px;
+  }
+}
+
+.section__tiles + .section__tiles { margin-top: 26px; }
+.section__group + .section__tiles { margin-top: 26px; }
+
+.section__group:has(+ .section__tiles) {
+  align-items: center;
+  text-align: center;
+
+  .section__text { margin-inline: auto; }
+}
+
+.section__tile {
+  padding-inline: 30px;
+  text-align: left;
+
+  .section__heading { margin: 21px 0 0; }
+  .section__text { margin: 38px 0 0; }
+}
+
+.section__tile-image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
+
 // ── Region cards ─────────────────────────────────────────────────────
+// measured on /france at 1890px: three 418px columns with 5px of column
+// padding, each card 408x300, and 10px between the two rows. Below 1000px
+// they go full width like every other Salient column.
 .section__cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 20px;
-  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  align-self: stretch;
+
+  @include v.below-tablet { grid-template-columns: 1fr; }
 }
+
+.section__cards + .section__cards { margin-top: 10px; }
+
+.section__card { padding-inline: 5px; }
 
 .section__card-link {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 220px;
+  aspect-ratio: 408 / 300;   // measured
   border-radius: 0;
   overflow: hidden;
   text-align: center;
@@ -360,14 +430,15 @@
 
 .section__card-link:hover .section__card-image { scale: 1.06; }
 
+// measured: the card title renders as an h3 — 30px, white, display face.
 .section__card-label {
   position: relative;
   z-index: 2;
   padding: 0 16px;
   color: v.$white;
   font-family: v.$font-display;
-  font-size: 22px;
-  font-weight: 700;
+  font-size: v.$h3-size;
+  font-weight: v.$h3-weight;
 }
 
 // ── Video backdrop ───────────────────────────────────────────────────
