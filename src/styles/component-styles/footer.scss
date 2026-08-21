@@ -9,7 +9,9 @@
 .footer__inner {
   display: grid;
   gap: 40px;
-  padding-block: v.band(v.$pad-md);
+  // export: `#footer-outer .row { padding: 55px 0 }` — a fixed band, not
+  // the viewport-relative rhythm the content rows use.
+  padding-block: 55px;
 
   // redux: footer_columns = 4
   @media (min-width: v.$bp-phone)  { grid-template-columns: repeat(2, 1fr); }
@@ -35,28 +37,51 @@
   filter: grayscale(1) invert(1);
 }
 
+// export: the widget heading is declared twice and the second wins —
+// Merriweather 700 / 15px / +1px tracking, colour #777, 20px below.
+// Note `footer-custom-color = 0`, so the footer colours saved in the
+// theme options are dead and Salient's defaults are what shipped: the
+// heading is the same grey as the secondary copy, not white.
 .footer__heading {
-  margin-bottom: 16px;
-  color: v.$white;
-  // redux: sidebar_footer_h_font_family — Merriweather 700 15px/25px
+  margin-bottom: 20px;
+  color: v.$footer-heading;
   font-family: v.$font-display;
   font-size: 15px;
   font-weight: 700;
+  letter-spacing: v.$btn-tracking;
   line-height: 25px;
 }
 
+// export: widget list items are 8px tall with a hairline divider, and
+// the first item loses its top padding. Two `#footer-outer a:hover`
+// rules fight in the source; the accent one carries !important and wins,
+// so footer links hover to the accent rather than to white.
 .footer__list {
   margin: 0 0 20px;
   padding: 0;
   list-style: none;
 
-  li { margin-bottom: 10px; }
+  li {
+    margin-bottom: 0;
+    padding: 8px 0;
+    border-bottom: 1px solid v.$footer-rule;
+
+    &:first-child { padding-top: 0; }
+    &:last-child  { border-bottom: 0; }
+  }
 
   a {
     color: v.$footer-text;
 
-    &:hover { color: v.$white; }
+    &:hover { color: v.$accent; }
   }
+}
+
+// The plain variant keeps the rhythm without the rules.
+.footer__list--plain li {
+  padding: 0;
+  margin-bottom: 10px;
+  border-bottom: 0;
 }
 
 .footer__label {
@@ -80,11 +105,15 @@
 // ── Copyright bar ────────────────────────────────────────────────────
 // measured: the copyright strip shares the footer ground rather than
 // sitting on a darker band.
+// export: the copyright strip is its own darker band — `#copyright`
+// carries `background-color:#1c1c1c` and `font-size:12px` over the
+// footer's #252525. Previously this shared the footer ground with a
+// hairline rule, which is the one thing here worth eyeballing.
 .footer__copyright {
-  background: transparent;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: v.$copyright-bg;
+  border-top: 0;
   color: v.$copyright-text;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .footer__copyright-inner {

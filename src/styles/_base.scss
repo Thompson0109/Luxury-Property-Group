@@ -49,11 +49,62 @@ h3 {
   @include v.type-tiers(v.$h3-tiers...);
 }
 
+// export: h4-h6 were never given a typography option, so Salient's own
+// defaults shipped — Open Sans 600, breaking the Merriweather run that
+// h2 and h3 establish. Sizes and the 7px bottom margin are verbatim.
 h4 {
   font-family: v.$font-body;
-  font-size: 1.05rem;
-  font-weight: 400;
-  letter-spacing: 1px;
+  font-size: v.$h4-size;
+  font-weight: v.$heading-small-weight;
+  line-height: v.$h4-line;
+  margin-bottom: v.$heading-small-margin;
+  letter-spacing: 0;
+}
+
+h5 {
+  font-family: v.$font-body;
+  font-size: v.$h5-size;
+  font-weight: v.$heading-small-weight;
+  line-height: v.$h5-line;
+  margin-bottom: v.$heading-small-margin;
+  letter-spacing: 0;
+}
+
+h6 {
+  font-family: v.$font-body;
+  font-size: v.$h6-size;
+  font-weight: v.$heading-small-weight;
+  line-height: v.$h6-line;
+  margin-bottom: v.$heading-small-margin;
+  letter-spacing: 0;
+}
+
+// export: light, airy and loosely tracked, with a 4px accent rule rather
+// than a quote mark. The rule colour is the one override the site made.
+blockquote {
+  margin: 0 0 30px;
+  padding-left: 1.3em;
+  position: relative;
+  font-family: v.$font-body;
+  font-size: v.$quote-size;
+  font-weight: v.$quote-weight;
+  letter-spacing: v.$quote-tracking;
+  line-height: v.$quote-line;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    border-left: v.$quote-rule solid v.$accent;
+  }
+
+  cite {
+    display: block;
+    font-size: 14px;
+    line-height: 18px;
+  }
 }
 
 p { margin: 0 0 1.15em; }
@@ -154,9 +205,34 @@ button { font: inherit; cursor: pointer; }
   letter-spacing: v.$btn-tracking;
   line-height: 1.4;
   text-transform: none;
+  // export: button-styling = slightly_rounded_shadow. Every transition
+  // Salient lists, on its primary curve, and a hover that lifts the
+  // button 3px onto a wide soft shadow. That lift is the signature.
   transition: background-color v.$dur-base v.$ease-out,
               border-color v.$dur-base v.$ease-out,
-              color v.$dur-base v.$ease-out;
+              color v.$dur-base v.$ease-out,
+              transform v.$dur-base v.$ease-out,
+              box-shadow v.$dur-base v.$ease-out;
+
+  &:hover {
+    background: v.$accent;
+    border-color: v.$accent;
+    color: v.$white;
+    box-shadow: v.$shadow-btn;
+    transform: translateY(v.$btn-lift);
+  }
+}
+
+// On photographic or dark bands the outline is white and fills white,
+// dropping the label back to the accent.
+// export: 29 of the 42 buttons in the page content are `see-through-2`,
+// and 21 of those carry `color_override="#ffffff"` with
+// `hover_color_override="#5185a1"` / `hover_text_color_override="#ffffff"`
+// — so on a dark band the outline is white and it fills *accent*, not
+// white. Previously this filled white and dropped the label to accent.
+.btn--inverse {
+  border-color: v.$outline-on-dark;
+  color: v.$white;
 
   &:hover {
     background: v.$accent;
@@ -165,18 +241,50 @@ button { font: inherit; cursor: pointer; }
   }
 }
 
-// On photographic or dark bands the outline is white and fills white,
-// dropping the label back to the accent.
-.btn--inverse {
-  border-color: rgba(255, 255, 255, 0.75);
+// The other eight carry `hover_color_override="#ffffff"` with
+// `hover_text_color_override="#000000"` — a white fill with black type.
+.btn--inverse-fill:hover {
+  background: v.$white;
+  border-color: v.$white;
+  color: #000;
+}
+
+// export: `button_style="regular"` (8 uses) is a solid accent button
+// rather than an outline — `.nectar-button.regular-button`.
+.btn--solid {
+  border-color: v.$accent;
+  background: v.$accent;
   color: v.$white;
 
   &:hover {
-    background: v.$white;
-    border-color: v.$white;
-    color: v.$accent;
+    background: v.$accent-hover;
+    border-color: v.$accent-hover;
+    color: v.$white;
   }
 }
+
+// export: on a light row `see-through-2` is a near-black hairline with
+// black type, not an accent outline — `.col.dark .nectar-button`.
+.btn--hairline {
+  border-color: v.$outline-on-light;
+  color: #000;
+}
+
+// export: `.uppercase` — the shared Merriweather 700 / +1px spec that
+// buttons, widget headings and filter labels all share.
+.uppercase {
+  font-family: v.$font-display;
+  font-size: v.$btn-size-base;
+  font-weight: 700;
+  letter-spacing: v.$btn-tracking;
+  text-transform: uppercase;
+}
+
+// export: Salient's named depth tiers, exact.
+.shadow--small   { box-shadow: v.$shadow-small; }
+.shadow--medium  { box-shadow: v.$shadow-medium; }
+.shadow--large   { box-shadow: v.$shadow-large; }
+.shadow--x-large { box-shadow: v.$shadow-xlarge; }
 
 .btn--ghost {
   border-color: rgba(81, 133, 161, 0.75);

@@ -31,21 +31,26 @@
     text-transform: uppercase;
   }
 
+  // export: the ascend/material layer is what actually renders — a
+  // transparent field with a 1px #ccc hairline, square corners and 16px
+  // of padding. Focus moves the border to the accent; there is no glow
+  // ring anywhere in the theme.
   input,
   textarea {
     width: 100%;
-    padding: 14px 16px;
-    border: 1px solid rgba(0, 0, 0, 0.16);
-    border-radius: v.$btn-radius;
-    background: v.$white;
-    color: v.$extra-1;
+    padding: v.$input-pad;
+    border: 1px solid v.$input-border;
+    border-radius: 0;
+    background: transparent;
+    color: v.$input-text;
     font-family: v.$font-body;
-    font-size: 14px;   // redux: form-input-font-size
-    transition: border-color 0.25s v.$ease-out, box-shadow 0.25s v.$ease-out;
+    font-size: v.$input-size;      // redux: form-input-font-size
+    line-height: v.$input-line;
+    transition: border-color 0.2s ease;
 
     &:focus {
       border-color: v.$accent;
-      box-shadow: 0 0 0 3px rgba(81, 133, 161, 0.22);
+      box-shadow: none;
       outline: none;
     }
   }
@@ -75,5 +80,51 @@
   background: rgba(255, 255, 255, 0.12);
 }
 
+// export: `data-form-submit="regular"` — the submit is a solid accent
+// button in the shared Merriweather spec with 15/22 padding, not the
+// see-through outline the rest of the page uses. It keeps the same
+// lift-on-hover as every other button.
+.enquiry-form button[type='submit'] {
+  padding: v.$submit-pad;
+  border-color: v.$accent;
+  background: v.$accent;
+  color: v.$white;
+  font-size: v.$btn-size-base;
+
+  &:hover:not(:disabled) {
+    background: v.$accent-hover;
+    border-color: v.$accent-hover;
+    color: v.$white;
+  }
+
+  &:disabled { opacity: 0.6; cursor: default; transform: none; box-shadow: none; }
+}
+
 // On the accent-coloured contact band the labels sit on dark ground.
 .section--on-dark .enquiry-form label { color: v.$white; }
+
+// export: over a dark row the field hairline goes to white at 0.6 and
+// the type with it — `.span_12.light input` in the theme.
+.section--on-dark .enquiry-form {
+  input,
+  textarea {
+    border-color: rgba(255, 255, 255, 0.6);
+    background: transparent;
+    color: v.$white;
+
+    &::placeholder { color: rgba(255, 255, 255, 0.6); }
+    &:focus { border-color: rgba(255, 255, 255, 0.8); }
+  }
+
+  button[type='submit'] {
+    border-color: v.$white;
+    background: v.$white;
+    color: v.$accent;
+
+    &:hover:not(:disabled) {
+      background: v.$white;
+      border-color: v.$white;
+      color: v.$accent-hover;
+    }
+  }
+}

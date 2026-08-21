@@ -1,4 +1,5 @@
 @use './variable' as v;
+@use './animations';
 
 // Minimal placeholder shown while a lazy route chunk loads
 .route-fallback {

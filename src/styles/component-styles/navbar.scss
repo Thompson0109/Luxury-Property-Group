@@ -60,6 +60,7 @@
 
   > a,
   > .navbar__submenu-toggle {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -73,23 +74,55 @@
     letter-spacing: normal;
     line-height: 1.5;
     text-transform: none;
-    transition: color v.$dur-header v.$ease-out;
+    transition: color v.$dur-header v.$ease-out,
+                opacity 0.2s ease;
+
+    // export: header-hover-effect = animated_underline. A 2px accent
+    // rule, 6px below the label, scaling out from the centre. The link
+    // colour itself does *not* change on hover in the opaque state —
+    // the rule appearing is the whole affordance.
+    &::after {
+      content: '';
+      position: absolute;
+      right: 4px;
+      // 6px below the text box: the link carries 8px of bottom padding,
+      // so the rule sits 2px above the element edge.
+      bottom: 8px - v.$nav-underline-gap;
+      left: 4px;
+      border-top: v.$nav-underline solid v.$accent;
+      transform: scaleX(0);
+      backface-visibility: hidden;
+      transition: transform v.$dur-nav-underline ease-out,
+                  border-color v.$dur-nav-underline ease-out;
+    }
   }
 
-  > a.is-active { color: v.$accent; }
+  // export: the same rule marks the current page — Salient scales it in
+  // for .current-menu-item, -ancestor, .current_page_item and _parent.
+  > a:hover::after,
+  > a.is-active::after,
+  > .navbar__submenu-toggle:hover::after { transform: scaleX(1); }
 
-  > a:hover,
-  > .navbar__submenu-toggle:hover { color: v.$accent; }
+  &.is-open > .navbar__submenu-toggle::after { transform: scaleX(1); }
 }
 
 // measured: links are white over the hero, #303030 once .small-nav lands.
+// export: over the hero the links are white at 0.75 and come up to full
+// opacity on hover (header-starting-opacity = 0.75) — again no colour
+// change, and the underline turns white with them.
 .navbar:not(.is-scrolled) .navbar__item {
   > a,
-  > .navbar__submenu-toggle { color: v.$white; }
+  > .navbar__submenu-toggle {
+    color: v.$white;
+    opacity: v.$nav-transparent-alpha;
+  }
+
+  > a::after,
+  > .navbar__submenu-toggle::after { border-color: v.$white; }
 
   > a:hover,
   > a.is-active,
-  > .navbar__submenu-toggle:hover { color: rgba(255, 255, 255, 0.72); }
+  > .navbar__submenu-toggle:hover { opacity: 1; }
 }
 
 .navbar__caret {
@@ -104,28 +137,43 @@
 .navbar__item.is-open .navbar__caret { rotate: 180deg; }
 
 // ── Dropdown ─────────────────────────────────────────────────────────
+// export: the panel is clipped by its own parent item until that item is
+// hovered. Flipping `overflow` is what makes the dropdown read as a wipe
+// up from behind the header rather than a plain fade — it is Salient's
+// entire `fade-in-up` dropdown animation and is easy to miss.
+.navbar__item--has-children { overflow: hidden; }
+.navbar__item--has-children.is-open,
+.navbar__item--has-children:focus-within { overflow: visible; }
+
 .navbar__submenu {
   position: absolute;
   top: 100%;
-  left: -16px;
-  min-width: 220px;
+  left: -#{v.$dropdown-pad};
+  min-width: v.$dropdown-width;
   margin: 0;
-  padding: 8px 0;
+  padding: v.$dropdown-pad;
+  border-radius: 0;                 // export: header-dropdown-border-radius = 0
   background: v.$nav-dropdown-bg;
-  box-shadow: v.$shadow-header;
+  box-shadow: v.$shadow-dropdown;
   list-style: none;
   opacity: 0;
-  translate: 0 8px;
+  translate: 0 15px;
   visibility: hidden;
-  transition: opacity v.$dur-header v.$ease-out, translate v.$dur-header v.$ease-out,
-              visibility v.$dur-header;
+  transition: opacity v.$dur-dropdown v.$ease-dropdown,
+              translate v.$dur-dropdown v.$ease-dropdown,
+              visibility v.$dur-dropdown;
 
+  // export: the theme core sets dropdown items at 12px/13px; the site's
+  // own sheet overrides that to the full nav type. A very different feel
+  // and the kind of override a port drops.
   a {
     display: block;
-    padding: 10px 20px;
+    padding: 10px 12px;
     color: v.$nav-dropdown-text;
     font-family: v.$font-nav;
-    font-size: 15px;
+    font-size: v.$nav-size;
+    line-height: 24px;
+    font-weight: v.$nav-weight;
 
     &:hover,
     &.is-active {
@@ -151,15 +199,23 @@
   background: none;
 }
 
+// export: 22 x 2px bars, 6px apart, in the body ink — not the 26/8 a
+// generic burger would use.
 .navbar__bars,
 .navbar__bars::before,
 .navbar__bars::after {
   display: block;
-  width: 26px;
+  width: 22px;
   height: 2px;
   background: v.$extra-1;
-  transition: transform 0.3s v.$ease-out, opacity 0.2s linear;
+  transition: transform 0.3s v.$ease-out,
+              opacity 0.2s linear,
+              background-color 0.2s ease;
 }
+
+.navbar__toggle:hover .navbar__bars,
+.navbar__toggle:hover .navbar__bars::before,
+.navbar__toggle:hover .navbar__bars::after { background: v.$accent; }
 
 .navbar__bars {
   position: relative;
@@ -171,8 +227,8 @@
     position: absolute;
     left: 0;
   }
-  &::before { top: -8px; }
-  &::after  { top: 8px; }
+  &::before { top: -6px; }
+  &::after  { top: 6px; }
 }
 
 .navbar:not(.is-scrolled) .navbar__bars,
@@ -182,8 +238,8 @@
 .navbar.is-open .navbar__bars {
   background: transparent;
 
-  &::before { transform: translateY(8px) rotate(45deg); }
-  &::after  { transform: translateY(-8px) rotate(-45deg); }
+  &::before { transform: translateY(6px) rotate(45deg); }
+  &::after  { transform: translateY(-6px) rotate(-45deg); }
 }
 
 @media (max-width: v.$nav-breakpoint) {

@@ -172,6 +172,131 @@ $ease-inout:   cubic-bezier(0.65, 0, 0.35, 1);
 $dur-base:     0.45s;   // measured: button transitions
 $dur-header:   0.3s;    // measured: header transitions
 
+// ═════════════════════════════════════════════════════════════════════
+//  Recovered from the WordPress export
+//
+//  Everything below was read out of the Salient install rather than
+//  measured off the rendered page:
+//
+//    salient-dynamic-styles.css   the per-site sheet WordPress generated
+//                                 from the theme options (170KB)
+//    redux_options_salient_...json the options themselves
+//    elegantaddress.WordPress.xml  WPBakery shortcode attributes, which
+//                                 is where per-row spacing, overlays,
+//                                 button variants and animations live
+//
+//  Where one of these disagrees with a measured value above, the export
+//  value is marked `export:` at the point of use so the conflict stays
+//  auditable and is a one-line revert.
+// ═════════════════════════════════════════════════════════════════════
+
+// ── Colour roles the measured pass didn't reach ───────────────────────
+$copyright-bg:       #1c1c1c;   // #footer-outer #copyright
+$footer-rule:        #444444;   // widget li border-bottom
+$footer-heading:     #777777;   // #footer-outer .widget h4
+$section-rule:       rgba(0, 0, 0, 0.15);        // .col.section-title
+$outline-on-light:   rgba(0, 0, 0, 0.15);        // see-through-2, light row
+$outline-on-dark:    rgba(255, 255, 255, 0.75);  // see-through-2, dark row
+$accent-marker:      rgba(81, 133, 161, 0.3);    // .nectar-highlighted-text
+
+// Form chrome — the ascend/material layer, which is what actually shipped
+$input-border:       #cccccc;
+$input-border-hover: #999999;
+$input-text:         #555555;
+$input-pad:          16px;
+$input-size:         14px;      // redux: form-input-font-size
+$input-line:         24px;
+
+// Row grounds the page builder actually used (`bg_color`, n = rows)
+$row-accent: $accent;        // 24
+$row-slate:  $section-dark;  // 6  — #333333
+$row-hero:   $hero-dark;     // 2  — #2b323a
+$row-ink:    #0a0a0a;        // 6  — `color_overlay`
+
+// `overlay_strength`, verbatim
+$overlay-light: 0.3;   // 137 rows — the default reading
+$overlay-mid:   0.5;   // 22
+$overlay-heavy: 0.8;   // 5
+
+// ── Layout ───────────────────────────────────────────────────────────
+// max_container_width 1425 with ext_responsive_padding 90 -> 1245px of
+// content. column-spacing is a fixed 60px gutter (+/-30px per column),
+// not Salient's 1% default — a deliberate site choice.
+$container-gutter: 90px;
+$col-gap:          60px;
+
+// ── Header / dropdown ────────────────────────────────────────────────
+$header-pad:            30px;   // redux: header-padding
+$dropdown-pad:          20px;
+$dropdown-width:        20em;
+$dropdown-rule:         #eeeeee;
+$dropdown-offset:       36px;    // rounded from Salient's 36 / 27.43
+$dropdown-offset-small: 27px;
+$nav-underline:         2px;     // animated-underline-thickness
+$nav-underline-gap:     6px;
+$nav-transparent-alpha: 0.75;    // header-starting-opacity
+
+// ── Type the theme never overrode, so Salient's defaults shipped ──────
+// h4-h6 stay Open Sans 600 and break the Merriweather run of h2/h3.
+$h4-size: 18px;  $h4-line: 32px;
+$h5-size: 16px;  $h5-line: 26px;
+$h6-size: 14px;  $h6-line: 24px;
+$heading-small-weight: 600;
+$heading-small-margin: 7px;
+
+// h2 steps down again inside 2-, 3- and 4-column rows at 1000-1300px.
+$h2-narrow: 31.5px;  $h2-narrow-line: 38.5px;
+
+// Blockquote — untouched theme default
+$quote-size: 22px;  $quote-line: 40px;
+$quote-weight: 300; $quote-tracking: 0.5px;
+$quote-rule:  4px;
+
+// ── Buttons ──────────────────────────────────────────────────────────
+// The shared `.nectar-button` spec is Merriweather 700 / 15px / +1px;
+// the site's one line of hand-written CSS pulls `.medium` to 14px, and
+// `.medium` is what the pages use — hence $btn-size above.
+$btn-size-base:  15px;
+$btn-pad-large:  13px 22px;
+$btn-lift:       -3px;          // slightly_rounded_shadow hover
+$shadow-btn:     0 20px 38px rgba(0, 0, 0, 0.16);
+$submit-pad:     15px 22px;     // data-form-submit="regular"
+
+// ── Elevation: Salient's named depth tiers ───────────────────────────
+$shadow-small:  rgba(0, 0, 0, 0.04) 0 1px 0,
+                rgba(0, 0, 0, 0.05) 0 2px 7px,
+                rgba(0, 0, 0, 0.06) 0 12px 22px;
+$shadow-medium: 0 30px 80px rgba(0, 0, 0, 0.14), 0 20px 70px rgba(0, 0, 0, 0.12);
+$shadow-large:  0 40px 100px rgba(0, 0, 0, 0.15), 0 25px 80px rgba(0, 0, 0, 0.1);
+$shadow-xlarge: 0 60px 135px rgba(0, 0, 0, 0.14), 0 15px 65px rgba(0, 0, 0, 0.14);
+
+$shadow-dropdown:     0 6px 28px rgba(0, 0, 0, 0.08);
+$shadow-dropdown-sub: 0 19px 35px rgba(0, 0, 0, 0.11);
+
+// ── Motion ───────────────────────────────────────────────────────────
+// Every curve Salient ships, ranked by how often it appears. $ease-out
+// above is the primary UI curve and matches cubic-bezier(.25,1,.33,1),
+// so it is left alone; these are the ones it doesn't cover.
+$ease-dropdown:  cubic-bezier(0.2, 0.8, 0.25, 1);      // dropdown open, 0.55s
+$ease-reveal:    cubic-bezier(0.33, 1, 0.68, 1);       // easeOutCubic, 750ms
+$ease-bg:        cubic-bezier(0.12, 0.75, 0.4, 1);     // bg zoom / CTA arrows
+$ease-slow:      cubic-bezier(0.1, 0.2, 0.7, 1);       // 4s+ Ken Burns
+$ease-image:     cubic-bezier(0.15, 0.75, 0.5, 1);     // image overlays
+$ease-overshoot: cubic-bezier(0.15, 0.84, 0.35, 1.25); // grow-in
+
+$dur-dropdown:      0.55s;
+$dur-nav-underline: 0.3s;
+$dur-reveal:        750ms;   // redux: column_animation_timing
+$dur-image:         0.5s;
+$dur-image-slow:    4s;      // hover-zoom-in-slow
+$reveal-delay:      150ms;   // WPBakery: animation_delay
+
+// Reveal offsets, verbatim from the theme
+$reveal-shift-col:   75px;
+$reveal-shift-img:   100px;
+$reveal-shift-side:  45px;
+$reveal-scale-grow:  0.75;
+
 // ── Helpers ──────────────────────────────────────────────────────────
 @function encode-colour($colour) {
   $str: '#{$colour}';

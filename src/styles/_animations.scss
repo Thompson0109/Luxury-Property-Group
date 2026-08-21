@@ -1,0 +1,177 @@
+@use './variable' as v;
+
+// ─────────────────────────────────────────────────────────────────────
+//  Scroll reveals, recovered from the export
+//
+//  Salient animated almost every column, image and heading into place.
+//  From the WPBakery attributes in the WXR export:
+//
+//    animation_type          default (120)  line-reveal-by-space (45)
+//    animation               fade-in (9)  fade-in-from-bottom (8)
+//                            fade-in-from-right (5)  grow-in (1)
+//    animation_delay         150      (every instance)
+//    stagger_animation       true     (37)
+//    column_animation_timing 750      column_animation_easing easeOutCubic
+//    mobile_disable_animation true    (39)
+//
+//  and from the theme options, `column_animation_mobile = disable` —
+//  everything is hard-switched off below 1000px while parallax stays on.
+//  The transforms, durations and curves below are verbatim.
+//
+//  Nothing in the React tree emits `data-reveal` yet, so these are
+//  inert until an element opts in. Two drivers are supported:
+//
+//    * put `data-reveal-js` on <html> and toggle `.is-visible` from an
+//      IntersectionObserver — full browser support;
+//    * do nothing, and the @supports block drives them off native
+//      scroll-driven animations where the browser has them, leaving
+//      content plainly visible where it doesn't.
+// ─────────────────────────────────────────────────────────────────────
+
+[data-reveal] { --reveal-from: none; }
+
+// Columns travel 75px, images 100px — Salient uses different distances
+// for the two, which is what keeps a photo from lagging its caption.
+[data-reveal='fade-in-from-bottom'] { --reveal-from: translateY(#{v.$reveal-shift-col}); }
+[data-reveal='fade-in-from-left']   { --reveal-from: translateX(-#{v.$reveal-shift-side}); }
+[data-reveal='fade-in-from-right']  { --reveal-from: translateX(#{v.$reveal-shift-side}); }
+[data-reveal='grow-in']             { --reveal-from: scale(#{v.$reveal-scale-grow}); }
+[data-reveal='zoom-out']            { --reveal-from: scale(1.2); }
+
+img[data-reveal='fade-in-from-bottom'],
+figure[data-reveal='fade-in-from-bottom'] { --reveal-from: translateY(#{v.$reveal-shift-img}); }
+
+@keyframes nectar-reveal {
+  from { opacity: 0; transform: var(--reveal-from, none); }
+  to   { opacity: 1; transform: none; }
+}
+
+// ── Driver 1: observer ───────────────────────────────────────────────
+html[data-reveal-js] [data-reveal] {
+  opacity: 0;
+  transform: var(--reveal-from, none);
+  transition: transform v.$dur-reveal v.$ease-reveal v.$reveal-delay,
+              opacity 450ms ease v.$reveal-delay;
+}
+
+html[data-reveal-js] [data-reveal].is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+// `grow-in` is the one that overshoots — a genuine spring curve, not a
+// decelerating one.
+html[data-reveal-js] [data-reveal='grow-in'] {
+  transition: transform 0.6s v.$ease-overshoot v.$reveal-delay,
+              opacity 0.6s v.$ease-overshoot v.$reveal-delay;
+}
+
+// ── Driver 2: native scroll-driven ───────────────────────────────────
+@supports (animation-timeline: view()) {
+  html:not([data-reveal-js]) [data-reveal] {
+    animation: nectar-reveal v.$dur-reveal v.$ease-reveal both;
+    animation-timeline: view();
+    animation-range: entry 5% cover 30%;
+  }
+
+  html:not([data-reveal-js]) [data-reveal='grow-in'] {
+    animation-timing-function: v.$ease-overshoot;
+  }
+}
+
+// ── Mobile kill switch ───────────────────────────────────────────────
+// column_animation_mobile = disable. Salient force-clears opacity and
+// transform below 1000px rather than shortening the animation.
+@media only screen and (max-width: #{v.$bp-tablet - 1px}) {
+  [data-reveal] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────
+//  Image treatments
+// ─────────────────────────────────────────────────────────────────────
+
+// export: `.img-with-aniamtion-wrap .color-overlay` — a full-bleed
+// overlay that comes up to 0.5 on hover. The wrapper clips, so a zoom
+// inside it stays inside the frame.
+.image-frame {
+  position: relative;
+  overflow: hidden;
+
+  > img { display: block; width: 100%; }
+
+  .image-frame__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 10;
+    display: block;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity v.$dur-image v.$ease-image;
+  }
+
+  &:hover .image-frame__overlay { opacity: v.$overlay-mid; }
+}
+
+// export: the two zoom speeds Salient ships for photographic hovers.
+.zoom-in > img,
+.zoom-in .image-frame__media {
+  transition: transform v.$dur-image v.$ease-image;
+}
+
+.zoom-in:hover > img,
+.zoom-in:hover .image-frame__media { transform: scale(1.12); }
+
+.zoom-in-slow > img,
+.zoom-in-slow .image-frame__media {
+  transition: transform v.$dur-image-slow v.$ease-slow;
+}
+
+.zoom-in-slow:hover > img,
+.zoom-in-slow:hover .image-frame__media { transform: scale(1.15); }
+
+// export: row background entrance animations, exact.
+.bg-zoom-out     { animation: nectar-bg-zoom 2.5s cubic-bezier(0.1, 0.55, 0.4, 1) forwards; }
+.bg-zoom-out-slow { animation: nectar-bg-zoom 8s v.$ease-slow forwards; }
+
+@keyframes nectar-bg-zoom {
+  from { transform: scale(1.2); }
+  to   { transform: scale(1); }
+}
+
+// export: parallax wrappers are sized at 100.1%, not 100% — a deliberate
+// sub-pixel bleed that hides the hairline seam a transformed background
+// otherwise shows at its edges.
+.parallax-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100.1%;
+  height: 100.1%;
+  overflow: hidden;
+}
+
+// export: `.nectar-highlighted-text` — the accent at 30% behind copy.
+.highlighted-text {
+  background: linear-gradient(v.$accent-marker, v.$accent-marker);
+  background-position: 0 88%;
+  background-repeat: no-repeat;
+  background-size: 100% 34%;
+}
+
+// export: the light-row link treatment is a background-size sweep rather
+// than a border, at 0.7 opacity until hovered.
+.link-sweep {
+  background-image: linear-gradient(to right, v.$accent 0, v.$accent 100%);
+  background-position: left bottom;
+  background-repeat: no-repeat;
+  background-size: 0 2px;
+  transition: background-size v.$dur-dropdown cubic-bezier(0.2, 0.75, 0.5, 1),
+              opacity 0.3s ease,
+              color 0.3s ease;
+
+  &:hover { background-size: 100% 2px; }
+}

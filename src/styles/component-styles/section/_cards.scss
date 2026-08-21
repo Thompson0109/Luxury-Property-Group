@@ -38,16 +38,32 @@
   }
 }
 
+// export: Salient's image-backed menu and card treatment is a 1.12 zoom
+// over 0.5s on its own image curve — noticeably further and softer than
+// a generic 1.06.
 .section__card-image {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: scale v.$dur-base v.$ease-out;
+  transition: scale v.$dur-image v.$ease-image;
 }
 
-.section__card-link:hover .section__card-image { scale: 1.06; }
+.section__card-link:hover .section__card-image { scale: 1.12; }
+
+// export: `hover-zoom-in-slow` — a four-second 1.15 drift, with the
+// overlay lifting over 1.5s. It is the treatment Salient reserves for
+// large photographic tiles, which is what these are.
+.section__card-link--slow {
+  .section__card-image {
+    transition: scale v.$dur-image-slow v.$ease-slow;
+  }
+
+  &::after { transition: background 1.5s v.$ease-image; }
+
+  &:hover .section__card-image { scale: 1.15; }
+}
 
 // measured: the card title renders as an h3 — 30px, white, display face.
 .section__card-label {
