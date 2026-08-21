@@ -1,0 +1,111 @@
+@use '../../variable' as v;
+
+.section {
+  --section-pad: #{v.$pad-base};
+
+  position: relative;
+  padding-block: var(--section-pad);
+  background-position: center;
+  background-size: cover;
+  color: v.$extra-1;
+  overflow: hidden;
+}
+
+// measured across the eight pages: 0, 4, 5, 6, 9, 13 and 24vw
+.section--pad-none { --section-pad: 0; }
+.section--pad-sm   { --section-pad: #{v.band(v.$pad-sm)}; }
+.section--pad-base { --section-pad: #{v.band(v.$pad-base)}; }
+.section--pad-md   { --section-pad: #{v.band(v.$pad-md)}; }
+.section--pad-lg   { --section-pad: #{v.band(v.$pad-lg)}; }
+.section--pad-xl   { --section-pad: #{v.band(v.$pad-xl)}; }
+.section--pad-xxl  { --section-pad: #{v.band(v.$pad-xxl)}; }
+
+// `full_height` rows are a viewport band with the content vertically
+// centred — Salient's `vc_row-o-full-height` + `columns-middle`.
+.section--full-height {
+  display: flex;
+  align-items: center;
+  min-height: 100svh;
+}
+
+// measured: `.row-bg-overlay` sits at opacity 0.5 on every overlaid row
+.section__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.5;
+}
+
+.section__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.section--on-dark {
+  color: v.$white;
+
+  .section__heading,
+  .section__text { color: v.$white; }
+
+  a:not(.btn) {
+    color: v.$white;
+    text-decoration: underline;
+  }
+}
+
+// ── Hero ─────────────────────────────────────────────────────────────
+// Every row on the live site carries Salient's `left` alignment class —
+// nothing is centred at row level. Only the home page's display heading
+// opts into centring, via `.section--center`.
+.section--hero {
+  padding-block: v.$header-height var(--section-pad);
+}
+
+.section--center {
+  text-align: center;
+
+  .section__group { align-items: center; }
+  .section__text { margin-inline: auto; }
+}
+
+// measured: home hero h2 renders 95.25px at a 1905px viewport — exactly
+// 5vw, line-height 1.3. Inner-page heroes use the ordinary 45px h2, so
+// the fluid size is scoped to the centred hero rather than all of them.
+.section--center .section__heading--h2 {
+  font-size: v.$hero-size;
+  line-height: v.$hero-lh;
+
+  @include v.at-phone { font-size: 34px; }
+}
+
+// Circular scroll cue, as on the live hero.
+.section__scroll-cue {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  translate: -50% 0;
+  animation: section-cue 2s v.$ease-inout infinite;
+
+  span {
+    display: block;
+    width: 11px;
+    height: 11px;
+    border-right: 1.5px solid rgba(255, 255, 255, 0.9);
+    border-bottom: 1.5px solid rgba(255, 255, 255, 0.9);
+    rotate: 45deg;
+    translate: 0 -2px;
+  }
+}
+
+@keyframes section-cue {
+  0%, 100% { transform: translateY(0);   opacity: 0.65; }
+  50%      { transform: translateY(8px); opacity: 1; }
+}

@@ -1,0 +1,61 @@
+@use '../../variable' as v;
+
+// ── Region cards ─────────────────────────────────────────────────────
+// measured on /france at 1890px: three 418px columns with 5px of column
+// padding, each card 408x300, and 10px between the two rows. Below 1000px
+// they go full width like every other Salient column.
+.section__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-self: stretch;
+
+  @include v.below-tablet { grid-template-columns: 1fr; }
+}
+
+.section__cards + .section__cards { margin-top: 10px; }
+
+.section__card { padding-inline: 5px; }
+
+.section__card-link {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 408 / 300;   // measured
+  border-radius: 0;
+  overflow: hidden;
+  text-align: center;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55));
+    transition: background v.$dur-base v.$ease-out;
+  }
+
+  &:hover::after {
+    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.4));
+  }
+}
+
+.section__card-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: scale v.$dur-base v.$ease-out;
+}
+
+.section__card-link:hover .section__card-image { scale: 1.06; }
+
+// measured: the card title renders as an h3 — 30px, white, display face.
+.section__card-label {
+  position: relative;
+  z-index: 2;
+  padding: 0 16px;
+  color: v.$white;
+  font-family: v.$font-display;
+  font-size: v.$h3-size;
+  font-weight: v.$h3-weight;
+}

@@ -1,0 +1,164 @@
+@use '../../variable' as v;
+
+// ── Columns ──────────────────────────────────────────────────────────
+// Salient rows are a 12-column grid. The three shapes in use here are
+// 12, 6+6 and 8+4. Half-width rows frequently leave one side empty —
+// that is how "Our Story" sits in the left half of a full-bleed image.
+// measured: 60px between columns (30px padding on each column inner).
+// Salient splits a row on exact 12-column boundaries with no gutter
+// between the tracks: the air comes from 30px of inline padding on each
+// column, which .section__group carries below. A grid gap would move both
+// split points inwards and shorten every measure.
+.section--cols-6-6 .section__inner,
+.section--cols-8-4 .section__inner {
+  display: grid;
+  gap: 0;
+  align-items: center;
+}
+
+@media (min-width: v.$bp-tablet) {
+  .section--cols-6-6 .section__inner { grid-template-columns: 1fr 1fr; }
+  .section--cols-8-4 .section__inner { grid-template-columns: 2fr 1fr; }
+
+  .section--fill-left  .section__group { grid-column: 1; }
+  .section--fill-right .section__group { grid-column: 2; }
+}
+
+// ── Groups ───────────────────────────────────────────────────────────
+// measured rhythm inside a column:
+//   heading wrapper margin-bottom 24px + 6px spacer  → 30px
+//   text column margin-bottom 25.5px, button margin-top 35px
+//   (adjacent margins collapse, so text → button is 35px)
+// measured: every Salient column carries 30px of inline padding, which is
+// what puts body copy at 1245px inside the 1305px row.
+.section__group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-inline: 30px;
+
+  & + & { margin-top: v.band(v.$pad-sm); }
+}
+
+.section--cols-6-6 .section__group + .section__group,
+.section--cols-8-4 .section__group + .section__group { margin-top: 0; }
+
+// ── Copy paired with media ───────────────────────────────────────────
+// Salient runs these as a two-column inner row rather than a stack. The
+// content model already records which side the media takes, by whether
+// the group leads with it.
+//
+// Measured on the home page at a 1772px client: two 653px columns inside
+// the 1305px row, each carrying Salient's 30px of inline padding, the two
+// columns vertically centred against each other at 400px tall, and 35px
+// between the two stacked rows.
+.section__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  width: 100%;
+
+  // Below 1000px every Salient column goes full width.
+  @include v.below-tablet {
+    grid-template-columns: 1fr;
+    row-gap: 35px;
+  }
+}
+
+// The destination pages run this row at 8|4, putting the media in the
+// wide column. Measured on /barbados: 870px against 435px.
+@media (min-width: v.$bp-tablet) {
+  .section__split--8-4 { grid-template-columns: 2fr 1fr; }
+}
+
+.section__split + .section__split { margin-top: 35px; }
+
+.section__split-copy,
+.section__split-media {
+  min-width: 0;
+  padding-inline: 30px;   // measured: every Salient column
+}
+
+.section__split-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.section__split--media-first .section__split-media { order: -1; }
+
+// The media column holds one frame, not a contact sheet — Salient runs a
+// carousel resting on its first slide. A scroll-snap strip keeps every
+// image while showing the same resting frame.
+.section__split-media .section__gallery {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar { display: none; }
+
+  .section__gallery-item {
+    flex: 0 0 100%;
+    margin: 0;
+    scroll-snap-align: start;
+  }
+
+  .section__gallery-item img { aspect-ratio: 3 / 2; }
+}
+
+// ── Two text columns ─────────────────────────────────────────────────
+// The inner row escapes the enclosing column's padding — Salient pulls it
+// out with a negative margin — so the two tracks span the full 1305px row
+// and each re-applies the 30px column padding. Net measure 593px, which
+// is what the live site renders.
+.section__pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-self: stretch;          // the group is a flex column, so fill it
+  margin-inline: -30px;
+
+  > * { padding-inline: 30px; }
+
+  @include v.below-tablet { grid-template-columns: 1fr; }
+}
+
+// ── Feature tiles ────────────────────────────────────────────────────
+// Salient lays these out as an inner vc_row of vc_col-sm-4 columns.
+// Measured on /approach at 1905px: three 435px columns filling the
+// 1305px row, a 3:2 image, 21px down to the heading and 38px to the copy.
+.section__tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  width: 100%;
+
+  @include v.below-tablet {
+    grid-template-columns: 1fr;
+    row-gap: 25px;
+  }
+}
+
+.section__tiles + .section__tiles { margin-top: 26px; }
+.section__group + .section__tiles { margin-top: 26px; }
+
+.section__group:has(+ .section__tiles) {
+  align-items: center;
+  text-align: center;
+
+  .section__text { margin-inline: auto; }
+}
+
+.section__tile {
+  padding-inline: 30px;
+  text-align: left;
+
+  .section__heading { margin: 21px 0 0; }
+  .section__text { margin: 38px 0 0; }
+}
+
+.section__tile-image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+}
