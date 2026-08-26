@@ -24,7 +24,10 @@ function renderBlocks(blocks, keyPrefix, onDark, carousel) {
 }
 
 export default function Section({ section, index, isHero }) {
-  const { background = {}, groups = [], layout = {}, carousel, tileReveal } = section
+  const {
+    background = {}, groups = [], layout = {},
+    carousel, tileReveal, mediaReveal, reveal, delay, card,
+  } = section
   const { color, image, overlay, video } = background
   const {
     pad = 5, fullHeight = false, cols = [12], fill = 'both', center = false,
@@ -75,7 +78,11 @@ export default function Section({ section, index, isHero }) {
         <div className="section__overlay" style={{ backgroundColor: overlay }} aria-hidden="true" />
       )}
 
-      <div className="container section__inner">
+      <div
+        className="container section__inner"
+        data-reveal={reveal || undefined}
+        style={delay ? { '--reveal-delay': `${delay}ms` } : undefined}
+      >
         {groups.map((blocks, gi) => {
           const split = splits[gi]
 
@@ -116,15 +123,21 @@ export default function Section({ section, index, isHero }) {
                 <div className="section__split-copy">
                   {renderBlocks(split.copy, `${gi}-c`, onDark)}
                 </div>
-                <div className="section__split-media">
+                <div className="section__split-media" data-reveal={mediaReveal || undefined}>
                   <Block block={split.media} inverse={onDark} carousel={carousel} />
                 </div>
               </div>
             )
           }
 
+          const isCard = card && blocks.some((b) => b.type === 'form')
+
           return (
-            <div key={gi} className="section__group">
+            <div
+              key={gi}
+              className={isCard ? 'section__group section__card' : 'section__group'}
+              data-reveal={isCard ? card.reveal : undefined}
+            >
               {renderBlocks(blocks, String(gi), onDark, carousel)}
             </div>
           )

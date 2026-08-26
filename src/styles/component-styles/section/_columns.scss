@@ -162,3 +162,41 @@
   aspect-ratio: 3 / 2;
   object-fit: cover;
 }
+
+
+// ── Floating panel ───────────────────────────────────────────────────
+// /contact's form column carries `data-using-bg`, `data-shadow=
+// "x_large_depth"`, `data-border-radius="10px"` and `data-padding-pos=
+// "all"` at 8%, plus an inline `margin-bottom: -25%` that pulls it down
+// over the following row.
+//
+// Measured at a 1905px viewport: a 934px panel with 74.7px of padding —
+// 8% exactly — and a -326px bottom margin against the 457px of top
+// padding on the row below, leaving 131px of real gap.
+//
+// The white ground is a `.column-bg-overlay` child in the theme rather
+// than a background on the column, which is why it takes the radius but
+// the padding sits outside it.
+.section__card {
+  position: relative;
+  align-items: stretch;
+  padding: v.$card-pad;
+  border-radius: v.$card-radius;
+  background: v.$white;
+  box-shadow: v.$shadow-xlarge;
+  margin-bottom: v.$card-overlap;
+  // The row below has to paint under it, not over it.
+  z-index: 3;
+
+  // The panel is its own light surface inside a dark row, so the row's
+  // inverted colours have to be undone.
+  color: v.$extra-1;
+
+  .section__text,
+  .section__heading { color: v.$extra-1; }
+
+  @include v.at-phone {
+    padding: 30px 24px;
+    margin-bottom: 0;
+  }
+}

@@ -28,7 +28,13 @@
 //      content plainly visible where it doesn't.
 // ─────────────────────────────────────────────────────────────────────
 
-[data-reveal] { --reveal-from: none; }
+// WPBakery records `animation_delay="150"` on every instance, but the
+// hero column on /approach carries 300 — the only one on the site — so
+// the delay is a custom property the component can override.
+[data-reveal] {
+  --reveal-from: none;
+  --reveal-delay: #{v.$reveal-delay};
+}
 
 // Columns travel 75px, images 100px — Salient uses different distances
 // for the two, which is what keeps a photo from lagging its caption.
@@ -50,8 +56,8 @@ figure[data-reveal='fade-in-from-bottom'] { --reveal-from: translateY(#{v.$revea
 html[data-reveal-js] [data-reveal] {
   opacity: 0;
   transform: var(--reveal-from, none);
-  transition: transform v.$dur-reveal v.$ease-reveal v.$reveal-delay,
-              opacity 450ms ease v.$reveal-delay;
+  transition: transform v.$dur-reveal v.$ease-reveal var(--reveal-delay),
+              opacity 450ms ease var(--reveal-delay);
 }
 
 html[data-reveal-js] [data-reveal].is-visible {
@@ -62,8 +68,8 @@ html[data-reveal-js] [data-reveal].is-visible {
 // `grow-in` is the one that overshoots — a genuine spring curve, not a
 // decelerating one.
 html[data-reveal-js] [data-reveal='grow-in'] {
-  transition: transform 0.6s v.$ease-overshoot v.$reveal-delay,
-              opacity 0.6s v.$ease-overshoot v.$reveal-delay;
+  transition: transform 0.6s v.$ease-overshoot var(--reveal-delay),
+              opacity 0.6s v.$ease-overshoot var(--reveal-delay);
 }
 
 // ── Driver 2: native scroll-driven ───────────────────────────────────

@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
+import { useScrollReveal } from '@/lib/reveal'
 
 /**
  * Persistent chrome around every route.
@@ -12,6 +13,8 @@ import Footer from './Footer'
  * the header mounted across navigations (no scroll/animation reset).
  */
 export default function Layout() {
+  useScrollReveal()
+
   return (
     <>
       <a href="#main" className="skip-link">Skip to content</a>
