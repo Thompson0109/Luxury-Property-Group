@@ -32,6 +32,15 @@
 const FLICKITY_AUTOPLAY = 2500
 
 export const sectionOverrides = {
+  home: {
+    // The lead paragraph of each destination block is a `<strong>` on
+    // the live site; so is the featured-properties intro and the one
+    // under "Why Choose Elegant Address".
+    1: { boldLead: [0, 1] },
+    3: { boldLead: [0] },
+    5: { boldLead: [0] },
+  },
+
   'cannes-congress': {
     // `.nectar-flickity` instance-0: one column at every breakpoint,
     // overflow hidden, autoplay 2500. It sits in the span-8 half.
@@ -186,7 +195,9 @@ export function applyOverrides(page) {
     const o = bySection?.[i]
     if (!o) return section
 
-    const { padTop, padBottom, center, fullWidth, hero, prepend, append, ...rest } = o
+    const {
+      padTop, padBottom, center, fullWidth, hero, prepend, append, boldLead, ...rest
+    } = o
     const layout = { ...section.layout }
     if (center) layout.center = true
     if (fullWidth) layout.fullWidth = true
@@ -199,6 +210,20 @@ export function applyOverrides(page) {
     if (hero) {
       groups = groups.map((g) =>
         g.map((b) => (b.type === 'heading' && b.level === 'h2' ? { ...b, hero: true } : b)))
+    }
+
+    // The standfirst of the named groups — the first paragraph of their
+    // first text block.
+    if (boldLead) {
+      groups = groups.map((g, gi) => {
+        if (!boldLead.includes(gi)) return g
+        let done = false
+        return g.map((b) => {
+          if (done || b.type !== 'text') return b
+          done = true
+          return { ...b, lead: true }
+        })
+      })
     }
 
     // Blocks the extractor lost. Applied to the first group, which is

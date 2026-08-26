@@ -33,10 +33,22 @@ function Heading({ block }) {
   )
 }
 
+/**
+ * `lead` marks the opening paragraph as the section's standfirst.
+ *
+ * On the WordPress site those paragraphs are wrapped in `<strong>` —
+ * confirmed on the hosted install for the two destination blocks, the
+ * featured-properties intro and "Why Choose Elegant Address", where the
+ * strong renders Open Sans 700 and inherits the row's colour. The
+ * extractor flattens `post_content` to plain strings, so every piece of
+ * inline markup in the source is lost; the flag puts this one back.
+ */
 function Text({ block }) {
   return (
     <div className="section__text">
-      {block.paragraphs.map((p, i) => <p key={i}>{p}</p>)}
+      {block.paragraphs.map((p, i) => (
+        <p key={i}>{block.lead && i === 0 ? <strong>{p}</strong> : p}</p>
+      ))}
     </div>
   )
 }
