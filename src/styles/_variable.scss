@@ -88,7 +88,10 @@ $bp-small-desktop:  1300px;
 // measured tiers ─ (>1300) (≤1300) (≤999) (≤690)
 $h1-tiers: (22px 32px)   (16.5px 24px)    (15.4px 22.4px) (14.3px 20.8px);
 $h2-tiers: (45px 55px)   (38.25px 46.75px)(36px 44px)     (33.75px 41.25px);
-$h3-tiers: (30px 36px)   (25.5px 30.6px)  (24px 28.8px)   (24px 28.8px);
+// Louis's call, for this project rather than to match the target: a
+// small step down from Salient's 30/36 with a little line-height taken
+// out with it — 1.18 rather than 1.20.
+$h3-tiers: (28px 33px)   (24px 28.5px)    (22.5px 26.5px) (22.5px 26.5px);
 
 // Retained for components that need a single reference size.
 $h2-size: 45px;
@@ -99,7 +102,7 @@ $h2-phone: 33.75px;
 
 
 
-$h3-size: 30px;
+$h3-size: 28px;
 $h3-weight: 700;
 
 $nav-size:     16px;   // measured: nav link font-size
@@ -366,6 +369,17 @@ $footer-heading-gap: 15px;
 $copyright-size:  14px;
 $copyright-left:  40.33%;   // .span_5
 $copyright-right: 57.67%;   // .span_7
+
+// ── Menu icon ────────────────────────────────────────────────────────
+// Three bars at three widths, 2px tall, 6px apart. Measured on the
+// hosted site; `#999` is the solid-header colour
+// (`.lines-button.x2 .lines::before/::after`), white over the
+// transparent header.
+$burger-top:    22px;
+$burger-mid:    22.4px;
+$burger-bottom: 16px;
+$burger-gap:    6px;
+$burger-bar:    #999999;
 
 // ── Split headings ───────────────────────────────────────────────────
 // Every section heading on the site is a `.nectar-split-heading` running

@@ -199,19 +199,31 @@
   background: none;
 }
 
-// export: 22 x 2px bars, 6px apart, in the body ink — not the 26/8 a
-// generic burger would use.
+// The bars are not three equal rules. Read off the hosted site, Salient
+// builds the icon from three different elements at three different
+// widths, and the bottom one is deliberately short:
+//
+//   .lines::after        top: -6px   width: 22px      (1.4rem)
+//   .lines-button::after top:  0     width: 22.4px    (1.4rem)
+//   .lines::before       top:  6px   width: 16px      (1rem, <=1001px)
+//
+// all 2px tall. The stagger is the whole character of the icon — three
+// equal 22px bars read as a generic hamburger, which is what the port had.
 .navbar__bars,
 .navbar__bars::before,
 .navbar__bars::after {
   display: block;
-  width: 22px;
   height: 2px;
-  background: v.$extra-1;
+  background: v.$burger-bar;
   transition: transform 0.3s v.$ease-out,
               opacity 0.2s linear,
-              background-color 0.2s ease;
+              background-color 0.2s ease,
+              width 0.3s v.$ease-out;
 }
+
+.navbar__bars        { width: v.$burger-mid; }
+.navbar__bars::after { width: v.$burger-top; }   // ::after sits above
+.navbar__bars::before { width: v.$burger-bottom; }
 
 .navbar__toggle:hover .navbar__bars,
 .navbar__toggle:hover .navbar__bars::before,
@@ -227,19 +239,25 @@
     position: absolute;
     left: 0;
   }
-  &::before { top: -6px; }
-  &::after  { top: 6px; }
+  // Salient's `::after` is the *upper* bar and `::before` the lower one.
+  &::after  { top: -#{v.$burger-gap}; }
+  &::before { top: v.$burger-gap; }
 }
 
 .navbar:not(.is-scrolled) .navbar__bars,
 .navbar:not(.is-scrolled) .navbar__bars::before,
 .navbar:not(.is-scrolled) .navbar__bars::after { background: v.$white; }
 
+// Closing collapses the three bars into a cross, so the short bottom bar
+// has to grow to match or the X comes out lopsided.
 .navbar.is-open .navbar__bars {
   background: transparent;
 
-  &::before { transform: translateY(6px) rotate(45deg); }
-  &::after  { transform: translateY(-6px) rotate(-45deg); }
+  &::before {
+    width: v.$burger-top;
+    transform: translateY(-#{v.$burger-gap}) rotate(45deg);
+  }
+  &::after { transform: translateY(v.$burger-gap) rotate(-45deg); }
 }
 
 @media (max-width: v.$nav-breakpoint) {
