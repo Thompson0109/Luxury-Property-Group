@@ -40,7 +40,7 @@ export default function Footer() {
 
         <div className="footer__column">
           <h2 className="footer__heading">Speak to a consultant</h2>
-          <ul className="footer__list">
+          <ul className="footer__list footer__list--spaced">
             {contact.offices.map(({ label, tel, href }) => (
               <li key={label}>
                 <span className="footer__label">{label}</span>
@@ -59,7 +59,7 @@ export default function Footer() {
           <address className="footer__address">
             {contact.address.lines.map((line) => <span key={line}>{line}</span>)}
           </address>
-          <ul className="footer__list footer__list--plain">
+          <ul className="footer__list">
             {footerNav.map(({ label, to }) => (
               <li key={to}><Link to={to}>{label}</Link></li>
             ))}

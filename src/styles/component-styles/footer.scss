@@ -1,21 +1,66 @@
 @use '../variable' as v;
 
+// ─────────────────────────────────────────────────────────────────────
+//  Footer
+//
+//  Salient's footer is a float grid inside the ordinary site container,
+//  not a bespoke layout. Measured on the running install:
+//
+//    #footer-widgets .container   1425 max, 90px side padding
+//    #footer-widgets .row         1245px
+//    .col.span_3                  292.56px wide, 24.89px right margin
+//                                 = 23.5% and 2% of 1245, exactly
+//
+//  The port previously used a 1.6/1/1.2/1.2 CSS-grid split, which is a
+//  reasonable-looking guess and matches nothing in the theme. Four equal
+//  tracks on Salient's own percentages is what the site actually renders.
+//
+//  The widget content itself has no counterpart to copy — the local
+//  install has `data-has-widgets="false"`, so all four columns render
+//  empty. The columns below are the port's own, laid out on the theme's
+//  real geometry and typography.
+// ─────────────────────────────────────────────────────────────────────
+
 .footer {
   background: v.$footer-bg;
   color: v.$footer-text;
-  font-size: v.$body-size;   // measured: footer inherits the 17px body size
+  font-size: v.$body-size;   // measured: the footer inherits 17px/25px
+
+  // measured on an injected widget: every footer link is a block-level
+  // #ccc with a 0.3s colour transition, and two `#footer-outer a:hover`
+  // rules fight — the accent one carries !important and wins, so the
+  // later `color: #000` (a Salient default meant for light footers,
+  // invisible on #252525) never applies.
+  a {
+    color: v.$footer-text;
+    transition: color v.$dur-nav-underline;
+
+    &:hover,
+    &:focus-visible { color: v.$accent; }
+  }
 }
 
 .footer__inner {
   display: grid;
-  gap: 40px;
-  // export: `#footer-outer .row { padding: 55px 0 }` — a fixed band, not
-  // the viewport-relative rhythm the content rows use.
-  padding-block: 55px;
+  // 4 x 23.5% + 3 x 2% = 100%, Salient's span_3 grid expressed directly.
+  grid-template-columns: 1fr;
+  gap: 40px v.$footer-col-gap;
 
-  // redux: footer_columns = 4
-  @media (min-width: v.$bp-phone)  { grid-template-columns: repeat(2, 1fr); }
-  @media (min-width: v.$bp-tablet) { grid-template-columns: 1.6fr 1fr 1.2fr 1.2fr; }
+  // live: `@media (min-width: 1000px) { body #footer-outer .row {
+  //          padding: 75px 0 } }` — a fixed band, not the viewport-
+  //  relative rhythm the content rows use. Below 1000px it drops to 55px.
+  padding-block: v.$footer-band-pad-mobile;
+
+  @media (min-width: v.$bp-phone) {
+    grid-template-columns: repeat(2, v.$footer-col-width);
+    justify-content: space-between;
+  }
+
+  @media (min-width: v.$bp-tablet) {
+    grid-template-columns: repeat(4, v.$footer-col-width);
+    gap: 0 v.$footer-col-gap;
+    padding-block: v.$footer-band-pad;
+  }
 }
 
 .footer__logo {
@@ -37,11 +82,11 @@
   filter: grayscale(1) invert(1);
 }
 
-// export: the widget heading is declared twice and the second wins —
-// Merriweather 700 / 15px / +1px tracking, colour #777, 20px below.
-// Note `footer-custom-color = 0`, so the footer colours saved in the
-// theme options are dead and Salient's defaults are what shipped: the
-// heading is the same grey as the secondary copy, not white.
+// measured on an injected `h4.widgettitle`: Merriweather 700, 15px/32px,
+// +1px tracking, #777, 20px below. Note `footer-custom-color = 0`, so the
+// footer colours saved in the theme options are dead and Salient's
+// defaults are what shipped — which puts the heading at the same grey as
+// the secondary copy rather than white.
 .footer__heading {
   margin-bottom: 20px;
   color: v.$footer-heading;
@@ -49,13 +94,15 @@
   font-size: 15px;
   font-weight: 700;
   letter-spacing: v.$btn-tracking;
-  line-height: 25px;
+  line-height: 32px;
+  text-transform: none;
 }
 
-// export: widget list items are 8px tall with a hairline divider, and
-// the first item loses its top padding. Two `#footer-outer a:hover`
-// rules fight in the source; the accent one carries !important and wins,
-// so footer links hover to the accent rather than to white.
+// live: `.material #footer-outer #footer-widgets .col ul li {
+//          border: none; padding: 4px 0 !important }`
+// The material skin cancels the 8px item + 1px #444 divider the compiled
+// CSS shows for the stock skin, so the list is a tight 4px rhythm with no
+// rules at all. Measured padding is `0 0 4px` — the top padding is zero.
 .footer__list {
   margin: 0 0 20px;
   padding: 0;
@@ -63,26 +110,17 @@
 
   li {
     margin-bottom: 0;
-    padding: 8px 0;
-    border-bottom: 1px solid v.$footer-rule;
-
-    &:first-child { padding-top: 0; }
-    &:last-child  { border-bottom: 0; }
+    padding: 0 0 v.$footer-li-pad;
+    border: v.$footer-li-rule;
   }
 
-  a {
-    color: v.$footer-text;
-
-    &:hover { color: v.$accent; }
-  }
+  // live: `#footer-outer #footer-widgets .col ul li a { display: block }`
+  a { display: block; }
 }
 
-// The plain variant keeps the rhythm without the rules.
-.footer__list--plain li {
-  padding: 0;
-  margin-bottom: 10px;
-  border-bottom: 0;
-}
+// A phone number sits under its own label, so those items need the extra
+// air the 4px rhythm doesn't give them.
+.footer__list--spaced li { padding-bottom: 12px; }
 
 .footer__label {
   display: block;
@@ -102,41 +140,42 @@
   font-size: 14px;
 }
 
-// ── Copyright bar ────────────────────────────────────────────────────
-// measured: the copyright strip shares the footer ground rather than
-// sitting on a darker band.
-// export: the copyright strip is its own darker band — `#copyright`
-// carries `background-color:#1c1c1c` and `font-size:12px` over the
-// footer's #252525. Previously this shared the footer ground with a
-// hairline rule, which is the one thing here worth eyeballing.
+// ── Copyright ────────────────────────────────────────────────────────
+// live: `body #footer-outer #copyright { font-size: 14px;
+//         background-color: transparent }` with `padding: 20px 0`, and
+// `data-copyright-line="false"` so there is no rule above it either. The
+// strip shares the footer's #252525 ground rather than sitting on the
+// darker #1c1c1c band the export implied.
+//
+// Its two halves are a 5|7 split of the same 12-column grid: 504px and
+// 716px inside the 1245px row.
 .footer__copyright {
   background: v.$copyright-bg;
   border-top: 0;
   color: v.$copyright-text;
-  font-size: 12px;
+  font-size: v.$copyright-size;
 }
 
 .footer__copyright-inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding-block: v.$copyright-pad;   // measured: 20px
+  display: grid;
+  gap: 12px;
+  padding-block: v.$copyright-pad;
+
+  @media (min-width: v.$bp-phone) {
+    grid-template-columns: v.$copyright-left v.$copyright-right;
+    align-items: center;
+  }
 
   p { margin: 0; }
 }
 
 .footer__social {
   display: flex;
+  flex-wrap: wrap;
   gap: 18px;
   margin: 0;
   padding: 0;
   list-style: none;
 
-  a {
-    color: v.$copyright-text;
-
-    &:hover { color: v.$white; }
-  }
+  @media (min-width: v.$bp-phone) { justify-content: flex-end; }
 }
