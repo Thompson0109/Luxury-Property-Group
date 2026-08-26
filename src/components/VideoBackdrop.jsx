@@ -15,9 +15,16 @@ export default function VideoBackdrop({ id, poster }) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     if (window.matchMedia('(max-width: 690px)').matches) return
 
-    const idle = window.requestIdleCallback ?? ((cb) => setTimeout(cb, 300))
-    const handle = idle(() => setEnabled(true))
-    return () => window.cancelIdleCallback?.(handle)
+    // requestIdleCallback can wait indefinitely on a busy page, and the
+    // hero is the first thing anyone sees — so it gets a deadline.
+    const handle = window.requestIdleCallback
+      ? window.requestIdleCallback(() => setEnabled(true), { timeout: 1200 })
+      : setTimeout(() => setEnabled(true), 300)
+
+    return () => {
+      if (window.cancelIdleCallback) window.cancelIdleCallback(handle)
+      else clearTimeout(handle)
+    }
   }, [])
 
   // Cover maths, recomputed whenever the section resizes.
@@ -64,7 +71,16 @@ export default function VideoBackdrop({ id, poster }) {
     const onLoad = () => send({ event: 'listening', id: 1 })
 
     const onMessage = (event) => {
-      if (!/(^|\.)youtube(-nocookie)?\.com$/.test(new URL(event.origin).hostname)) return
+      // This fires for every message on the window, including ones with
+      // an opaque origin that `new URL` throws on — and a throw here
+      // would take out the whole handler.
+      let host
+      try {
+        host = new URL(event.origin).hostname
+      } catch {
+        return
+      }
+      if (!/(^|\.)youtube(-nocookie)?\.com$/.test(host)) return
       let data
       try {
         data = JSON.parse(event.data)
@@ -77,7 +93,10 @@ export default function VideoBackdrop({ id, poster }) {
 
     frame.addEventListener('load', onLoad)
     window.addEventListener('message', onMessage)
-    const fallback = setTimeout(() => setPlaying(true), 2500)
+    // If the postMessage handshake never lands — an ad, a blocked embed,
+    // a slow network — reveal anyway rather than leaving a dead panel
+    // where the hero should be.
+    const fallback = setTimeout(() => setPlaying(true), 1200)
 
     return () => {
       frame.removeEventListener('load', onLoad)

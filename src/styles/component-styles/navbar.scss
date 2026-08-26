@@ -29,10 +29,22 @@
   min-height: v.$header-height;
   padding: 0 v.$gutter;
   transition: min-height v.$dur-header v.$ease-out;
+
+  // Below the nav breakpoint the logo drops to 60px but the bar was
+  // still holding the full 140px, leaving 80px of empty white above a
+  // small mark — which is what made the header read so much heavier than
+  // the target's. The bar is now sized from what is in it.
+  @include v.below-tablet {
+    min-height: v.$header-height-mob;
+  }
 }
 
 .navbar.is-scrolled .navbar__inner {
   min-height: v.$header-height-small;
+
+  @include v.below-tablet {
+    min-height: v.$header-height-mob-small;
+  }
 }
 
 .navbar__logo img {

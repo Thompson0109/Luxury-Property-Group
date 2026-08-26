@@ -156,6 +156,11 @@ $header-height-small:  107px;  // measured: #header-outer.small-nav
 $logo-height:          80px;   // measured
 $logo-height-small:    74px;   // measured
 $logo-height-mob:      60px;
+// Sized from the logo rather than measured: the target's mobile bar is a
+// good deal shorter than its desktop one, and the port was holding the
+// full 140px behind a 60px mark. 20px of air either side of the logo.
+$header-height-mob:       100px;
+$header-height-mob-small: 88px;
 $nav-breakpoint:       $bp-tablet;
 
 // ── Buttons ──────────────────────────────────────────────────────────
