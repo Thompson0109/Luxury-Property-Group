@@ -26,7 +26,7 @@ function renderBlocks(blocks, keyPrefix, onDark, carousel) {
 export default function Section({ section, index, isHero }) {
   const {
     background = {}, groups = [], layout = {},
-    carousel, tileReveal, mediaReveal, reveal, delay, card,
+    carousel, tileReveal, mediaReveal, reveal, delay, card, parallax,
   } = section
   const { color, image, overlay, video } = background
   const {
@@ -39,7 +39,9 @@ export default function Section({ section, index, isHero }) {
 
   const style = {}
   if (color) style.backgroundColor = color
-  if (image) style.backgroundImage = `url(${assetUrl(image)})`
+  // A parallax row paints its image on its own oversized layer instead,
+  // so the section keeps only the colour underneath it.
+  if (image && !parallax) style.backgroundImage = `url(${assetUrl(image)})`
 
   // A handful of rows are padded on one side only — /contact's hero ends
   // flush so the form card can hang out of it, and the row above the
@@ -71,9 +73,19 @@ export default function Section({ section, index, isHero }) {
         multiColumn && fill !== 'both' ? `section--fill-${fill}` : '',
         fullWidth ? 'section--full-width' : '',
         card ? 'section--overflows' : '',
+        image && parallax ? 'section--parallax' : '',
       ].filter(Boolean).join(' ')}
       style={style}
     >
+      {image && parallax && (
+        <div
+          className="section__parallax"
+          data-parallax={parallax}
+          style={{ backgroundImage: `url(${assetUrl(image)})` }}
+          aria-hidden="true"
+        />
+      )}
+
       {video && <VideoBackdrop id={video} poster={image ? assetUrl(image) : undefined} />}
       {overlay && (
         <div className="section__overlay" style={{ backgroundColor: overlay }} aria-hidden="true" />

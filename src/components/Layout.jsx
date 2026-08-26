@@ -2,6 +2,7 @@ import { Outlet } from 'react-router-dom'
 import Navbar from './Navbar'
 import Footer from './Footer'
 import { useScrollReveal } from '@/lib/reveal'
+import { useParallax } from '@/lib/parallax'
 
 /**
  * Persistent chrome around every route.
@@ -14,6 +15,7 @@ import { useScrollReveal } from '@/lib/reveal'
  */
 export default function Layout() {
   useScrollReveal()
+  useParallax()
 
   return (
     <>

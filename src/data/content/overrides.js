@@ -47,6 +47,9 @@ export const sectionOverrides = {
       boldLead: [0, 1],
       carousel: { kind: 'slider', height: 400, autorotate: 5500 },
     },
+    // `parallax_section nectar-parallax-enabled` with
+    // `data-parallax-speed="fast"` — the Our Story band.
+    2: { parallax: 'fast' },
     3: { boldLead: [0] },
     // The featured strip is a Flickity row: three across on desktop, two
     // on tablet, one on phone, 10px between cells, `overflow: visible` so

@@ -57,6 +57,31 @@
   width: 100%;
 }
 
+// ── Parallax ground ──────────────────────────────────────────────────
+// measured: the layer is 1150px tall inside a 907px row — 127%, sat
+// 13.5% above the top so the overshoot is split evenly either side. The
+// row clips it, so what you see is a moving window onto a cover-fitted
+// image, which is what reads as the zoom.
+.section__parallax {
+  position: absolute;
+  top: -#{v.$parallax-overshoot};
+  right: 0;
+  bottom: -#{v.$parallax-overshoot};
+  left: 0;
+  z-index: 0;
+  background-position: center;
+  background-size: cover;
+  transform: translate3d(0, var(--parallax-shift, 0), 0);
+  will-change: transform;
+}
+
+// The section's own image rules would otherwise fight the layer.
+.section--parallax { background-image: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .section__parallax { transform: none; }
+}
+
 // ── Full-width content ───────────────────────────────────────────────
 // `full-width-content` rows drop the 1305px measure and run to the
 // viewport, keeping only Salient's 1% column padding. Measured on
