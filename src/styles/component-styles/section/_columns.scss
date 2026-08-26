@@ -164,6 +164,36 @@
 }
 
 
+// ── Closing call to action ───────────────────────────────────────────
+// An 8|4 inner row: heading and copy left, the two buttons stacked
+// right, vertically centred against each other. Measured on /about at
+// 1905px — an 870px column against a 435px one, each with Salient's 30px
+// of inline padding.
+.section__cta {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  align-items: center;
+  width: 100%;
+
+  @include v.below-tablet {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+}
+
+.section__cta-copy,
+.section__cta-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding-inline: 30px;   // measured: every Salient column
+}
+
+// The copy's trailing margin is what the buttons would otherwise sit
+// under; in this row they are beside it, so it has nothing to push.
+.section__cta-copy > :last-child { margin-bottom: 0; }
+
 // ── Floating panel ───────────────────────────────────────────────────
 // /contact's form column carries `data-using-bg`, `data-shadow=
 // "x_large_depth"`, `data-border-radius="10px"` and `data-padding-pos=

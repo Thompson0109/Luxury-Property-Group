@@ -1,6 +1,6 @@
 import VideoBackdrop from './VideoBackdrop'
 import { Block, Heading, Text } from './section/blocks'
-import { asTiles, withTextPairs, asSplit } from './section/rows'
+import { asTiles, withTextPairs, asSplit, asCta } from './section/rows'
 import { assetUrl } from '@/lib/assets'
 import '@/styles/component-styles/section.scss'
 
@@ -130,6 +130,22 @@ export default function Section({ section, index, isHero }) {
             )
           }
 
+          // The closing call to action puts its buttons in the narrow
+          // column rather than under the copy.
+          const cta = asCta(blocks, layout)
+          if (cta) {
+            return (
+              <div key={gi} className="section__cta">
+                <div className="section__cta-copy">
+                  {renderBlocks(cta.copy, `${gi}-c`, onDark, carousel)}
+                </div>
+                <div className="section__cta-actions">
+                  {renderBlocks(cta.actions, `${gi}-a`, onDark, carousel)}
+                </div>
+              </div>
+            )
+          }
+
           const isCard = card && blocks.some((b) => b.type === 'form')
 
           return (
@@ -144,7 +160,7 @@ export default function Section({ section, index, isHero }) {
         })}
       </div>
 
-      {isHero && (
+      {isHero && fullHeight && (
         <a className="section__scroll-cue" href={`#band-${index + 1}`} aria-label="Scroll to content">
           <span aria-hidden="true" />
         </a>

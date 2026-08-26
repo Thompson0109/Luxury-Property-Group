@@ -78,3 +78,11 @@
     line-height: 11vw;
   }
 }
+
+
+// Salient's `divider-wrap`. It is a spacer, not a rule — the bordered
+// variants (`divider-small-border`) are a different element.
+.section__spacer {
+  flex: none;
+  width: 100%;
+}

@@ -43,6 +43,17 @@ export const sectionOverrides = {
         overflow: 'hidden',
       },
     },
+    // The extractor dropped this row's heading — it is wrapped in a
+    // `nectar-split-heading`, which the flattener walks past — and the
+    // two trailing spacers with it. Without them the band renders at
+    // 376px against the 820px the live site gives it.
+    2: {
+      prepend: [{ type: 'heading', level: 'h3', text: 'Why Choose Elegant Address' }],
+      append: [
+        { type: 'spacer', height: 30 },
+        { type: 'spacer', height: 350 },
+      ],
+    },
     // measured: 76px top, 0 bottom — the row runs straight into the
     // full-bleed carousel below it.
     3: { padBottom: 0 },
@@ -82,10 +93,6 @@ export const sectionOverrides = {
     // Each of the six tiles is its own `vc_col-sm-4` with the column
     // animation on it, so they reveal as a group rather than in sequence.
     4: { tileReveal: 'fade-in-from-bottom' },
-  },
-
-  'featured-properties': {
-    1: { padTop: 0, padBottom: 0 },
   },
 
   about: {
@@ -135,7 +142,9 @@ export const insertedSections = {
       at: 1,
       section: {
         background: {},
-        layout: { pad: 0, cols: [12], fill: 'both' },
+        // measured: the row itself is unpadded and the column inside
+        // it carries `padding-4-percent`.
+        layout: { pad: 4, cols: [12], fill: 'both' },
         groups: [[
           {
             type: 'portfolio',
@@ -177,18 +186,27 @@ export function applyOverrides(page) {
     const o = bySection?.[i]
     if (!o) return section
 
-    const { padTop, padBottom, center, fullWidth, hero, ...rest } = o
+    const { padTop, padBottom, center, fullWidth, hero, prepend, append, ...rest } = o
     const layout = { ...section.layout }
     if (center) layout.center = true
     if (fullWidth) layout.fullWidth = true
     if (padTop !== undefined) layout.padTop = padTop
     if (padBottom !== undefined) layout.padBottom = padBottom
 
+    let groups = section.groups || []
+
     // The hero flag belongs on the display heading, not the row.
-    const groups = hero
-      ? (section.groups || []).map((g) =>
-          g.map((b) => (b.type === 'heading' && b.level === 'h2' ? { ...b, hero: true } : b)))
-      : section.groups
+    if (hero) {
+      groups = groups.map((g) =>
+        g.map((b) => (b.type === 'heading' && b.level === 'h2' ? { ...b, hero: true } : b)))
+    }
+
+    // Blocks the extractor lost. Applied to the first group, which is
+    // where every instance of this belongs.
+    if (prepend || append) {
+      groups = groups.map((g, gi) =>
+        gi === 0 ? [...(prepend || []), ...g, ...(append || [])] : g)
+    }
 
     return { ...section, layout, groups, ...rest }
   })

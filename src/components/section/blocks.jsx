@@ -136,6 +136,16 @@ function Portfolio({ block }) {
   )
 }
 
+/**
+ * Salient's `divider-wrap` — a bare vertical spacer at an explicit
+ * height. Most instances are the 6px gap under a heading, which the
+ * heading's own margin already covers, but a few rows use it at 30px and
+ * one on /cannes-congress at 350px, and those are load-bearing.
+ */
+function Spacer({ block }) {
+  return <div className="section__spacer" style={{ height: `${block.height}px` }} aria-hidden="true" />
+}
+
 function Image({ block }) {
   return (
     <div className="section__image">
@@ -153,9 +163,10 @@ function Block({ block, inverse, carousel }) {
     case 'cards':     return <Cards block={block} />
     case 'image':     return <Image block={block} />
     case 'portfolio': return <Portfolio block={block} />
+    case 'spacer':    return <Spacer block={block} />
     case 'form':      return <EnquiryForm formId={block.formId} />
     default:          return null
   }
 }
 
-export { Heading, Text, Button, Gallery, Cards, Image, Portfolio, Block }
+export { Heading, Text, Button, Gallery, Cards, Image, Portfolio, Spacer, Block }

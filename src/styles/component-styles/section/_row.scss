@@ -72,8 +72,25 @@
 // Every row on the live site carries Salient's `left` alignment class —
 // nothing is centred at row level. Only the home page's display heading
 // opts into centring, via `.section--center`.
+// ── Hero clearance ───────────────────────────────────────────────────
+// The header is fixed, so the first row on a page has to make room for
+// it — but only where the theme does. Salient overlays a *transparent*
+// header on a full-height first section and centres the content in the
+// whole viewport behind it; everywhere else the header is opaque and
+// `#ajax-content-wrap` is pushed down by its height, on top of whatever
+// padding the row carries itself.
+//
+// The port had one rule for both, which replaced the row's own top
+// padding with the header height. On /contact that lost 114px and on
+// /featured-properties 76px, pulling the first band up under the header
+// in each case.
 .section--hero {
-  padding-block: v.$header-height var(--section-pad);
+  padding-top: calc(#{v.$header-height} + var(--section-pad-top, var(--section-pad)));
+  padding-bottom: var(--section-pad-bottom, var(--section-pad));
+}
+
+.section--hero.section--full-height {
+  padding-top: var(--section-pad-top, var(--section-pad));
 }
 
 .section--center {
@@ -105,7 +122,10 @@
   }
 }
 
-// Circular scroll cue, as on the live hero.
+// Circular scroll cue. Salient only renders the next-section arrow on a
+// full-height first section — a short banner row has nothing below it
+// worth pointing at, and the arrow ended up floating in the middle of
+// the /featured-properties and /contact banners.
 .section__scroll-cue {
   position: absolute;
   bottom: 36px;

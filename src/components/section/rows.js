@@ -76,4 +76,33 @@ function asSplit(blocks) {
   return { media: media[0], copy, mediaFirst: MEDIA_TYPES.has(blocks[0].type) }
 }
 
-export { asTiles, withTextPairs, asSplit }
+/**
+ * The closing call to action, which appears on five of the eight pages
+ * and is the same row every time: an 8|4 inner row with the heading and
+ * copy in the wide column and the two buttons stacked in the narrow one,
+ * the two vertically centred against each other.
+ *
+ * The extractor flattens all four blocks into one group, so without this
+ * they stack in the span-8 column and the row renders 131px taller than
+ * the live site — measured identically on /about, /contact, /approach
+ * and /featured-properties, which is what gave the shape away.
+ *
+ * Matched on shape: a two-track row that fills both tracks, with no
+ * media, whose group ends in buttons preceded by something else. Checked
+ * across all eight pages — it matches the five call-to-action rows and
+ * nothing else. The 6|6 copy rows are all `fill: left` or `fill: right`,
+ * so they are excluded by the fill test rather than by luck.
+ */
+function asCta(blocks, layout = {}) {
+  const { cols = [12], fill = 'both' } = layout
+  if (cols.length !== 2 || fill !== 'both') return null
+  if (blocks.some((b) => MEDIA_TYPES.has(b.type))) return null
+
+  let split = blocks.length
+  while (split > 0 && blocks[split - 1].type === 'button') split -= 1
+  if (split === blocks.length || split === 0) return null
+
+  return { copy: blocks.slice(0, split), actions: blocks.slice(split) }
+}
+
+export { asTiles, withTextPairs, asSplit, asCta }
