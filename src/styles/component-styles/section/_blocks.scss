@@ -30,12 +30,17 @@
   @include v.type-tiers(v.$h3-tiers...);
 }
 
+// The extractor records the hero kicker as `h4`, but on the live site it
+// is the theme's `h1` — and `h1` here is a 22px uppercase eyebrow, not a
+// display heading. Measured on /approach and /contact: Open Sans 500,
+// 22px/32px, +2px tracking, uppercase, centred under the display h2.
 .section__heading--h4 {
   color: inherit;
   font-family: v.$font-body;
-  font-size: 20px;
-  font-weight: 400;
-  letter-spacing: 1px;
+  font-weight: 500;
+  letter-spacing: v.$h1-tracking;
+  text-transform: uppercase;
+  @include v.type-tiers(v.$h1-tiers...);
 }
 
 .section__text {

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import EnquiryForm from '../EnquiryForm'
+import SplitHeading from '../SplitHeading'
 import { assetUrl } from '@/lib/assets'
 
 /**
@@ -8,13 +9,26 @@ import { assetUrl } from '@/lib/assets'
  * these only render a single block.
  */
 
+/**
+ * Every h2 and h3 on the WordPress site is a `nectar-split-heading`
+ * running the letter reveal — 37 of them across the eight pages. The
+ * hero kicker (recorded as `h4` in the extracted model, but an `h1` at
+ * 22px in the theme) is one too, so it goes through the same component.
+ *
+ * `hero` marks the two inner-page display headings that carry Salient's
+ * `data-custom-font-size`, which swaps the 45px h2 ramp for 5vw/5.5vw.
+ */
 function Heading({ block }) {
-  const { level, text, color } = block
+  const { level, text, color, hero } = block
   const Tag = level === 'h2' ? 'h2' : level === 'h4' ? 'h4' : 'h3'
   return (
-    <Tag className={`section__heading section__heading--${level}`} style={color ? { color } : undefined}>
-      {text}
-    </Tag>
+    <SplitHeading
+      as={Tag}
+      text={text}
+      hero={Boolean(hero)}
+      className={`section__heading section__heading--${level}`}
+      style={color ? { color } : undefined}
+    />
   )
 }
 

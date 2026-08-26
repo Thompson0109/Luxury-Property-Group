@@ -1,0 +1,83 @@
+@use '../variable' as v;
+
+// ─────────────────────────────────────────────────────────────────────
+//  Split heading — `line-reveal-by-space` + `letter-reveal-bottom`
+//
+//  Verbatim from the theme's compiled CSS:
+//
+//    .nectar-split-heading[data-animation-type="line-reveal-by-space"]
+//      > * > span            { position: relative; display: inline-block;
+//                              overflow: hidden; vertical-align: bottom }
+//    ... span .inner         { position: relative; display: inline-block;
+//                              transform: translateY(1.3em) }
+//    ... span .inner.animated{ transform: none; opacity: 1 }
+//    [data-stagger="true"] span .inner
+//                            { transition: transform 1.2s cubic-bezier(.25,1,.5,1),
+//                                          opacity 1.2s cubic-bezier(.25,1,.5,1) }
+//    [data-text-effect="letter-reveal-bottom"] > * > span
+//                            { padding: 0 .05em; margin: 0 -.05em }
+//
+//  That last pair is the detail worth keeping: the word span clips, so
+//  without a little horizontal bleed the overhanging parts of glyphs get
+//  shaved off at the sides.
+// ─────────────────────────────────────────────────────────────────────
+
+.split-heading__word {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding: 0 v.$split-bleed;
+  margin: 0 (-#{v.$split-bleed});
+}
+
+.split-heading__letter {
+  position: relative;
+  display: inline-block;
+  transform: translateY(v.$split-offset);
+  // The per-letter variant runs shorter than the 1.2s whole-line one —
+  // at 1.2s a long heading's last letter lands a beat after the reader
+  // has moved on.
+  transition:
+    transform v.$split-dur-letter v.$split-ease,
+    opacity v.$split-dur-letter v.$split-ease;
+  // WPBakery records `animation_delay="150"` on every instance.
+  transition-delay: calc(#{v.$reveal-delay} + var(--i, 0) * #{v.$split-stagger});
+}
+
+.is-revealed .split-heading__letter {
+  transform: none;
+  opacity: 1;
+}
+
+// A space between two word spans still needs to break, or a long heading
+// becomes one unwrappable run.
+.split-heading--split { word-spacing: normal; }
+
+// ── Hero scale ───────────────────────────────────────────────────────
+// The /approach and /contact heroes carry `data-custom-font-size="true"`
+// with an inline `font-size: 5vw; line-height: 5.5vw`, which the theme
+// then inherits down onto the heading itself:
+//
+//   @media (min-width: 1000px) {
+//     .nectar-split-heading[data-custom-font-size="true"] h2
+//       { font-size: inherit; line-height: inherit }
+//   }
+//
+// Below 1000px `font_size_tablet_10vw` replaces both outright.
+.split-heading--hero {
+  font-size: v.$hero-vw;
+  line-height: v.$hero-lh-vw;
+
+  @include v.below-tablet {
+    font-size: v.$hero-vw-tablet;
+    line-height: v.$hero-lh-tablet;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .split-heading__letter {
+    transform: none;
+    transition: none;
+  }
+}
