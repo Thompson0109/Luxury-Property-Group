@@ -9,24 +9,27 @@ const PAD_CLASS = {
   0: 'none', 4: 'sm', 5: 'base', 6: 'md', 9: 'lg', 13: 'xl', 24: 'xxl',
 }
 
-function renderBlocks(blocks, keyPrefix, onDark) {
+function renderBlocks(blocks, keyPrefix, onDark, carousel) {
   return withTextPairs(blocks).map((item, i) => (
     item.pair ? (
       <div key={`${keyPrefix}-pair${i}`} className="section__pair">
         {item.pair.map((block, k) => (
-          <Block key={k} block={block} inverse={onDark} />
+          <Block key={k} block={block} inverse={onDark} carousel={carousel} />
         ))}
       </div>
     ) : (
-      <Block key={`${keyPrefix}-${i}`} block={item.block} inverse={onDark} />
+      <Block key={`${keyPrefix}-${i}`} block={item.block} inverse={onDark} carousel={carousel} />
     )
   ))
 }
 
 export default function Section({ section, index, isHero }) {
-  const { background = {}, groups = [], layout = {} } = section
+  const { background = {}, groups = [], layout = {}, carousel, tileReveal } = section
   const { color, image, overlay, video } = background
-  const { pad = 5, fullHeight = false, cols = [12], fill = 'both', center = false } = layout
+  const {
+    pad = 5, fullHeight = false, cols = [12], fill = 'both', center = false,
+    fullWidth = false, padTop, padBottom,
+  } = layout
 
   // Text inverts on dark and photographic backgrounds.
   const onDark = Boolean(video || image || (color && color !== '#ffffff'))
@@ -34,6 +37,13 @@ export default function Section({ section, index, isHero }) {
   const style = {}
   if (color) style.backgroundColor = color
   if (image) style.backgroundImage = `url(${assetUrl(image)})`
+
+  // A handful of rows are padded on one side only — /contact's hero ends
+  // flush so the form card can hang out of it, and the row above the
+  // full-bleed carousel on /cannes-congress does the same. The scale is
+  // the same viewport-relative one, so a bare number is a vw value.
+  if (padTop !== undefined) style['--section-pad-top'] = `${padTop}vw`
+  if (padBottom !== undefined) style['--section-pad-bottom'] = `${padBottom}vw`
 
   // A split group lays out its own two columns, so the row-level grid has
   // to stand down or the two would nest.
@@ -56,6 +66,7 @@ export default function Section({ section, index, isHero }) {
         image ? 'section--has-image' : '',
         multiColumn ? `section--cols-${cols.join('-')}` : '',
         multiColumn && fill !== 'both' ? `section--fill-${fill}` : '',
+        fullWidth ? 'section--full-width' : '',
       ].filter(Boolean).join(' ')}
       style={style}
     >
@@ -73,7 +84,11 @@ export default function Section({ section, index, isHero }) {
             return (
               <div key={gi} className="section__tiles">
                 {tiles.map(({ image, heading, text }, ti) => (
-                  <article key={ti} className="section__tile">
+                  <article
+                    key={ti}
+                    className="section__tile"
+                    data-reveal={tileReveal || undefined}
+                  >
                     <img
                       className="section__tile-image"
                       src={assetUrl(image.src)}
@@ -102,7 +117,7 @@ export default function Section({ section, index, isHero }) {
                   {renderBlocks(split.copy, `${gi}-c`, onDark)}
                 </div>
                 <div className="section__split-media">
-                  <Block block={split.media} inverse={onDark} />
+                  <Block block={split.media} inverse={onDark} carousel={carousel} />
                 </div>
               </div>
             )
@@ -110,7 +125,7 @@ export default function Section({ section, index, isHero }) {
 
           return (
             <div key={gi} className="section__group">
-              {renderBlocks(blocks, String(gi), onDark)}
+              {renderBlocks(blocks, String(gi), onDark, carousel)}
             </div>
           )
         })}

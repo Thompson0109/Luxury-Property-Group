@@ -1,0 +1,100 @@
+@use '../../variable' as v;
+
+// ─────────────────────────────────────────────────────────────────────
+//  Portfolio grid — Salient's `work-item.style-4`
+//
+//  Measured on /featured-properties at a 1905px viewport: three
+//  424.56px columns inside the 1245px row, each with 15px of padding, so
+//  the visible frame is 394.56 x 264.77 — the source images are 600x403,
+//  a 1.49:1 frame.
+//
+//  Salient lays the grid out with isotope and absolute positioning; CSS
+//  grid gets the same result without the JS, and reflows properly.
+// ─────────────────────────────────────────────────────────────────────
+
+.portfolio {
+  display: grid;
+  grid-template-columns: repeat(v.$portfolio-cols, 1fr);
+  width: 100%;
+
+  @include v.at-tablet { grid-template-columns: repeat(2, 1fr); }
+  @include v.at-phone  { grid-template-columns: 1fr; }
+}
+
+.portfolio__item { padding: v.$portfolio-col-pad; }
+
+.portfolio__frame {
+  position: relative;
+  display: block;
+  // The lift and the caption bar both start outside the frame, so the
+  // clip is what makes the hover work at all.
+  overflow: hidden;
+}
+
+.portfolio__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 600 / 403;
+  object-fit: cover;
+  transition: transform v.$portfolio-dur;
+}
+
+// measured: `.col[data-default-color="true"] .bottom-meta` takes the
+// accent with !important, overriding the black the base rule sets.
+.portfolio__meta {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  padding: v.$portfolio-meta-pad;
+  background: v.$accent;
+  transform: translateY(100%);
+  transition: transform v.$portfolio-dur;
+
+  @include v.at-small-desktop { padding: v.$portfolio-meta-pad-sd; }
+}
+
+// measured: `.bottom-meta h3 { margin-bottom: 0 }`, white, 30px/36px —
+// the same h3 ramp as the rest of the site.
+.portfolio__title {
+  display: block;
+  margin: 0;
+  color: v.$white;
+  font-family: v.$font-display;
+  font-weight: 700;
+  @include v.type-tiers(v.$h3-tiers...);
+}
+
+.portfolio__frame:hover,
+.portfolio__frame:focus-visible {
+  .portfolio__image {
+    transform: translateY(v.$portfolio-lift);
+    // The bar leads by 30ms so the two movements read as one.
+    transition-delay: v.$portfolio-img-delay;
+  }
+
+  .portfolio__meta { transform: translateY(0); }
+}
+
+.portfolio__frame:focus-visible {
+  outline: 2px solid v.$white;
+  outline-offset: 3px;
+}
+
+// export: below 470px Salient drops the whole interaction and puts the
+// caption in normal flow under the image — there is no hover to reveal
+// it with, and a permanently hidden title is just a missing title.
+@media only screen and (max-width: 470px) {
+  .portfolio__meta {
+    position: relative;
+    transform: none;
+  }
+
+  .portfolio__frame:hover .portfolio__image { transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portfolio__image,
+  .portfolio__meta { transition: none; }
+}

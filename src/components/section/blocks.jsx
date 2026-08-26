@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import EnquiryForm from '../EnquiryForm'
 import SplitHeading from '../SplitHeading'
+import Carousel from '../Carousel'
 import { assetUrl } from '@/lib/assets'
 
 /**
@@ -49,7 +50,16 @@ function Button({ block, inverse }) {
     : <Link className={cls} to={block.href}>{block.label}</Link>
 }
 
-function Gallery({ block }) {
+/**
+ * A gallery is a carousel wherever the row's shortcode configured one —
+ * which, on these pages, is everywhere except the six-up tile rows. The
+ * static grid stays as the fallback for rows that really are grids.
+ */
+function Gallery({ block, carousel, inverse }) {
+  if (carousel) {
+    return <Carousel images={block.images} config={carousel} inverse={inverse} />
+  }
+
   const count = block.images.length
   return (
     <div className={`section__gallery section__gallery--${count > 2 ? 'grid' : 'pair'}`}>
@@ -86,6 +96,46 @@ function Cards({ block }) {
   )
 }
 
+/**
+ * Salient's portfolio grid in `work-item.style-4`, which is what
+ * /featured-properties renders between its two copy bands.
+ *
+ * The interaction is the whole point of the component: the frame clips,
+ * and on hover the image lifts 25px while an accent caption bar slides
+ * up from underneath it. Straight from the theme's CSS:
+ *
+ *   .work-item.style-4 { overflow: hidden }
+ *   .work-item.style-4 .bottom-meta { transform: translateY(100%) }
+ *   .work-item.style-4:hover img { transform: translateY(-25px);
+ *                                  transition-delay: .03s }
+ *   .work-item.style-4:hover .bottom-meta { transform: translateY(0) }
+ *
+ * The 30ms delay on the image is deliberate — the bar starts first and
+ * the picture follows it up, which is what makes the two read as one
+ * movement rather than two.
+ */
+function Portfolio({ block }) {
+  return (
+    <div className="portfolio">
+      {block.items.map(({ title, image, href }) => (
+        <article className="portfolio__item" key={title}>
+          <Link className="portfolio__frame" to={href || '/featured-properties'}>
+            <img
+              className="portfolio__image"
+              src={assetUrl(image)}
+              alt=""
+              loading="lazy"
+            />
+            <span className="portfolio__meta">
+              <span className="portfolio__title">{title}</span>
+            </span>
+          </Link>
+        </article>
+      ))}
+    </div>
+  )
+}
+
 function Image({ block }) {
   return (
     <div className="section__image">
@@ -94,17 +144,18 @@ function Image({ block }) {
   )
 }
 
-function Block({ block, inverse }) {
+function Block({ block, inverse, carousel }) {
   switch (block.type) {
-    case 'heading': return <Heading block={block} />
-    case 'text':    return <Text block={block} />
-    case 'button':  return <Button block={block} inverse={inverse} />
-    case 'gallery': return <Gallery block={block} />
-    case 'cards':   return <Cards block={block} />
-    case 'image':   return <Image block={block} />
-    case 'form':    return <EnquiryForm formId={block.formId} />
-    default:        return null
+    case 'heading':   return <Heading block={block} />
+    case 'text':      return <Text block={block} />
+    case 'button':    return <Button block={block} inverse={inverse} />
+    case 'gallery':   return <Gallery block={block} carousel={carousel} inverse={inverse} />
+    case 'cards':     return <Cards block={block} />
+    case 'image':     return <Image block={block} />
+    case 'portfolio': return <Portfolio block={block} />
+    case 'form':      return <EnquiryForm formId={block.formId} />
+    default:          return null
   }
 }
 
-export { Heading, Text, Button, Gallery, Cards, Image, Block }
+export { Heading, Text, Button, Gallery, Cards, Image, Portfolio, Block }

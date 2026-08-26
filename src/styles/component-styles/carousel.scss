@@ -1,0 +1,138 @@
+@use '../variable' as v;
+
+// ─────────────────────────────────────────────────────────────────────
+//  Carousel
+//
+//  Geometry read off the running site:
+//
+//    .nectar-flickity:not(.masonry) .flickity-viewport { margin: 80px 0 }
+//    data-spacing="10px"        the gap between cells on the 3-up row
+//    data-overflow="visible"    the next cell bleeds past the viewport
+//    data-controls="none"       no arrows, no dots — autoplay and drag only
+//
+//  The 80px viewport inset is easy to miss and is a large part of why
+//  the carousel rows measured short in the port: it is vertical air
+//  *inside* the row, on top of the row's own padding.
+// ─────────────────────────────────────────────────────────────────────
+
+.carousel {
+  --carousel-cols: 1;
+  --carousel-gap: 0px;
+  --carousel-shift: 0%;
+
+  position: relative;
+  width: 100%;
+}
+
+.carousel__viewport {
+  overflow: hidden;
+  margin-block: v.$carousel-viewport-inset;
+
+  @include v.below-tablet { margin-block: calc(#{v.$carousel-viewport-inset} / 2); }
+}
+
+// `data-overflow="visible"`: the strip is clipped to the viewport edge
+// rather than the row, so the following cell shows at the margin. The
+// clip has to stay somewhere or the page scrolls sideways, so it moves
+// out to the row.
+.carousel--bleed .carousel__viewport {
+  overflow: visible;
+  clip-path: inset(-100vh -100vw -100vh 0);
+}
+
+.carousel__track {
+  display: flex;
+  gap: var(--carousel-gap);
+  transform: translate3d(calc(var(--carousel-shift) * -1), 0, 0);
+  transition: transform 0.6s v.$ease-out;
+  will-change: transform;
+}
+
+// The wrap: position is corrected between frames, so the transition has
+// to be off or the correction animates backwards.
+.carousel__track.is-snapping { transition: none; }
+
+.carousel__cell {
+  flex: 0 0 calc(
+    (100% - (var(--carousel-cols) - 1) * var(--carousel-gap)) / var(--carousel-cols)
+  );
+  margin: 0;
+  min-width: 0;
+
+  img {
+    display: block;
+    width: 100%;
+    // measured: cells render 649x433 on the 3-up row and 679x453 on the
+    // 1-up — a 3:2 frame in both cases.
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+}
+
+// measured: the captioned row runs Open Sans 600 at 18/32 with a 5px
+// bottom margin — Salient's untouched h4 default, which is what shipped
+// because the theme never gave h4 a typography option.
+.carousel__caption {
+  margin: 12px 0 5px;
+  color: v.$white;
+  font-family: v.$font-body;
+  font-size: v.$h4-size;
+  font-weight: v.$heading-small-weight;
+  line-height: v.$h4-line;
+  text-transform: capitalize;
+}
+
+// ── Nectar slider ────────────────────────────────────────────────────
+// One frame at a fixed 400px rather than a ratio, with bullets under it.
+.carousel--slider {
+  .carousel__viewport { margin-block: 0; }
+
+  .carousel__cell img {
+    aspect-ratio: auto;
+    height: var(--carousel-height, #{v.$slider-height});
+  }
+}
+
+// ── Bullets ──────────────────────────────────────────────────────────
+// `see_through` bullet navigation: an outlined dot that fills on the
+// active slide.
+.carousel__bullets {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carousel__bullet {
+  display: block;
+  width: 10px;
+  height: 10px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: background-color v.$dur-nav-underline v.$ease-out,
+              border-color v.$dur-nav-underline v.$ease-out;
+
+  &.is-active,
+  &:hover { background: v.$white; border-color: v.$white; }
+
+  &:focus-visible { outline: 2px solid v.$white; outline-offset: 3px; }
+}
+
+// On a light row the outline has to invert or it disappears.
+.carousel:not(.carousel--inverse) .carousel__bullet {
+  border-color: rgba(0, 0, 0, 0.3);
+
+  &.is-active,
+  &:hover { background: v.$accent; border-color: v.$accent; }
+}
+
+.carousel:not(.carousel--inverse) .carousel__caption { color: v.$extra-1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__track { transition: none; }
+}

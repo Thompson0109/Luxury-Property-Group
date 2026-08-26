@@ -4,7 +4,11 @@
   --section-pad: #{v.$pad-base};
 
   position: relative;
-  padding-block: var(--section-pad);
+  // A row is padded symmetrically unless the shortcode said otherwise;
+  // the two custom properties are set inline from `layout.padTop` /
+  // `layout.padBottom` for the rows that are padded on one side only.
+  padding-top: var(--section-pad-top, var(--section-pad));
+  padding-bottom: var(--section-pad-bottom, var(--section-pad));
   background-position: center;
   background-size: cover;
   color: v.$extra-1;
@@ -42,6 +46,16 @@
   width: 100%;
 }
 
+// ── Full-width content ───────────────────────────────────────────────
+// `full-width-content` rows drop the 1305px measure and run to the
+// viewport, keeping only Salient's 1% column padding. Measured on
+// /cannes-congress row 4: a 1894px column at a 1905px viewport, which is
+// the 1% either side.
+.section--full-width > .section__inner {
+  max-width: none;
+  padding-inline: 1%;
+}
+
 .section--on-dark {
   color: v.$white;
 
@@ -69,14 +83,26 @@
   .section__text { margin-inline: auto; }
 }
 
-// measured: home hero h2 renders 95.25px at a 1905px viewport — exactly
-// 5vw, line-height 1.3. Inner-page heroes use the ordinary 45px h2, so
-// the fluid size is scoped to the centred hero rather than all of them.
-.section--center .section__heading--h2 {
-  font-size: v.$hero-size;
-  line-height: v.$hero-lh;
+// The display heading is fluid, not fixed. Read off /approach and
+// /contact: the heading carries `data-custom-font-size="true"` with an
+// inline `font-size: 5vw; line-height: 5.5vw`, which measures 95px/124px
+// at 1905px. Below 1000px `font_size_tablet_10vw` replaces both with
+// `10vw / 1.3`.
+//
+// The ratio matters — 5.5vw is a 1.1 line-height, not the 1.3 the port
+// had, and at this size that is 38px of difference per line.
+//
+// Scoped to `.split-heading--hero`, which the overrides layer sets from
+// the shortcode attribute, so inner-page heroes that use the ordinary
+// 45px h2 ramp are unaffected.
+.section--center .section__heading--h2.split-heading--hero {
+  font-size: v.$hero-vw;
+  line-height: v.$hero-lh-vw;
 
-  @include v.at-phone { font-size: 34px; }
+  @include v.below-tablet {
+    font-size: v.$hero-vw-tablet;
+    line-height: v.$hero-lh-tablet;
+  }
 }
 
 // Circular scroll cue, as on the live hero.

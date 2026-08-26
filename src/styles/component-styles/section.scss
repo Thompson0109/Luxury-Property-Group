@@ -8,8 +8,10 @@
 //   _blocks   headings, body copy, buttons, spacers
 //   _media    images, galleries, the carousel, the video backdrop
 //   _cards    region cards
+//   _portfolio  the featured-properties grid and its hover
 @use 'section/row';
 @use 'section/columns';
 @use 'section/blocks';
 @use 'section/media';
 @use 'section/cards';
+@use 'section/portfolio';
