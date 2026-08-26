@@ -71,11 +71,15 @@
 // tiers drifted so far. Checked against all eight pages: every section
 // heading carries the class except the closing call to action, which
 // keeps the ordinary scale — hence :not(:last-child).
+// Stepped down with the desktop ramp: at a straight 10vw a section
+// heading came out 43px on a 430px phone against a 28px desktop one,
+// which is the wrong way round. 9vw keeps Salient's fluid behaviour
+// while staying in proportion, and takes a little line-height with it.
 @include v.below-tablet {
   .page > div:not(:last-child) .section__heading--h2,
   .page > div:not(:last-child) .section__heading--h3 {
-    font-size: 10vw;
-    line-height: 11vw;
+    font-size: 9vw;
+    line-height: 10vw;
   }
 }
 
