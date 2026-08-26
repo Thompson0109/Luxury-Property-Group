@@ -37,13 +37,22 @@
 // The iframe is sized in JS against the *container*, not the viewport —
 // see VideoBackdrop.jsx. All this layer does is clip, sit behind the
 // content, and hold the poster until playback starts.
+// The backdrop is transparent until the video is actually playing. It
+// used to paint #333 as a placeholder, which covered the row's own
+// ground — and every closing call-to-action band on the site is an
+// accent row with a background video, so all six of them rendered
+// charcoal instead of #5185a1 whenever the video hadn't started.
+//
+// That is not an edge case: it is what the WordPress install itself
+// shows, because YouTube is unreachable from it. The row colour is the
+// right fallback, and it is the one Salient falls back to.
 .video-backdrop {
   position: absolute;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background-color: v.$section-dark;
+  background-color: transparent;
 }
 
 .video-backdrop__poster {
