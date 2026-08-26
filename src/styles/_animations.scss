@@ -85,6 +85,23 @@ html[data-reveal-js] [data-reveal='grow-in'] {
   }
 }
 
+// ── Reduced motion ───────────────────────────────────────────────────
+// This has to clear the reveal outright, not just shorten it. The JS
+// driver bails out under `prefers-reduced-motion` and never adds
+// `.is-visible`; if the native scroll-driven rules are still live at
+// that point, every revealing element holds its `from` keyframe and the
+// content is simply invisible. Headless Chromium reports `reduce` by
+// default, which is how this surfaced — but it is a real bug for anyone
+// with the OS setting on, not a screenshot artifact.
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 // ── Mobile kill switch ───────────────────────────────────────────────
 // column_animation_mobile = disable. Salient force-clears opacity and
 // transform below 1000px rather than shortening the animation.

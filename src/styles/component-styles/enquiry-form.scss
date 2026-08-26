@@ -135,6 +135,39 @@
   }
 }
 
+// ── ...unless the form is on a light panel ───────────────────────────
+// /contact's form sits in a white card that happens to be *on* a dark
+// row, so the treatment above inverted it: white-outlined fields and a
+// white submit, both invisible against the panel. The card is a light
+// surface whatever the band behind it is doing, so it opts back out.
+//
+// Kept at a higher specificity rather than reordered, so the dark rules
+// stay where they are and the exception is the thing you read.
+.section--on-dark .section__card .enquiry-form {
+  label { color: v.$extra-1; }
+
+  input,
+  textarea {
+    border-color: v.$input-border;
+    background: v.$input-bg;
+    color: v.$input-text;
+
+    &::placeholder { color: v.$input-text; opacity: 0.75; }
+    &:focus { border-color: v.$accent; }
+  }
+
+  button[type='submit'] {
+    border-color: transparent;
+    background: v.$accent;
+    color: v.$white;
+
+    &:hover:not(:disabled) {
+      background: v.$accent-hover;
+      color: v.$white;
+    }
+  }
+}
+
 
 // ── Submit ───────────────────────────────────────────────────────────
 // measured: the submit is a *solid accent* button — 15px 22px of

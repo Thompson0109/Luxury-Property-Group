@@ -70,6 +70,7 @@ export default function Section({ section, index, isHero }) {
         multiColumn ? `section--cols-${cols.join('-')}` : '',
         multiColumn && fill !== 'both' ? `section--fill-${fill}` : '',
         fullWidth ? 'section--full-width' : '',
+        card ? 'section--overflows' : '',
       ].filter(Boolean).join(' ')}
       style={style}
     >

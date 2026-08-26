@@ -12,7 +12,18 @@
   background-position: center;
   background-size: cover;
   color: v.$extra-1;
+  // Rows clip: parallax grounds, background zooms and image hovers all
+  // rely on it.
   overflow: hidden;
+}
+
+// ...except where a column is meant to hang out of the row. /contact's
+// form card carries a -25% bottom margin so it overlaps the band below,
+// and the row's own clip was cutting it off flush with the row edge.
+.section--overflows {
+  overflow: visible;
+  // The card has to paint over the following row, not under it.
+  z-index: 2;
 }
 
 // measured across the eight pages: 0, 4, 5, 6, 9, 13 and 24vw
