@@ -417,10 +417,17 @@ $carousel-gap:            10px;
 $carousel-autoplay:       2500ms;
 $carousel-viewport-inset: 80px;
 
-// Nectar slider (`.nectar-slider-wrap`) — /approach rows 1 and 3:
-//   fixed 400px height, classic style, autorotate 5500, looping, bullets
-$slider-height:    400px;
+// Nectar slider (`.nectar-slider-wrap`) — /approach rows 1 and 3 and the
+// two destination blocks on the home page:
+//   fixed 400px height, classic style, autorotate 5500, looping,
+//   `.slider-prev` / `.slider-next` at 50x60 on rgba(0,0,0,.4), and a
+//   row of 30x30 bullets under the frame.
+$slider-height:     400px;
 $slider-autorotate: 5500ms;
+$slider-arrow-w:    50px;
+$slider-arrow-h:    60px;
+$slider-arrow-bg:       rgba(0, 0, 0, 0.4);
+$slider-arrow-bg-hover: rgba(0, 0, 0, 0.6);
 
 // ── Portfolio cards ──────────────────────────────────────────────────
 // Salient's `work-item.style-4`, used for the featured-properties grid.

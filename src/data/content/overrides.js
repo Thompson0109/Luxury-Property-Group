@@ -31,13 +31,50 @@
 
 const FLICKITY_AUTOPLAY = 2500
 
+// The featured cards' description on the live site, verbatim.
+const LOREM = 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.'
+
 export const sectionOverrides = {
   home: {
-    // The lead paragraph of each destination block is a `<strong>` on
-    // the live site; so is the featured-properties intro and the one
-    // under "Why Choose Elegant Address".
-    1: { boldLead: [0, 1] },
+    // Both destination blocks run Salient's swiper-backed slider rather
+    // than a stack of images: a fixed 400px frame, `classic` controls —
+    // a 50x60 chevron on rgba(0,0,0,.4) either side and a row of bullets
+    // under it — rotating every 5.5s. Measured 593x400 in a 653px
+    // column on the hosted site.
+    //
+    // The lead paragraph of each block is a `<strong>` there too.
+    1: {
+      boldLead: [0, 1],
+      carousel: { kind: 'slider', height: 400, autorotate: 5500 },
+    },
     3: { boldLead: [0] },
+    // The featured strip is a Flickity row: three across on desktop, two
+    // on tablet, one on phone, 10px between cells, `overflow: visible` so
+    // the next cell peeks past the edge, advancing every 2.5s with no
+    // visible controls.
+    //
+    // ⚠ The captions below are the placeholder copy the live site
+    // actually ships — WordPress titles each card from the attachment
+    // title, which nobody has edited off the filename, and the
+    // description is untouched lorem. Reproduced so the card layout
+    // matches; replace with real property copy when it exists.
+    4: {
+      carousel: {
+        kind: 'flickity',
+        columns: { desktop: 3, smallDesktop: 3, tablet: 2, phone: 1 },
+        spacing: 10,
+        autoplay: 2500,
+        overflow: 'visible',
+        captions: [
+          { title: 'Barbados-1', text: LOREM },
+          { title: 'South-of-France-1', text: LOREM },
+          { title: 'Barbados-1', text: LOREM },
+          { title: 'South-of-France-1', text: LOREM },
+          { title: 'Barbados-1', text: LOREM },
+          { title: 'South-of-France-1', text: LOREM },
+        ],
+      },
+    },
     5: { boldLead: [0] },
   },
 

@@ -69,17 +69,30 @@
   }
 }
 
-// measured: the captioned row runs Open Sans 600 at 18/32 with a 5px
-// bottom margin — Salient's untouched h4 default, which is what shipped
-// because the theme never gave h4 a typography option.
+// The captioned cells carry a title and a line of description under the
+// image. The title is Salient's untouched h4 default — Open Sans 600 at
+// 18/32, which is what shipped because the theme never gave h4 a
+// typography option — over the ordinary 17/25 body copy.
 .carousel__caption {
+  display: block;
   margin: 12px 0 5px;
   color: v.$white;
+}
+
+.carousel__caption-title {
+  display: block;
   font-family: v.$font-body;
   font-size: v.$h4-size;
   font-weight: v.$heading-small-weight;
   line-height: v.$h4-line;
   text-transform: capitalize;
+}
+
+.carousel__caption-text {
+  display: block;
+  font-size: v.$body-size;
+  font-weight: v.$body-weight;
+  line-height: v.$body-line;
 }
 
 // ── Nectar slider ────────────────────────────────────────────────────
@@ -92,6 +105,39 @@
     height: var(--carousel-height, #{v.$slider-height});
   }
 }
+
+// ── Arrows ───────────────────────────────────────────────────────────
+// measured on the hosted site: `.slider-prev` / `.slider-next` are
+// 50 x 60 blocks on `rgba(0,0,0,.4)`, sat against the frame's edges and
+// vertically centred, with a white chevron in the middle. Square
+// corners — they are the one control on the site that isn't rounded.
+.carousel__arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 4;
+  display: grid;
+  place-items: center;
+  width: v.$slider-arrow-w;
+  height: v.$slider-arrow-h;
+  padding: 0;
+  border: 0;
+  background: v.$slider-arrow-bg;
+  color: v.$white;
+  cursor: pointer;
+  transform: translateY(-50%);
+  transition: background-color v.$dur-nav-underline v.$ease-out;
+
+  svg { width: 22px; height: 22px; }
+
+  &:hover { background: v.$slider-arrow-bg-hover; }
+
+  &:focus-visible { outline: 2px solid v.$white; outline-offset: -4px; }
+
+  @include v.at-phone { width: 38px; height: 48px; }
+}
+
+.carousel__arrow--prev { left: 0; }
+.carousel__arrow--next { right: 0; }
 
 // ── Bullets ──────────────────────────────────────────────────────────
 // `see_through` bullet navigation: an outlined dot that fills on the
@@ -132,6 +178,10 @@
 }
 
 .carousel:not(.carousel--inverse) .carousel__caption { color: v.$extra-1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel__arrow { transition: none; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .carousel__track { transition: none; }

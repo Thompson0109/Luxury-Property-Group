@@ -24,6 +24,15 @@ import '@/styles/component-styles/carousel.scss'
  * a transition at the seam, which is what makes the wrap invisible.
  */
 
+/**
+ * WordPress titles these cards from the attachment's own title, which on
+ * this site is the unedited filename ("South-of-France-1"). Without
+ * supplied captions the filename is still the closest thing to a title
+ * the content model holds.
+ */
+const fallbackTitle = (src) =>
+  src.split('/').pop().replace(/\.[^.]+$/, '').replace(/-/g, ' ')
+
 const TIERS = [
   { min: 1301, key: 'desktop' },
   { min: 1000, key: 'smallDesktop' },
@@ -63,10 +72,16 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
     height,
   } = config
 
+  const captionList = Array.isArray(captions) ? captions : null
+
   const cols = useColumns(kind === 'slider' ? { desktop: 1 } : columns)
   const count = images.length
   const interval = autorotate ?? autoplay ?? 0
+  // The nectar slider ships `classic` controls: a chevron either side and
+  // a row of bullets under it. Flickity's rows are `controls="none"` —
+  // autoplay and drag only.
   const showBullets = kind === 'slider'
+  const showArrows = kind === 'slider'
 
   const [index, setIndex] = useState(0)
   const [animate, setAnimate] = useState(true)
@@ -83,6 +98,13 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
   const pages = Math.max(1, count)
 
   const advance = useCallback(() => setIndex((i) => i + 1), [])
+
+  // Stepping back past the first cell would need a matching set of clones
+  // in front, so it wraps to the end of the current set instead.
+  const retreat = useCallback(
+    () => setIndex((i) => (i <= 0 ? Math.max(0, count - 1) : i - 1)),
+    [count],
+  )
 
   useEffect(() => {
     if (!interval || paused || count <= cols) return
@@ -154,7 +176,14 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
                 <img src={assetUrl(src)} alt="" loading={i < cols ? 'eager' : 'lazy'} />
                 {captions && (
                   <figcaption className="carousel__caption">
-                    {src.split('/').pop().replace(/\.[^.]+$/, '').replace(/-/g, ' ')}
+                    <span className="carousel__caption-title">
+                      {captionList?.[i % count]?.title ?? fallbackTitle(src)}
+                    </span>
+                    {captionList?.[i % count]?.text && (
+                      <span className="carousel__caption-text">
+                        {captionList[i % count].text}
+                      </span>
+                    )}
                   </figcaption>
                 )}
               </figure>
@@ -162,6 +191,31 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
           })}
         </div>
       </div>
+
+      {showArrows && count > 1 && (
+        <>
+          <button
+            type="button"
+            className="carousel__arrow carousel__arrow--prev"
+            aria-label="Previous slide"
+            onClick={retreat}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M15 4 7 12l8 8" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </button>
+          <button
+            type="button"
+            className="carousel__arrow carousel__arrow--next"
+            aria-label="Next slide"
+            onClick={advance}
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+          </button>
+        </>
+      )}
 
       {showBullets && count > 1 && (
         <ul className="carousel__bullets">
