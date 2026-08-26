@@ -194,6 +194,11 @@ button { font: inherit; cursor: pointer; }
 // shadowed button a generic theme would use.
 .btn {
   display: inline-block;
+  // "Call us on +44 (0)1244 629 963" is 284px wide at the desktop
+  // padding. In a narrow column that ran straight out of the section —
+  // an inline-block with nowrap type has nothing to stop it. It may wrap
+  // now, and it can never be wider than its column.
+  max-width: 100%;
   padding: v.$btn-padding;
   border: v.$btn-border solid rgba(81, 133, 161, 0.75);
   border-radius: v.$btn-radius;
@@ -204,7 +209,16 @@ button { font: inherit; cursor: pointer; }
   font-weight: v.$btn-weight;
   letter-spacing: v.$btn-tracking;
   line-height: 1.4;
+  text-align: center;
   text-transform: none;
+  // A phone number reads badly broken mid-digit, so the wrap point is
+  // the space before it rather than anywhere.
+  overflow-wrap: break-word;
+
+  @include v.at-phone {
+    padding: 9px 16px;
+    font-size: 13px;
+  }
   // export: button-styling = slightly_rounded_shadow. Every transition
   // Salient lists, on its primary curve, and a hover that lifts the
   // button 3px onto a wide soft shadow. That lift is the signature.

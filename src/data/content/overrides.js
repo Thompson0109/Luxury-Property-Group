@@ -79,6 +79,10 @@ export const sectionOverrides = {
       },
     },
     5: { boldLead: [0] },
+    // Louis's call rather than a match: the live row is an 8|4 with its
+    // copy ranged left, but the wave footage behind it runs bright in
+    // places and the type was getting lost. Centred, on a scrim.
+    6: { center: true, background: { overlay: '#000000' } },
   },
 
   'cannes-congress': {
@@ -236,7 +240,8 @@ export function applyOverrides(page) {
     if (!o) return section
 
     const {
-      padTop, padBottom, center, fullWidth, hero, prepend, append, boldLead, ...rest
+      padTop, padBottom, center, fullWidth, hero, prepend, append, boldLead,
+      background, ...rest
     } = o
     const layout = { ...section.layout }
     if (center) layout.center = true
@@ -273,7 +278,13 @@ export function applyOverrides(page) {
         gi === 0 ? [...(prepend || []), ...g, ...(append || [])] : g)
     }
 
-    return { ...section, layout, groups, ...rest }
+    return {
+      ...section,
+      layout,
+      groups,
+      ...(background ? { background: { ...section.background, ...background } } : {}),
+      ...rest,
+    }
   })
 
   if (inserts) {

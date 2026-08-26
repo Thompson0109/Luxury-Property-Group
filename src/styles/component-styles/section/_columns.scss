@@ -194,6 +194,22 @@
 // under; in this row they are beside it, so it has nothing to push.
 .section__cta-copy > :last-child { margin-bottom: 0; }
 
+// A centred call to action stops being a two-column row: the copy and
+// the buttons stack and centre together, which is how the closing band
+// reads on the home page.
+.section--center .section__cta {
+  grid-template-columns: 1fr;
+  row-gap: 20px;
+  justify-items: center;
+  text-align: center;
+}
+
+.section--center .section__cta-copy,
+.section--center .section__cta-actions {
+  align-items: center;
+  max-width: 780px;
+}
+
 // ── Floating panel ───────────────────────────────────────────────────
 // /contact's form column carries `data-using-bg`, `data-shadow=
 // "x_large_depth"`, `data-border-radius="10px"` and `data-padding-pos=

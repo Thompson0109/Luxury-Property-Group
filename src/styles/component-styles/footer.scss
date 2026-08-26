@@ -70,10 +70,10 @@
   margin-bottom: 20px;
 }
 
-.footer__description {
-  max-width: 42ch;
-  color: v.$footer-secondary;
-}
+// The brand column's description paragraph is gone — in a 23.5% track it
+// wrapped over seven lines and read as a wall rather than a blurb. The
+// live site has no footer widget content at all, so there is nothing it
+// was matching.
 
 .footer__badges {
   max-width: 260px;

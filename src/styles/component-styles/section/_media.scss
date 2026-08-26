@@ -2,7 +2,21 @@
 
 // ── Imagery ──────────────────────────────────────────────────────────
 // Square corners throughout, matching the live theme.
-.section__image img,
+//
+// Note `width: auto` rather than `100%`. Salient sizes a content image
+// to its own intrinsic width and only shrinks it to fit — the Queen's
+// Award photo renders 557px wide in a 653px column on the live site,
+// where the port was stretching it to fill and losing a lot of quality
+// with it.
+.section__image img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  border-radius: 0;
+}
+
+// Gallery and carousel cells are a different case: those really are
+// cover-fitted to a frame.
 .section__gallery-item img {
   width: 100%;
   border-radius: 0;

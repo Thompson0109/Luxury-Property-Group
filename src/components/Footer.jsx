@@ -19,7 +19,6 @@ export default function Footer() {
             className="footer__logo"
             width="601" height="260" loading="lazy"
           />
-          <p className="footer__description">{site.description}</p>
           <img
             src={awardBadges}
             alt="Awards and accreditations"
