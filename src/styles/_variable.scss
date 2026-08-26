@@ -206,13 +206,28 @@ $outline-on-light:   rgba(0, 0, 0, 0.15);        // see-through-2, light row
 $outline-on-dark:    rgba(255, 255, 255, 0.75);  // see-through-2, dark row
 $accent-marker:      rgba(81, 133, 161, 0.3);    // .nectar-highlighted-text
 
-// Form chrome — the ascend/material layer, which is what actually shipped
-$input-border:       #cccccc;
-$input-border-hover: #999999;
-$input-text:         #555555;
-$input-pad:          16px;
+// Form chrome. The export pointed at the ascend layer — a transparent
+// field with a 1px #ccc hairline and square corners. What the running
+// install actually renders is the material one, measured on /contact:
+//
+//   background:    rgba(0,0,0,.04)
+//   border:        2px solid transparent
+//   border-radius: 4px
+//   padding:       10px
+//   font:          14px/24px, colour #555
+//
+// so the field reads as a filled tint rather than an outline. The
+// hairline values are kept for the ascend variant.
+$input-bg:           rgba(0, 0, 0, 0.04);
+$input-border-width: 2px;
+$input-border:       transparent;
+$input-radius:       4px;
+$input-pad:          10px;
 $input-size:         14px;      // redux: form-input-font-size
 $input-line:         24px;
+$input-text:         #555555;
+$input-hairline:     #cccccc;   // export: the ascend field's border
+$input-border-hover: #999999;
 
 // Row grounds the page builder actually used (`bg_color`, n = rows)
 $row-accent: $accent;        // 24

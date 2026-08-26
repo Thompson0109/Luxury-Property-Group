@@ -31,22 +31,28 @@
     text-transform: uppercase;
   }
 
-  // export: the ascend/material layer is what actually renders — a
-  // transparent field with a 1px #ccc hairline, square corners and 16px
-  // of padding. Focus moves the border to the accent; there is no glow
-  // ring anywhere in the theme.
+  // measured on /contact rather than inferred from the export: the
+  // material layer renders a filled tint, not an outline — rgba(0,0,0,.04)
+  // behind a 2px transparent border at a 4px radius, 10px of padding,
+  // 14px/24px in #555. The transparent border is what gives focus
+  // somewhere to land without the field changing size.
+  //
+  // There is no glow ring anywhere in the theme; focus moves the border
+  // to the accent and nothing else.
   input,
   textarea {
     width: 100%;
     padding: v.$input-pad;
-    border: 1px solid v.$input-border;
-    border-radius: 0;
-    background: transparent;
+    border: v.$input-border-width solid v.$input-border;
+    border-radius: v.$input-radius;
+    background: v.$input-bg;
     color: v.$input-text;
     font-family: v.$font-body;
     font-size: v.$input-size;      // redux: form-input-font-size
     line-height: v.$input-line;
     transition: border-color 0.2s ease;
+
+    &::placeholder { color: v.$input-text; opacity: 0.75; }
 
     &:focus {
       border-color: v.$accent;
@@ -127,4 +133,42 @@
       color: v.$accent-hover;
     }
   }
+}
+
+
+// ── Submit ───────────────────────────────────────────────────────────
+// measured: the submit is a *solid accent* button — 15px 22px of
+// padding at 15px, white on the accent, 4px radius — not the
+// see-through outline the rest of the page uses. It is the one filled
+// control on a page otherwise made of outlines, which is most of why it
+// reads as the primary action.
+.enquiry-form__submit {
+  padding: v.$submit-pad;
+  border: 0;
+  border-radius: v.$btn-radius;
+  background: v.$accent;
+  color: v.$white;
+  cursor: pointer;
+  font-family: v.$font-display;
+  font-size: v.$btn-size-base;
+  font-weight: v.$btn-weight;
+  letter-spacing: v.$btn-tracking;
+  transition: background-color v.$dur-base v.$ease-out,
+              transform v.$dur-base v.$ease-out,
+              box-shadow v.$dur-base v.$ease-out;
+
+  // `button-styling: slightly_rounded_shadow` applies here too.
+  &:hover:not(:disabled) {
+    background: v.$accent-hover;
+    transform: translateY(v.$btn-lift);
+    box-shadow: v.$shadow-btn;
+  }
+
+  &:disabled { opacity: 0.6; cursor: default; }
+
+  &:focus-visible { outline: 2px solid v.$accent; outline-offset: 3px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enquiry-form__submit { transition: none; }
 }

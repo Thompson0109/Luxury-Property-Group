@@ -75,7 +75,13 @@ export default function EnquiryForm({ formId = '6' }) {
                 invalid ? 'is-invalid' : '',
               ].filter(Boolean).join(' ')}
             >
-              <label htmlFor={id}>
+              {/* The CF7 markup on /contact is placeholder-only — no
+                  labels at all — so a visible one changes the height of
+                  every field and the whole card with it. Fields that
+                  carry a placeholder keep their label for assistive tech
+                  and hide it; the property-enquiry form has no
+                  placeholders, so its labels stay visible. */}
+              <label htmlFor={id} className={field.placeholder ? 'visually-hidden' : undefined}>
                 {field.label}
                 {field.required && <span aria-hidden="true"> *</span>}
               </label>
@@ -112,7 +118,11 @@ export default function EnquiryForm({ formId = '6' }) {
         })}
       </div>
 
-      <button type="submit" className="btn" disabled={status === 'sending'}>
+      <button
+        type="submit"
+        className="enquiry-form__submit"
+        disabled={status === 'sending'}
+      >
         {status === 'sending' ? 'Sending…' : definition.submitLabel}
       </button>
 
