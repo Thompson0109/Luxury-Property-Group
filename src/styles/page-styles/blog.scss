@@ -2,98 +2,181 @@
 @use 'sass:math';
 
 // ─── Index ────────────────────────────────────────────────────────────
+//  Salient's `post-area.masonry.auto_meta_overlaid_spaced`.
+//
+//  Measured on the running site at a 1905px viewport:
+//
+//    .post-area              1261px, margin-left -8px
+//    .masonry-blog-item      8px padding; 315px wide, 631px for the
+//                            double, 472px tall in both cases
+//    .inner-wrap             615x456, overflow hidden
+//    .content-inner          absolute inset 0, background rgba(0,0,0,.3)
+//    .post-featured-img      absolute, width 100.5%, object-fit cover,
+//                            transition transform .7s cubic-bezier(.2,1,.22,1)
+//    .post-featured-img::after
+//                            bottom-anchored, 75% tall, a gradient from
+//                            transparent to rgba(35,35,35,.65)
+//    .article-content-wrap   absolute bottom, 30px padding, z-index 33,
+//                            pointer-events none
+//    h3 a                    Merriweather 700 30/36, #fff !important
+//    .meta-category a        Open Sans 600 14/19, #fff
+//
+//  Two darkening layers rather than one is what keeps white type legible
+//  over a bright photograph without flattening the picture.
 .blog {
   background: v.$white;
-}
-
-.blog__masthead {
-  padding-block: clamp(120px, 14vw, 200px) clamp(40px, 5vw, 72px);
-  background: v.$accent;
-  color: v.$white;
-
-  .eyebrow { color: rgba(255, 255, 255, 0.75); }
-}
-
-.blog__title {
-  margin: 0;
-  color: v.$white;
-  font-family: v.$font-display;
-  font-size: v.$h2-size;
-  font-weight: v.$h2-weight;
-  line-height: v.$h2-lh;
-
-  @media (max-width: v.$bp-tablet) {
-  font-size: v.scale(v.$h2-size, v.$h2-tablet);
-}
-  @media (max-width: v.$bp-tablet) { font-size: v.scale(v.$h2-size, v.$h2-tablet); }
-  @media (max-width: v.$bp-phone)  { font-size: v.scale(v.$h2-size, v.$h2-phone); }
-}
-
-.blog__standfirst {
-  max-width: 46ch;
-  margin-top: 1rem;
-  color: rgba(255, 255, 255, 0.86);
-}
-
-.blog__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   padding-block: clamp(48px, 6vw, 88px);
+}
+
+.blog__grid {
   display: grid;
-  gap: clamp(28px, 3vw, 44px);
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  // measured: 4 x 315px inside 1261px, with 8px of padding per item
+  // standing in for an 16px gutter.
+  grid-template-columns: repeat(4, 1fr);
+  gap: v.$blog-gutter;
+
+  @include v.at-small-desktop { grid-template-columns: repeat(3, 1fr); }
+  @include v.at-tablet        { grid-template-columns: repeat(2, 1fr); }
+  @include v.at-phone         { grid-template-columns: 1fr; }
 }
 
-.blog__item {
-  border-bottom: 1px solid rgba(v.$extra-1, 0.1);
-  padding-bottom: clamp(24px, 3vw, 36px);
+// measured: the lead post spans two tracks. Below tablet everything is
+// one track wide, so the span has to stand down or it overflows.
+.blog__card--wide {
+  grid-column: span 2;
+
+  @include v.at-phone { grid-column: span 1; }
 }
 
-.blog__link {
-  display: block;
-  color: inherit;
-
-  &:hover .blog__item-title { color: v.$accent; }
-  &:hover .blog__thumb img  { transform: scale(1.04); }
-}
-
-.blog__thumb {
+.blog__frame {
+  position: relative;
+  // measured: a fixed 472px card, not a ratio — which is what lets the
+  // double-width card sit flush with its neighbours.
+  height: 472px;
   overflow: hidden;
-  margin-bottom: 1.25rem;
-  aspect-ratio: 3 / 2;
-  background: v.$extra-2;
+  // measured: `.content-inner { background-color: rgba(0,0,0,.3) }`
+  background: rgba(0, 0, 0, 0.3);
+
+  @include v.at-phone { height: 320px; }
+}
+
+.blog__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  // export: 100.5%, the same sub-pixel bleed the parallax wrappers use —
+  // it hides the hairline seam a scaled layer shows at its edges.
+  width: 100.5%;
+  transition: transform 0.7s v.$ease-blog, opacity 0.5s;
 
   img {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.6s v.$ease-out;
+  }
+
+  // measured: a second, bottom-anchored scrim over the lower 75%.
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 75%;
+    background: linear-gradient(rgba(35, 35, 35, 0), rgba(35, 35, 35, 0.65) 100%);
   }
 }
 
-.blog__date {
+// export: `.post-featured-img.no-img { background-color: rgba(0,0,0,.2) }`
+// — a good many posts lost their featured image in the migration.
+.blog__media--empty { background: rgba(0, 0, 0, 0.2); }
+
+.blog__frame:hover .blog__media,
+.blog__cover-link:focus-visible ~ .blog__media { transform: scale(1.07); }
+
+// measured: `.content-inner > a { z-index: 30 }` — the whole card is one
+// link, sitting under the meta so the category chip stays clickable.
+.blog__cover-link {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+
+  &:focus-visible { outline: 2px solid v.$white; outline-offset: -6px; }
+}
+
+.blog__meta {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 33;
+  padding: 30px;
+  // measured: the wrap itself is inert so the card link underneath it
+  // still takes the click.
+  pointer-events: none;
+
+  @include v.at-phone { padding: 20px; }
+}
+
+.blog__category {
   display: block;
-  margin-bottom: 0.5rem;
-  color: v.$footer-secondary;
-  font-size: 0.8125rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  margin-bottom: 4px;
+  pointer-events: all;
+
+  a {
+    color: v.$white;
+    font-family: v.$font-body;
+    font-size: 14px;
+    font-weight: v.$heading-small-weight;
+    line-height: 19px;
+  }
 }
 
-.blog__item-title {
-  margin: 0 0 0.6rem;
-  font-family: v.$font-display;
-  font-size: 1.375rem;
-  font-weight: v.$h3-weight;
-  line-height: 1.3;
-  transition: color 0.25s v.$ease-out;
-}
-
-.blog__excerpt {
+// measured: white with !important — the theme forces it over whatever
+// the heading colour would otherwise be.
+.blog__card-title {
   margin: 0;
-  color: v.$extra-1;
-  opacity: 0.78;
+  font-family: v.$font-display;
+  font-weight: 700;
+  @include v.type-tiers(v.$h3-tiers...);
+
+  a {
+    color: v.$white;
+    transition: opacity 0.37s cubic-bezier(0.52, 0.01, 0.16, 1);
+  }
+}
+
+.blog__frame:hover .blog__card-title a { opacity: 0.85; }
+
+// ── Pagination ───────────────────────────────────────────────────────
+// measured: `.page-numbers` is an accent pill — 12px white type,
+// 11px 13px 10px of padding, 4px radius.
+.blog__pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: clamp(32px, 4vw, 56px);
+}
+
+.blog__page {
+  padding: 11px 13px 10px;
+  border: 0;
+  border-radius: v.$btn-radius;
+  background: v.$accent;
+  color: v.$white;
+  cursor: pointer;
+  font-family: v.$font-body;
+  font-size: 12px;
+  line-height: 1;
+  transition: background-color v.$dur-nav-underline v.$ease-out;
+
+  &:hover { background: v.$accent-hover; }
+
+  &.is-current { background: v.$extra-1; cursor: default; }
+
+  &:focus-visible { outline: 2px solid v.$accent; outline-offset: 2px; }
 }
 
 // ─── Single post ──────────────────────────────────────────────────────

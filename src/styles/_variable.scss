@@ -426,6 +426,10 @@ $card-overlap: -25%;
 // `.post-area.masonry.auto_meta_overlaid_spaced`: a 4-track masonry at
 // 1261px with 14px gutters (7px of padding per item), the first post
 // double width, 10 posts to a page.
+// The blog card's image zoom uses a curve that appears nowhere else in
+// the theme — a long, flat-out decelerate over 0.7s.
+$ease-blog:    cubic-bezier(0.2, 1, 0.22, 1);
+
 $blog-cols:    4;
 $blog-gutter:  14px;
 $blog-per-page: 10;
