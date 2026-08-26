@@ -39,7 +39,9 @@ export function useScrollReveal() {
     const io = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {
-          if (!entry.isIntersecting) continue
+          // Above the viewport counts too: a page opened already scrolled
+          // past an element would otherwise leave it hidden for good.
+          if (!entry.isIntersecting && entry.boundingClientRect.bottom >= 0) continue
           entry.target.classList.add('is-visible')
           io.unobserve(entry.target)
         }

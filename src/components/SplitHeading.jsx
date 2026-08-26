@@ -53,7 +53,11 @@ export default function SplitHeading({
 
     const io = new IntersectionObserver(
       (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
+        // `isIntersecting` alone leaves a heading hidden forever if the
+        // page opens already scrolled past it — a deep link to #band-5, a
+        // restored scroll position, or a back-navigation. Anything above
+        // the viewport has had its moment and is revealed outright.
+        if (entries.some((e) => e.isIntersecting || e.boundingClientRect.bottom < 0)) {
           setShown(true)
           io.disconnect()
         }
