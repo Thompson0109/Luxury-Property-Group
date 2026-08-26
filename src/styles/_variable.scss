@@ -191,8 +191,12 @@ $dur-header:   0.3s;    // measured: header transitions
 // ═════════════════════════════════════════════════════════════════════
 
 // ── Colour roles the measured pass didn't reach ───────────────────────
-$copyright-bg:       #1c1c1c;   // #footer-outer #copyright
-$footer-rule:        #444444;   // widget li border-bottom
+// live: `body #footer-outer #copyright { background-color: transparent }`
+// wins over the export's #1c1c1c — the strip shares the footer ground.
+// The darker band is kept as a token in case it is wanted back.
+$copyright-bg:       transparent;
+$copyright-band-alt: #1c1c1c;
+$footer-rule:        #444444;   // widget li border-bottom (see $footer-li-rule)
 $footer-heading:     #777777;   // #footer-outer .widget h4
 $section-rule:       rgba(0, 0, 0, 0.15);        // .col.section-title
 $outline-on-light:   rgba(0, 0, 0, 0.15);        // see-through-2, light row
@@ -304,3 +308,121 @@ $reveal-scale-grow:  0.75;
   @if $hash-index { @return '%23' + string.slice($str, $hash-index + 1); }
   @return $str;
 }
+
+// ═════════════════════════════════════════════════════════════════════
+//  Read off the running install, August 2026
+//
+//  Everything below came out of the live DOM at
+//  luxury-property-group.local via tools/wp-audit. Where it contradicts
+//  a value recovered from the export, the live reading wins and the
+//  export value is kept alongside so the disagreement stays visible.
+// ═════════════════════════════════════════════════════════════════════
+
+// ── Footer ───────────────────────────────────────────────────────────
+// Salient's footer is a float grid, not the CSS grid the port assumed:
+// `#footer-widgets .container` is the ordinary 1425/90 container, so the
+// `.row` inside it is 1245px, and each `.col.span_3` measured 292.56px
+// with a 24.89px right margin — 23.5% and 2% of 1245 exactly.
+$footer-col-width: 23.5%;
+$footer-col-gap:   2%;
+
+// live: `@media (min-width: 1000px) { body #footer-outer .row { padding: 75px 0 } }`
+// export: 55px. The export value is the sub-1000px rule.
+$footer-band-pad:        75px;
+$footer-band-pad-mobile: 55px;
+
+// live: `.material #footer-outer #footer-widgets .col ul li {
+//          border: none; padding: 4px 0 !important; }`
+// The material skin cancels the 8px + 1px #444 divider the export shows,
+// so widget lists are a tight 4px rhythm with no rules at all.
+$footer-li-pad:  4px;
+$footer-li-rule: none;
+
+// live: `#footer-outer .widget h4 { margin-bottom: 15px }`, and
+// `.material #footer-outer .widget li a { color: inherit; padding: 0 }`
+$footer-heading-gap: 15px;
+
+// live: `#copyright { font-size: 14px; padding: 20px 0 }` — 14px, not the
+// 12px the export suggested. `data-copyright-line="false"` means no rule
+// above it. The two halves are a 5|7 split of the same 12-column grid.
+$copyright-size:  14px;
+$copyright-left:  40.33%;   // .span_5
+$copyright-right: 57.67%;   // .span_7
+
+// ── Split headings ───────────────────────────────────────────────────
+// Every section heading on the site is a `.nectar-split-heading` running
+// `line-reveal-by-space` with the `letter-reveal-bottom` text effect:
+// words are wrapped in an overflow-hidden span, each letter starts at
+// translateY(1.3em) and springs up on a stagger.
+//
+//   .nectar-split-heading span .inner { transform: translateY(1.3em) }
+//   .nectar-split-heading span .inner.animated { transform: none }
+//   [data-stagger] span .inner { transition: transform 1.2s cubic-bezier(.25,1,.5,1) }
+//   [data-text-effect="letter-reveal-bottom"] > * > span { padding: 0 .05em; margin: 0 -.05em }
+$split-offset:      1.3em;
+$split-ease:        cubic-bezier(0.25, 1, 0.5, 1);
+$split-dur:         1.2s;
+$split-dur-letter:  0.9s;    // the per-letter variant runs shorter
+$split-stagger:     22ms;    // measured cadence across a word
+$split-bleed:       0.05em;  // the padding/-margin pair that stops clipping
+
+// Heroes carry `data-custom-font-size` with an inline `font-size: 5vw;
+// line-height: 5.5vw`, and `font_size_tablet_10vw` replaces both below
+// 1000px with `10vw / 1.3`.
+$hero-vw:        5vw;
+$hero-lh-vw:     5.5vw;
+$hero-vw-tablet: 10vw;
+$hero-lh-tablet: 1.3;
+
+// ── Carousels ────────────────────────────────────────────────────────
+// Two different components ship on these pages.
+//
+// Flickity (`.nectar-flickity`) — /cannes-congress rows 1 and 4:
+//   row 1: 1/1/1/1 columns, spacing default, overflow hidden, autoplay 2500
+//   row 4: 3/3/2/1 columns, spacing 10px, overflow visible, autoplay 2500
+//   `.nectar-flickity:not(.masonry) .flickity-viewport { margin: 80px 0 }`
+$carousel-gap:            10px;
+$carousel-autoplay:       2500ms;
+$carousel-viewport-inset: 80px;
+
+// Nectar slider (`.nectar-slider-wrap`) — /approach rows 1 and 3:
+//   fixed 400px height, classic style, autorotate 5500, looping, bullets
+$slider-height:    400px;
+$slider-autorotate: 5500ms;
+
+// ── Portfolio cards ──────────────────────────────────────────────────
+// Salient's `work-item.style-4`, used for the featured-properties grid.
+// The frame clips; on hover the image lifts 25px and an accent caption
+// bar slides up from below it.
+//
+//   .work-item.style-4 { overflow: hidden }
+//   .bottom-meta { position:absolute; bottom:0; padding:20px 20px 16px;
+//                  transform: translateY(100%) }
+//   .work-item.style-4:hover img { transform: translateY(-25px); transition-delay: .03s }
+//   .work-item.style-4:hover .bottom-meta { transform: translateY(0) }
+//   .col[data-default-color="true"] .bottom-meta { background: accent !important }
+$portfolio-cols:       3;
+$portfolio-col-pad:    15px;   // .col padding — the visible gutter is 30px
+$portfolio-meta-pad:   20px 20px 16px;
+$portfolio-meta-pad-sd: 13px 13px 10px;  // 990–1300px, constrain-max-cols
+$portfolio-lift:       -25px;
+$portfolio-dur:        0.3s;
+$portfolio-img-delay:  0.03s;
+$portfolio-ratio:      math.div(600, 403);  // source frame, 394x265 rendered
+
+// ── Column cards ─────────────────────────────────────────────────────
+// The contact form sits in a column carrying `data-using-bg`,
+// `data-shadow="x_large_depth"`, `data-border-radius="10px"`,
+// `data-padding-pos="all"` at 8%, and an inline `margin-bottom: -25%`
+// that pulls it down over the following row.
+$card-radius:  10px;
+$card-pad:     8%;
+$card-overlap: -25%;
+
+// ── Blog ─────────────────────────────────────────────────────────────
+// `.post-area.masonry.auto_meta_overlaid_spaced`: a 4-track masonry at
+// 1261px with 14px gutters (7px of padding per item), the first post
+// double width, 10 posts to a page.
+$blog-cols:    4;
+$blog-gutter:  14px;
+$blog-per-page: 10;
