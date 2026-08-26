@@ -43,7 +43,10 @@ $nav-dropdown-text-hover: $accent;
 
 // ── Type ─────────────────────────────────────────────────────────────
 // measured: body + h1 = Open Sans · h2 + h3 + nav + buttons = Merriweather
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;500;600;700&display=swap');
+//
+// The @font-face request lives in index.html, not here. A CSS @import is
+// only found once this sheet has parsed, which puts the font fetch a
+// round trip behind the stylesheet and holds up first paint.
 
 $font-body:    'Open Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
 $font-display: 'Merriweather', Georgia, 'Times New Roman', serif;

@@ -6,6 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="Elegant Address — Luxury Property Group. Bespoke villa and apartment rentals in the South of France, Barbados and the European Alps." />
     <title>Elegant Address | Luxury Property Group</title>
+
+    <!--
+      The webfonts are linked here rather than @import-ed from the
+      stylesheet. A CSS @import is discovered only once the importing
+      sheet has parsed, so it serialises the font request behind the CSS
+      and delays first paint by a full round trip; a <link> in the head is
+      discovered by the preload scanner immediately.
+
+      Only the weights the site actually uses are requested:
+        Merriweather 400  h2 and nav
+                     700  h3, buttons, footer widget titles
+        Open Sans    300  blockquote
+                     500  body and the h1 kicker
+                     600  h4-h6
+                     700  bold copy
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@300;500;600;700&display=swap"
+    />
   </head>
   <body>
     <div id="root"></div>
