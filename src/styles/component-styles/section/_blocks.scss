@@ -90,3 +90,30 @@
   flex: none;
   width: 100%;
 }
+
+// `.divider-border`: measured 3px tall with 40px of margin either side,
+// plus a 20px spacer beyond that. Folded into one 60px margin here.
+// `currentColor` so it inverts with the row like everything else does.
+.section__divider {
+  flex: none;
+  width: 100%;
+  height: 3px;
+  margin: 60px 0;
+  border: 0;
+  background: currentColor;
+}
+
+// The opening heading of the closing band is a display heading — 94px at
+// a 958px viewport, where the "Get in touch" heading beneath it stays on
+// the ordinary 24px tier. The fluid rule below excludes the last section
+// (its closing call to action keeps the normal scale), so this opts back
+// in explicitly rather than by position.
+.section__heading--display {
+  font-size: 9vw;
+  line-height: 10vw;
+
+  @media (min-width: v.$bp-tablet) {
+    font-size: 5vw;
+    line-height: 5.5vw;
+  }
+}

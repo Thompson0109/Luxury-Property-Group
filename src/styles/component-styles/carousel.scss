@@ -18,10 +18,25 @@
 .carousel {
   --carousel-cols: 1;
   --carousel-gap: 0px;
-  --carousel-shift: 0%;
+  --carousel-index: 0;
+  // n cells filling the frame, unless a peek width overrides it.
+  --carousel-cell: calc(
+    (100% - (var(--carousel-cols) - 1) * var(--carousel-gap)) / var(--carousel-cols)
+  );
+  // Centring offset — zero unless the active cell is meant to sit in the
+  // middle of the frame with its neighbours showing.
+  --carousel-lead: 0px;
 
   position: relative;
   width: 100%;
+}
+
+// Salient's one-column Flickity rows are not full-bleed: measured on
+// /france, the cell renders 396px inside a 603px frame — 66% — with the
+// previous and next slides showing at the edges and clipped. That peek
+// is the whole look of the 1,200+ rows.
+.carousel--peek {
+  --carousel-lead: calc((100% - var(--carousel-cell)) / 2);
 }
 
 .carousel__viewport {
@@ -43,7 +58,14 @@
 .carousel__track {
   display: flex;
   gap: var(--carousel-gap);
-  transform: translate3d(calc(var(--carousel-shift) * -1), 0, 0);
+  transform: translate3d(
+    calc(
+      var(--carousel-lead) -
+      var(--carousel-index) * (var(--carousel-cell) + var(--carousel-gap))
+    ),
+    0,
+    0
+  );
   transition: transform 0.6s v.$ease-out;
   will-change: transform;
 }
@@ -53,9 +75,7 @@
 .carousel__track.is-snapping { transition: none; }
 
 .carousel__cell {
-  flex: 0 0 calc(
-    (100% - (var(--carousel-cols) - 1) * var(--carousel-gap)) / var(--carousel-cols)
-  );
+  flex: 0 0 var(--carousel-cell);
   margin: 0;
   min-width: 0;
 
@@ -185,4 +205,11 @@
 
 @media (prefers-reduced-motion: reduce) {
   .carousel__track { transition: none; }
+}
+
+
+// A peek needs room to be legible. Below the tablet breakpoint the
+// neighbours are slivers, so the active cell takes the full frame.
+@include v.below-tablet {
+  .carousel--peek { --carousel-cell: 100%; --carousel-lead: 0px; }
 }

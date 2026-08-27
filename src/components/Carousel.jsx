@@ -70,6 +70,7 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
     overflow = 'hidden',
     captions = false,
     height,
+    peek = 0,
   } = config
 
   const captionList = Array.isArray(captions) ? captions : null
@@ -136,12 +137,21 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
 
   if (!count) return null
 
-  const step = 100 / cols
+  // Cell width and travel are expressed as one custom property so the two
+  // layouts share the same track maths:
+  //
+  //   columns  n cells fill the frame edge to edge
+  //   peek     one cell sits centred at `peek`% of the frame, with its
+  //            neighbours showing either side and clipped at the edges
+  //
+  // The old shift was `index * (100 / cols)%`, which ignored the gap and
+  // so drifted by a cell's worth over a long strip.
   const style = {
     '--carousel-cols': cols,
     '--carousel-gap': `${spacing}px`,
-    '--carousel-shift': `${index * step}%`,
+    '--carousel-index': index,
   }
+  if (peek) style['--carousel-cell'] = `${peek}%`
   if (height) style['--carousel-height'] = `${height}px`
 
   return (
@@ -149,6 +159,7 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
       className={[
         'carousel',
         `carousel--${kind}`,
+        peek ? 'carousel--peek' : '',
         overflow === 'visible' ? 'carousel--bleed' : '',
         inverse ? 'carousel--inverse' : '',
       ].filter(Boolean).join(' ')}

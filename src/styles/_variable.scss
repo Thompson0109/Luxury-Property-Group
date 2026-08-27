@@ -440,6 +440,18 @@ $slider-arrow-h:    60px;
 $slider-arrow-bg:       rgba(0, 0, 0, 0.4);
 $slider-arrow-bg-hover: rgba(0, 0, 0, 0.6);
 
+// ── Destination cards ────────────────────────────────────────────────
+// Salient's `parallax_hover` fancy box. Perspective, layer depth and the
+// two overlay opacities are measured off the markup on /france; the
+// rotation range is inferred — the original applies it inline from a
+// live pointer stream and would not commit to a synthetic one.
+$tilt-perspective:    1800px;
+$tilt-depth:          73.3333px;
+$tilt-range:          4deg;      // inferred
+$tilt-dur:            0.25s;     // measured
+$card-overlay:        0.6;       // data-overlay-opacity
+$card-overlay-hover:  0.2;       // data-overlay-opacity-hover
+
 // ── Portfolio cards ──────────────────────────────────────────────────
 // Salient's `work-item.style-4`, used for the featured-properties grid.
 // The frame clips; on hover the image lifts 25px and an accent caption

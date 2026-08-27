@@ -1,9 +1,14 @@
 @use '../../variable' as v;
 
-// ── Region cards ─────────────────────────────────────────────────────
-// measured on /france at 1890px: three 418px columns with 5px of column
-// padding, each card 408x300, and 10px between the two rows. Below 1000px
-// they go full width like every other Salient column.
+// ── Destination cards ────────────────────────────────────────────────
+// Salient's `nectar-fancy-box.style-5` with `data-style="parallax_hover"`.
+// Measured on /france: six cards in two rows of three, each 600x337
+// inside a span-4 column carrying 5px of padding.
+//
+// The hover is a 3D tilt toward the cursor. The container takes a
+// perspective and the two layers sit at different depths, so the title
+// swings further than the picture behind it — that separation is the
+// effect. The overlay lifts at the same time, from 0.6 to 0.2.
 .section__cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -17,55 +22,77 @@
 .section__card { padding-inline: 5px; }
 
 .section__card-link {
+  --tilt-x: 0;
+  --tilt-y: 0;
+
   position: relative;
-  display: grid;
-  place-items: center;
-  aspect-ratio: 408 / 300;   // measured
-  border-radius: 0;
+  display: block;
+  aspect-ratio: 600 / 337;   // measured
   overflow: hidden;
   text-align: center;
 
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.55));
-    transition: background v.$dur-base v.$ease-out;
-  }
-
-  &:hover::after {
-    background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.4));
-  }
+  &:focus-visible { outline: 2px solid v.$white; outline-offset: -4px; }
 }
 
-// export: Salient's image-backed menu and card treatment is a 1.12 zoom
-// over 0.5s on its own image curve — noticeably further and softer than
-// a generic 1.06.
+// measured: `transform: perspective(1800px)`, `transition: transform
+// .25s ease-out`. The rotation range is the one value that could not be
+// read off the original — see the note in blocks.jsx.
+.section__card-stage {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform:
+    perspective(#{v.$tilt-perspective})
+    rotateX(calc(var(--tilt-x) * #{v.$tilt-range}))
+    rotateY(calc(var(--tilt-y) * #{v.$tilt-range}));
+  transform-style: preserve-3d;
+  transition: transform v.$tilt-dur ease-out;
+}
+
+.section__card-layer {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+
+// measured: layer 0 at translateZ(0), layer 1 at translateZ(73.3333px).
+.section__card-layer--image { transform: translateZ(0); }
+
+.section__card-layer--meta {
+  transform: translateZ(#{v.$tilt-depth});
+  // The title layer must not eat the pointer, or moving across it stops
+  // the tilt updating.
+  pointer-events: none;
+}
+
+// The overlay is the accent, not a black scrim: `data-color="accent-color"`
+// with `data-overlay-opacity="0.6"` lifting to `0.2` on hover.
+.section__card-layer--image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: v.$accent;
+  opacity: v.$card-overlay;
+  transition: opacity v.$dur-base v.$ease-out;
+}
+
+.section__card-link:hover .section__card-layer--image::after,
+.section__card-link:focus-visible .section__card-layer--image::after {
+  opacity: v.$card-overlay-hover;
+}
+
 .section__card-image {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: scale v.$dur-image v.$ease-image;
+  // A tilted layer shows its edges; the slight overscale hides them.
+  scale: 1.06;
 }
 
-.section__card-link:hover .section__card-image { scale: 1.12; }
-
-// export: `hover-zoom-in-slow` — a four-second 1.15 drift, with the
-// overlay lifting over 1.5s. It is the treatment Salient reserves for
-// large photographic tiles, which is what these are.
-.section__card-link--slow {
-  .section__card-image {
-    transition: scale v.$dur-image-slow v.$ease-slow;
-  }
-
-  &::after { transition: background 1.5s v.$ease-image; }
-
-  &:hover .section__card-image { scale: 1.15; }
-}
-
-// measured: the card title renders as an h3 — 30px, white, display face.
+// measured: the card title renders as an h3 — white, display face.
 .section__card-label {
   position: relative;
   z-index: 2;
@@ -74,4 +101,16 @@
   font-family: v.$font-display;
   font-size: v.$h3-size;
   font-weight: v.$h3-weight;
+}
+
+// A tilt needs a pointer to follow. Where there isn't one — touch, or a
+// reader who has asked for less motion — the card is a plain tile and
+// the overlay still lifts on tap.
+@media (hover: none), (prefers-reduced-motion: reduce) {
+  .section__card-stage {
+    transform: none;
+    transition: none;
+  }
+
+  .section__card-layer--meta { transform: none; }
 }

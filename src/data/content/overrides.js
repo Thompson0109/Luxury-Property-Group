@@ -34,6 +34,54 @@ const FLICKITY_AUTOPLAY = 2500
 // The featured cards' description on the live site, verbatim.
 const LOREM = 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.'
 
+/**
+ * The three-up featured strip, identical on /, /france and /barbados.
+ * ⚠ Titles and description are the placeholder copy WordPress ships —
+ * attachment titles nobody edited off the filename, and untouched lorem.
+ */
+const featuredStrip = (titles) => ({
+  kind: 'flickity',
+  columns: { desktop: 3, smallDesktop: 3, tablet: 2, phone: 1 },
+  spacing: 10,
+  autoplay: FLICKITY_AUTOPLAY,
+  overflow: 'visible',
+  captions: titles.map((title) => ({ title, text: LOREM })),
+})
+
+const DESTINATION_TITLES = [
+  'Barbados-1', 'South-of-France-1', 'Barbados-1',
+  'South-of-France-1', 'Barbados-1', 'South-of-France-1',
+]
+
+/**
+ * The "1,200+ properties in our portfolio" row on both destination
+ * pages. One cell, centred at 66% of the frame with its neighbours
+ * showing either side and clipped — measured 396px inside a 603px frame
+ * on /france. Advances on its own; no visible controls.
+ */
+const portfolioCarousel = {
+  kind: 'flickity',
+  columns: { desktop: 1, smallDesktop: 1, tablet: 1, phone: 1 },
+  peek: 66,
+  spacing: 13,
+  autoplay: FLICKITY_AUTOPLAY,
+  overflow: 'hidden',
+}
+
+/**
+ * The closing "Our Story / Get in touch" band, shared by /france,
+ * /barbados and /cannes-congress. Centre-aligned throughout on the live
+ * site (`text-align: center` on the row), with the opening heading at
+ * display scale, its standfirst bold, and a 3px rule between the two
+ * halves.
+ */
+const closingBand = {
+  center: true,
+  boldLead: [0],
+  displayHeading: [0],
+  dividerBetween: true,
+}
+
 export const sectionOverrides = {
   home: {
     // Both destination blocks run Salient's swiper-backed slider rather
@@ -87,6 +135,33 @@ export const sectionOverrides = {
     6: { center: true, background: { overlay: '#000000' } },
   },
 
+  'south-of-france': {
+    0: { boldLead: [0] },
+    1: { boldLead: [0], carousel: portfolioCarousel },
+    // The extractor lost this heading the same way it lost
+    // /cannes-congress row 2's — it is wrapped in a split-heading the
+    // flattener walks past. The four paragraphs under it are a
+    // "Key: value" list.
+    2: {
+      prepend: [{ type: 'heading', level: 'h3', text: 'Why Choose Elegant Address' }],
+      keyValue: [0],
+      padBottom: 4,
+    },
+    3: { boldLead: { 0: 'sentence' } },
+    4: { carousel: featuredStrip(DESTINATION_TITLES) },
+    5: closingBand,
+  },
+
+  barbados: {
+    0: { boldLead: [0] },
+    1: { boldLead: [0], carousel: portfolioCarousel },
+    2: { keyValue: [0] },
+    3: { boldLead: { 0: 'sentence' } },
+    4: { carousel: featuredStrip(DESTINATION_TITLES) },
+    5: closingBand,
+  },
+
+  // eslint-disable-next-line sort-keys
   'cannes-congress': {
     // `.nectar-flickity` instance-0: one column at every breakpoint,
     // overflow hidden, autoplay 2500. It sits in the span-8 half.
@@ -112,6 +187,8 @@ export const sectionOverrides = {
     // measured: 76px top, 0 bottom — the row runs straight into the
     // full-bleed carousel below it.
     3: { padBottom: 0 },
+    // Same closing band as the destination pages.
+    5: closingBand,
     // `.nectar-flickity` instance-1: three across on desktop, two on
     // tablet, one on phone, 10px between cells, overflow visible so the
     // next cell peeks in. `full-width-content`, so the strip is 1894px
@@ -243,7 +320,7 @@ export function applyOverrides(page) {
 
     const {
       padTop, padBottom, center, fullWidth, hero, prepend, append, boldLead,
-      keyValue, background, ...rest
+      keyValue, displayHeading, dividerBetween, background, ...rest
     } = o
     const layout = { ...section.layout }
     if (center) layout.center = true
@@ -278,6 +355,25 @@ export function applyOverrides(page) {
           return { ...b, lead: mode }
         })
       })
+    }
+
+    // The opening heading of a closing band renders at display scale
+    // while the one below it keeps the ordinary tier.
+    if (displayHeading) {
+      groups = groups.map((g, gi) => {
+        if (!displayHeading.includes(gi)) return g
+        let done = false
+        return g.map((b) => {
+          if (done || b.type !== 'heading') return b
+          done = true
+          return { ...b, display: true }
+        })
+      })
+    }
+
+    // A rule between the two halves of the band.
+    if (dividerBetween && groups.length > 1) {
+      groups = groups.map((g, gi) => (gi === 0 ? [...g, { type: 'divider' }] : g))
     }
 
     // "Key: value" lists — every text block in the named groups.
