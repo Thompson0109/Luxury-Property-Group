@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { primaryNav } from '@/data/navigation'
+import { hasFullHeightHero } from '@/data/pages'
 import '@/styles/component-styles/navbar.scss'
 
 import logo from '@/assets/logos/logo-elegant-address-r.png'
@@ -81,7 +82,10 @@ export default function Navbar() {
   // Salient served a transparent header with the white logo over the
   // full-height hero (redux: header-starting-logo = the white variant),
   // switching to the solid white header once scrolled.
-  const overHero = location.pathname === '/'
+  // Asking the content model rather than the path: any page whose first
+  // section is a full-height banner gets the transparent treatment, which
+  // is what the theme does.
+  const overHero = hasFullHeightHero(location.pathname)
   const isTransparent = overHero && !isScrolled && !isOpen
 
   useEffect(() => {

@@ -71,6 +71,7 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
     captions = false,
     height,
     peek = 0,
+    bulletsInside = false,
   } = config
 
   const captionList = Array.isArray(captions) ? captions : null
@@ -160,6 +161,7 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
         'carousel',
         `carousel--${kind}`,
         peek ? 'carousel--peek' : '',
+        bulletsInside ? 'carousel--bullets-inside' : '',
         overflow === 'visible' ? 'carousel--bleed' : '',
         inverse ? 'carousel--inverse' : '',
       ].filter(Boolean).join(' ')}

@@ -82,11 +82,11 @@ function emphasise(text, { lead, keyValue, first }) {
 }
 
 function Text({ block }) {
-  const { lead, keyValue } = block
+  const { lead, keyValue, leadAt = 0 } = block
   return (
     <div className="section__text">
       {block.paragraphs.map((p, i) => (
-        <p key={i}>{emphasise(p, { lead, keyValue, first: i === 0 })}</p>
+        <p key={i}>{emphasise(p, { lead, keyValue, first: i === leadAt })}</p>
       ))}
     </div>
   )

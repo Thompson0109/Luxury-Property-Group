@@ -115,6 +115,45 @@
   line-height: v.$body-line;
 }
 
+// ── Bullets on the frame ─────────────────────────────────────────────
+// Measured on /approach: the pagination sits 402px down a 452px frame —
+// inside the picture, not under it — with 20px hit areas.
+//
+// There is no overlay element on the WordPress slide; the dark band the
+// dots sit against is a fade at the foot of the frame, which is what
+// keeps them legible over a bright photograph. Added here rather than
+// copied, since the original has nothing to copy.
+.carousel--bullets-inside {
+  .carousel__viewport { position: relative; }
+
+  .carousel__bullets {
+    position: absolute;
+    right: 0;
+    bottom: 26px;
+    left: 0;
+    z-index: 3;
+    margin: 0;
+  }
+
+  .carousel__viewport::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    height: 40%;
+    background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.45));
+    pointer-events: none;
+  }
+
+  .carousel__bullet {
+    width: 12px;
+    height: 12px;
+    border-color: rgba(255, 255, 255, 0.85);
+  }
+}
+
 // ── Nectar slider ────────────────────────────────────────────────────
 // One frame at a fixed 400px rather than a ratio, with bullets under it.
 .carousel--slider {

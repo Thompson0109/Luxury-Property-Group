@@ -59,6 +59,14 @@ const DESTINATION_TITLES = [
  * showing either side and clipped — measured 396px inside a 603px frame
  * on /france. Advances on its own; no visible controls.
  */
+/**
+ * The swiper-backed slider on /approach rows 1 and 3. Measured on the
+ * local install: a fixed frame (452px at a 958px viewport), `classic`
+ * controls, rotating every 5.5s, with the bullets sitting *inside* the
+ * frame near the bottom rather than under it.
+ */
+const approachSlider = { kind: 'slider', height: 400, autorotate: 5500, bulletsInside: true }
+
 const portfolioCarousel = {
   kind: 'flickity',
   columns: { desktop: 1, smallDesktop: 1, tablet: 1, phone: 1 },
@@ -172,30 +180,24 @@ export const sectionOverrides = {
 
   // eslint-disable-next-line sort-keys
   'cannes-congress': {
-    // `.nectar-flickity` instance-0: one column at every breakpoint,
-    // overflow hidden, autoplay 2500. It sits in the span-8 half.
-    1: {
-      carousel: {
-        kind: 'flickity',
-        columns: { desktop: 1, smallDesktop: 1, tablet: 1, phone: 1 },
-        autoplay: FLICKITY_AUTOPLAY,
-        overflow: 'hidden',
-      },
-    },
+    // `parallax_section nectar-parallax-enabled` on the hero, same as
+    // the Our Story band on the home page.
+    0: { boldLead: [0], parallax: 'fast' },
+    // The same centre-mode carousel as the other destination pages.
+    1: { boldLead: [0], carousel: portfolioCarousel },
     // The extractor dropped this row's heading — it is wrapped in a
     // `nectar-split-heading`, which the flattener walks past — and the
     // two trailing spacers with it. Without them the band renders at
     // 376px against the 820px the live site gives it.
     2: {
       prepend: [{ type: 'heading', level: 'h3', text: 'Why Choose Elegant Address' }],
-      append: [
-        { type: 'spacer', height: 30 },
-        { type: 'spacer', height: 350 },
-      ],
+      append: [{ type: 'spacer', height: 30 }],
     },
-    // measured: 76px top, 0 bottom — the row runs straight into the
-    // full-bleed carousel below it.
-    3: { padBottom: 0 },
+    // measured: 76px top, 0 bottom on the live site — but with the
+    // carousel below now carrying its own 80px viewport inset, dropping
+    // to zero here left the call-us button sitting on the strip at
+    // narrow widths. A small band keeps the gap at every size.
+    3: { boldLead: { 0: 'sentence' }, padBottom: 2 },
     // Same closing band as the destination pages.
     5: closingBand,
     // `.nectar-flickity` instance-1: three across on desktop, two on
@@ -228,17 +230,26 @@ export const sectionOverrides = {
     },
     // These two rows use the *other* carousel Salient ships — the
     // swiper-backed `.nectar-slider-wrap`, fixed at 400px with a 5.5s
-    // rotation and bullet navigation, not Flickity.
-    1: { carousel: { kind: 'slider', height: 400, autorotate: 5500 } },
-    3: { carousel: { kind: 'slider', height: 400, autorotate: 5500 } },
+    // rotation and bullet navigation, not Flickity. Both rows run the
+    // same configuration, so matching the second to the first is a
+    // matter of the shared styling rather than the data.
+    1: { boldLead: [0], carousel: approachSlider },
+    2: { boldLead: [0], parallax: 'fast' },
+    3: { boldLead: [0], carousel: approachSlider },
     // Each of the six tiles is its own `vc_col-sm-4` with the column
     // animation on it, so they reveal as a group rather than in sequence.
-    4: { tileReveal: 'fade-in-from-bottom' },
+    4: { boldLead: [0], tileReveal: 'fade-in-from-bottom' },
   },
 
   about: {
-    // The founder portrait comes in from the right while the copy holds.
-    2: { mediaReveal: 'fade-in-from-right' },
+    // `parallax_section` on both full-height banners, as on the other
+    // pages. Not asked for directly, but it is the same one-line flag
+    // and the rows carry it on the live site.
+    0: { parallax: 'fast' },
+    1: { parallax: 'fast', boldLead: { 0: { paragraph: 1 } } },
+    2: { boldLead: [0], mediaReveal: 'fade-in-from-right' },
+    // The closing band centres, like the home page's.
+    3: { center: true },
   },
 
   contact: {
@@ -248,6 +259,8 @@ export const sectionOverrides = {
       center: true,
       hero: true,
       padBottom: 0,
+      // The card's intro paragraph, above the form.
+      boldLead: { 1: true },
       card: {
         background: '#ffffff',
         radius: 10,
@@ -278,6 +291,25 @@ export const sectionOverrides = {
  * paths once the originals land — nothing else needs to change.
  */
 export const insertedSections = {
+  /**
+   * Louis's call rather than a port: the WordPress row has a 350px
+   * *empty* spacer under "Why Choose Elegant Address" — no image, no
+   * embed, just a hole. It reads as somewhere a picture was meant to go,
+   * so one goes there, as its own full-width parallax band at the height
+   * the spacer reserved.
+   */
+  'cannes-congress': [
+    {
+      at: 3,
+      section: {
+        background: { image: 'images/destinations/cannes-harbour.jpeg' },
+        parallax: 'fast',
+        layout: { pad: 0, cols: [12], fill: 'both', fullWidth: true },
+        groups: [[{ type: 'spacer', height: 350 }]],
+      },
+    },
+  ],
+
   'featured-properties': [
     {
       at: 1,
@@ -350,18 +382,23 @@ export function applyOverrides(page) {
     // an object mapping a group index to the emphasis mode, so a row
     // that bolds one sentence can say so.
     if (boldLead) {
-      const modeFor = (gi) => (Array.isArray(boldLead)
+      const specFor = (gi) => (Array.isArray(boldLead)
         ? (boldLead.includes(gi) ? true : null)
         : (boldLead[gi] ?? null))
 
       groups = groups.map((g, gi) => {
-        const mode = modeFor(gi)
-        if (!mode) return g
+        const spec = specFor(gi)
+        if (!spec) return g
+        // `{ mode, paragraph }` where the bold sits on something other
+        // than the opening paragraph — /about's "Our aim is to give all
+        // of our clients…" is the second one.
+        const mode = typeof spec === 'object' ? (spec.mode ?? true) : spec
+        const leadAt = typeof spec === 'object' ? (spec.paragraph ?? 0) : 0
         let done = false
         return g.map((b) => {
           if (done || b.type !== 'text') return b
           done = true
-          return { ...b, lead: mode }
+          return { ...b, lead: mode, leadAt }
         })
       })
     }

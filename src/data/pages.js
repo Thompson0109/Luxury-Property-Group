@@ -24,3 +24,18 @@ export const pageTitles = Object.fromEntries(
 )
 
 export default pages
+
+/**
+ * Whether a route opens on a full-height hero.
+ *
+ * Salient serves a transparent header with the white logo over a
+ * full-height first section and a solid white one everywhere else — the
+ * port had that hard-coded to `/`, so every other page with a banner
+ * (about, cannes-congress, and both destination pages) got a solid
+ * header sitting on top of its photograph.
+ */
+export const hasFullHeightHero = (pathname) => {
+  const slug = (pathname ?? '').replace(/^\/|\/$/g, '')
+  const page = getPage(slug)
+  return Boolean(page?.sections?.[0]?.layout?.fullHeight)
+}
