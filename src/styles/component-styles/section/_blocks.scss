@@ -103,6 +103,13 @@
   background: currentColor;
 }
 
+// A quieter rule that separates two bands rather than two halves of one.
+.section__divider--thin {
+  height: 1px;
+  margin: 40px 0 0;
+  opacity: 0.3;
+}
+
 // The opening heading of the closing band is a display heading — 94px at
 // a 958px viewport, where the "Get in touch" heading beneath it stays on
 // the ordinary 24px tier. The fluid rule below excludes the last section

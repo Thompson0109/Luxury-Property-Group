@@ -145,7 +145,8 @@ export const sectionOverrides = {
     2: {
       prepend: [{ type: 'heading', level: 'h3', text: 'Why Choose Elegant Address' }],
       keyValue: [0],
-      padBottom: 4,
+      // measured: 47px of white below the last row of cards at 958px.
+      padBottom: 5,
     },
     3: { boldLead: { 0: 'sentence' } },
     4: { carousel: featuredStrip(DESTINATION_TITLES) },
@@ -156,7 +157,15 @@ export const sectionOverrides = {
     0: { boldLead: [0] },
     1: { boldLead: [0], carousel: portfolioCarousel },
     2: { keyValue: [0] },
-    3: { boldLead: { 0: 'sentence' } },
+    // ⚠ Louis's screenshot shows a rule under the call-us button here
+    // that /france does not have. I could not confirm it: the local
+    // install has no divider element in this row, and the hosted site
+    // was behind a certificate error. Added as a quiet 1px rule — adjust
+    // or drop the `append` if it should be heavier or is not wanted.
+    3: {
+      boldLead: { 0: 'sentence' },
+      append: [{ type: 'divider', variant: 'thin' }],
+    },
     4: { carousel: featuredStrip(DESTINATION_TITLES) },
     5: closingBand,
   },

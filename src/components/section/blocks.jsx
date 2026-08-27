@@ -252,8 +252,13 @@ function Portfolio({ block }) {
  * of margin either side of it and a 20px spacer beyond that, sitting
  * between "Our Story" and "Get in touch to discuss your needs".
  */
-function Divider() {
-  return <hr className="section__divider" aria-hidden="true" />
+function Divider({ block = {} }) {
+  return (
+    <hr
+      className={`section__divider${block.variant ? ` section__divider--${block.variant}` : ''}`}
+      aria-hidden="true"
+    />
+  )
 }
 
 function Spacer({ block }) {
@@ -278,7 +283,7 @@ function Block({ block, inverse, carousel }) {
     case 'image':     return <Image block={block} />
     case 'portfolio': return <Portfolio block={block} />
     case 'spacer':    return <Spacer block={block} />
-    case 'divider':   return <Divider />
+    case 'divider':   return <Divider block={block} />
     case 'form':      return <EnquiryForm formId={block.formId} />
     default:          return null
   }
