@@ -98,3 +98,85 @@
   .portfolio__image,
   .portfolio__meta { transition: none; }
 }
+
+// ── Sort menu ────────────────────────────────────────────────────────
+// Salient's `.portfolio-filters`: a 200x40 accent block above the grid
+// reading "Sort Portfolio", opening onto All plus one entry per
+// category. Measured on the live grid at 200x40 on the accent, 17px.
+.portfolio-filters {
+  position: relative;
+  z-index: 20;
+  width: 200px;
+  margin: 0 0 20px;
+  font-size: v.$body-size;
+}
+
+.portfolio-filters__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  height: 40px;
+  padding: 0 14px;
+  border: 0;
+  background: v.$accent;
+  color: v.$white;
+  cursor: pointer;
+  font-family: v.$font-body;
+  font-size: inherit;
+  text-align: left;
+
+  &:hover { background: v.$accent-hover; }
+
+  &:focus-visible { outline: 2px solid v.$white; outline-offset: -3px; }
+}
+
+// A chevron, matching the `fa-angle-down` the original uses.
+.portfolio-filters__caret {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-2px) rotate(45deg);
+  transition: transform v.$dur-nav-underline v.$ease-out;
+}
+
+.portfolio-filters.is-open .portfolio-filters__caret {
+  transform: translateY(2px) rotate(-135deg);
+}
+
+.portfolio-filters__list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: v.$accent;
+  // The menu overlays the grid rather than pushing it down, as the
+  // original's does.
+  display: none;
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 11px 14px;
+    border: 0;
+    background: none;
+    color: rgba(255, 255, 255, 0.85);
+    cursor: pointer;
+    font-family: v.$font-body;
+    font-size: inherit;
+    text-align: left;
+
+    &:hover { background: v.$accent-hover; color: v.$white; }
+
+    &[aria-current] { color: v.$white; font-weight: 700; }
+
+    &:focus-visible { outline: 2px solid v.$white; outline-offset: -3px; }
+  }
+}
+
+.portfolio-filters.is-open .portfolio-filters__list { display: block; }

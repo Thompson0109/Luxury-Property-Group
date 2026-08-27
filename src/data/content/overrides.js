@@ -321,21 +321,26 @@ export const insertedSections = {
         groups: [[
           {
             type: 'portfolio',
+            // Categories read off `data-project-cat` on the live grid;
+            // the sort menu lists exactly these three plus "All".
             items: [
               {
                 title: 'Saint Jean Cap Ferrat 6 Bedroom Villa',
                 image: 'images/properties/property-12-villa-pool.jpeg',
                 href: '/featured-properties',
+                category: { slug: 'saint-jean-cap-ferrat', label: 'Saint Jean Cap Ferrat' },
               },
               {
                 title: 'Villa Ginger Lily',
                 image: 'images/properties/property-01-infinity-pool.jpeg',
                 href: '/featured-properties',
+                category: { slug: 'parish-of-st-james', label: 'Parish of St James' },
               },
               {
                 title: 'Cannes CN-642: 11 Bedroom Villa',
                 image: 'images/properties/property-05-terraced-gardens.jpeg',
                 href: '/featured-properties',
+                category: { slug: 'cannes', label: 'Cannes' },
               },
             ],
           },

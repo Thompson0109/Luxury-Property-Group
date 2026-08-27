@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import EnquiryForm from '../EnquiryForm'
 import SplitHeading from '../SplitHeading'
@@ -217,26 +218,106 @@ function Cards({ block }) {
  * The 30ms delay on the image is deliberate — the bar starts first and
  * the picture follows it up, which is what makes the two read as one
  * movement rather than two.
+ *
+ * Above the grid sits Salient's "Sort Portfolio" menu, filtering by the
+ * item's category. The original is `.portfolio-filters` driving isotope;
+ * this filters the array instead, which needs no layout library and
+ * reflows on its own.
  */
 function Portfolio({ block }) {
+  const [open, setOpen] = useState(false)
+  const [filter, setFilter] = useState('*')
+  const ref = useRef(null)
+
+  // Categories in the order the items declare them, deduped, then
+  // alphabetical — which is the order the live menu happens to use.
+  const categories = []
+  for (const item of block.items) {
+    if (item.category && !categories.some((c) => c.slug === item.category.slug)) {
+      categories.push(item.category)
+    }
+  }
+  categories.sort((a, b) => a.label.localeCompare(b.label))
+
+  useEffect(() => {
+    if (!open) return
+    const away = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false) }
+    const esc = (e) => e.key === 'Escape' && setOpen(false)
+    document.addEventListener('pointerdown', away)
+    document.addEventListener('keydown', esc)
+    return () => {
+      document.removeEventListener('pointerdown', away)
+      document.removeEventListener('keydown', esc)
+    }
+  }, [open])
+
+  const label = filter === '*'
+    ? 'Sort Portfolio'
+    : (categories.find((c) => c.slug === filter)?.label ?? 'Sort Portfolio')
+
+  const shown = filter === '*'
+    ? block.items
+    : block.items.filter((i) => i.category?.slug === filter)
+
+  const choose = (slug) => { setFilter(slug); setOpen(false) }
+
   return (
-    <div className="portfolio">
-      {block.items.map(({ title, image, href }) => (
-        <article className="portfolio__item" key={title}>
-          <Link className="portfolio__frame" to={href || '/featured-properties'}>
-            <img
-              className="portfolio__image"
-              src={assetUrl(image)}
-              alt=""
-              loading="lazy"
-            />
-            <span className="portfolio__meta">
-              <span className="portfolio__title">{title}</span>
-            </span>
-          </Link>
-        </article>
-      ))}
-    </div>
+    <>
+      {categories.length > 0 && (
+        <div className={`portfolio-filters${open ? ' is-open' : ''}`} ref={ref}>
+          <button
+            type="button"
+            className="portfolio-filters__toggle"
+            aria-expanded={open}
+            onClick={() => setOpen((v) => !v)}
+          >
+            <span>{label}</span>
+            <span className="portfolio-filters__caret" aria-hidden="true" />
+          </button>
+
+          <ul className="portfolio-filters__list">
+            <li>
+              <button
+                type="button"
+                onClick={() => choose('*')}
+                aria-current={filter === '*' || undefined}
+              >
+                All
+              </button>
+            </li>
+            {categories.map(({ slug, label: name }) => (
+              <li key={slug}>
+                <button
+                  type="button"
+                  onClick={() => choose(slug)}
+                  aria-current={filter === slug || undefined}
+                >
+                  {name}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="portfolio">
+        {shown.map(({ title, image, href }) => (
+          <article className="portfolio__item" key={title}>
+            <Link className="portfolio__frame" to={href || '/featured-properties'}>
+              <img
+                className="portfolio__image"
+                src={assetUrl(image)}
+                alt=""
+                loading="lazy"
+              />
+              <span className="portfolio__meta">
+                <span className="portfolio__title">{title}</span>
+              </span>
+            </Link>
+          </article>
+        ))}
+      </div>
+    </>
   )
 }
 
