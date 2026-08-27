@@ -34,20 +34,55 @@ function Heading({ block }) {
 }
 
 /**
- * `lead` marks the opening paragraph as the section's standfirst.
+ * The extractor flattens `post_content` to plain strings, so every piece
+ * of inline markup in the source is lost. WordPress uses `<strong>` in
+ * three distinct shapes across these pages, and they are not
+ * interchangeable — bolding a whole paragraph where the source bolds one
+ * sentence is as wrong as not bolding it at all.
  *
- * On the WordPress site those paragraphs are wrapped in `<strong>` —
- * confirmed on the hosted install for the two destination blocks, the
- * featured-properties intro and "Why Choose Elegant Address", where the
- * strong renders Open Sans 700 and inherits the row's colour. The
- * extractor flattens `post_content` to plain strings, so every piece of
- * inline markup in the source is lost; the flag puts this one back.
+ *   lead: true        the whole opening paragraph — hero standfirsts,
+ *                     the destination blocks, "Our Story"
+ *   lead: 'sentence'  only the opening sentence, with the rest of the
+ *                     same paragraph left plain — every "Featured
+ *                     Properties" intro on the site
+ *   keyValue: true    the key of a "Key: value" line, up to and
+ *                     including the colon — the "Why Choose Elegant
+ *                     Address" lists
  */
+function emphasise(text, { lead, keyValue, first }) {
+  if (keyValue) {
+    const colon = text.indexOf(':')
+    if (colon > 0) {
+      return (
+        <>
+          <strong>{text.slice(0, colon + 1)}</strong>
+          {text.slice(colon + 1)}
+        </>
+      )
+    }
+    return text
+  }
+
+  if (!first || !lead) return text
+  if (lead !== 'sentence') return <strong>{text}</strong>
+
+  // First sentence only: the break is a full stop followed by a space.
+  const end = text.indexOf('. ')
+  if (end < 0) return <strong>{text}</strong>
+  return (
+    <>
+      <strong>{text.slice(0, end + 1)}</strong>
+      {text.slice(end + 1)}
+    </>
+  )
+}
+
 function Text({ block }) {
+  const { lead, keyValue } = block
   return (
     <div className="section__text">
       {block.paragraphs.map((p, i) => (
-        <p key={i}>{block.lead && i === 0 ? <strong>{p}</strong> : p}</p>
+        <p key={i}>{emphasise(p, { lead, keyValue, first: i === 0 })}</p>
       ))}
     </div>
   )

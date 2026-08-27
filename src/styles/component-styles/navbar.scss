@@ -24,11 +24,22 @@
   justify-content: space-between;
   gap: 24px;
   width: 100%;
+  // The header uses the site container, not a flat gutter. Measured on
+  // the WordPress install at a 958px viewport: `#logo` sits at x=172,
+  // which is exactly where the 600px container starts — the logo lines
+  // up with the body copy below it. A 24px gutter put it hard against
+  // the window edge and out of step with every row on the page.
   max-width: v.$container-max;
   margin-inline: auto;
   min-height: v.$header-height;
-  padding: 0 v.$gutter;
+  padding-inline: v.$container-pad;
   transition: min-height v.$dur-header v.$ease-out;
+
+  // Salient pins the measure below 1000px rather than scaling it, so the
+  // container centres itself and the padding goes away — same rule the
+  // `.container` class follows.
+  @include v.at-tablet { max-width: v.$container-tablet; padding-inline: 0; }
+  @include v.at-phone  { max-width: v.$container-phone;  padding-inline: 0; }
 
   // Below the nav breakpoint the logo drops to 60px but the bar was
   // still holding the full 140px, leaving 80px of empty white above a

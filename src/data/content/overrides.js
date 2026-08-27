@@ -50,7 +50,9 @@ export const sectionOverrides = {
     // `parallax_section nectar-parallax-enabled` with
     // `data-parallax-speed="fast"` — the Our Story band.
     2: { parallax: 'fast' },
-    3: { boldLead: [0] },
+    // One sentence, not the paragraph: the source is
+    // `<strong>Indulge ... properties.</strong> Our portfolio ...`.
+    3: { boldLead: { 0: 'sentence' } },
     // The featured strip is a Flickity row: three across on desktop, two
     // on tablet, one on phone, 10px between cells, `overflow: visible` so
     // the next cell peeks past the edge, advancing every 2.5s with no
@@ -241,7 +243,7 @@ export function applyOverrides(page) {
 
     const {
       padTop, padBottom, center, fullWidth, hero, prepend, append, boldLead,
-      background, ...rest
+      keyValue, background, ...rest
     } = o
     const layout = { ...section.layout }
     if (center) layout.center = true
@@ -258,17 +260,33 @@ export function applyOverrides(page) {
     }
 
     // The standfirst of the named groups — the first paragraph of their
-    // first text block.
+    // first text block. `boldLead` is either a list of group indices or
+    // an object mapping a group index to the emphasis mode, so a row
+    // that bolds one sentence can say so.
     if (boldLead) {
+      const modeFor = (gi) => (Array.isArray(boldLead)
+        ? (boldLead.includes(gi) ? true : null)
+        : (boldLead[gi] ?? null))
+
       groups = groups.map((g, gi) => {
-        if (!boldLead.includes(gi)) return g
+        const mode = modeFor(gi)
+        if (!mode) return g
         let done = false
         return g.map((b) => {
           if (done || b.type !== 'text') return b
           done = true
-          return { ...b, lead: true }
+          return { ...b, lead: mode }
         })
       })
+    }
+
+    // "Key: value" lists — every text block in the named groups.
+    if (keyValue) {
+      groups = groups.map((g, gi) => (
+        keyValue.includes(gi)
+          ? g.map((b) => (b.type === 'text' ? { ...b, keyValue: true } : b))
+          : g
+      ))
     }
 
     // Blocks the extractor lost. Applied to the first group, which is
