@@ -52,6 +52,13 @@
 
 .section__text:last-child { margin-bottom: 0; }
 
+// …but `:last-child` also matches the second half of a `.section__pair`,
+// and a pair is often not the end of its column. On /featured-properties
+// that dropped the 35px under the last paragraph and left the "Call us"
+// button's border sitting on the line of text above it. Only a pair that
+// really does end the column gives its margin up.
+.section__pair:not(:last-child) > .section__text:last-child { margin-bottom: 35px; }
+
 .btn + .btn { margin-top: 12px; }
 
 // ── Heading scale below 1000px ───────────────────────────────────────
