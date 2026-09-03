@@ -19,7 +19,11 @@
 
 .section__cards + .section__cards { margin-top: 10px; }
 
-.section__card { padding-inline: 5px; }
+// Scoped to the grid on purpose. `.section__card` is also the floating
+// form panel on /contact (see `_columns.scss`), and this file loads after
+// that one — so an unscoped `padding-inline` here was overriding the
+// panel's 8% and squeezing its copy to 5px from each edge.
+.section__cards > .section__card { padding-inline: 5px; }
 
 .section__card-link {
   --tilt-x: 0;
