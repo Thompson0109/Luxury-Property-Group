@@ -171,7 +171,13 @@ export const sectionOverrides = {
 
   barbados: {
     0: { boldLead: [0] },
-    1: { boldLead: [0], carousel: portfolioCarousel },
+    // /barbados is the one page that hides its header on the way down.
+    // The behaviour starts at this band — "1,200+ properties in our
+    // portfolio" — and from there any downward scroll takes the bar with
+    // it, while any upward scroll brings it straight back. `navAutoHide`
+    // rides through `applyOverrides` as a section flag; Section renders
+    // it as the `data-nav-autohide` marker Navbar watches for.
+    1: { boldLead: [0], carousel: portfolioCarousel, navAutoHide: true },
     2: { keyValue: [0] },
     // ⚠ Louis's screenshot shows a rule under the call-us button here
     // that /france does not have. I could not confirm it: the local

@@ -16,6 +16,11 @@
     background: v.$header-bg;
     box-shadow: v.$shadow-header;
   }
+
+  // /barbados takes the bar with it on the way down from the "1,200+
+  // properties" band — see Navbar.jsx. `transform` is already in the
+  // transition list above, so it slides rather than blinking out.
+  &.is-hidden { transform: translateY(-100%); }
 }
 
 .navbar__inner {

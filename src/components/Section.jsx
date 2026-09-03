@@ -51,6 +51,7 @@ export default function Section({ section, index, isHero }) {
   const {
     background = {}, groups = [], layout = {},
     carousel, tileReveal, mediaReveal, reveal, delay, card, parallax,
+    navAutoHide,
   } = section
   const { color, image, overlay, video } = background
   const {
@@ -108,6 +109,7 @@ export default function Section({ section, index, isHero }) {
         image && parallax ? 'section--parallax' : '',
       ].filter(Boolean).join(' ')}
       style={style}
+      data-nav-autohide={navAutoHide ? '' : undefined}
     >
       {image && parallax && (
         <div

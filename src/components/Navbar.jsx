@@ -78,6 +78,7 @@ export default function Navbar() {
   const location = useLocation()
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
 
   // Salient served a transparent header with the white logo over the
   // full-height hero (redux: header-starting-logo = the white variant),
@@ -95,6 +96,37 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Hide-on-the-way-down, reveal-on-the-way-up — /barbados only, from the
+  // "1,200+ properties" band onward. The band marks itself with
+  // `data-nav-autohide` (see overrides.js); every other page has no
+  // marker, so this costs one failed lookup and nothing else.
+  //
+  // The marker is queried inside the handler rather than once on mount:
+  // routes are lazily loaded, so on a cold navigation the page is still a
+  // fallback when this effect first runs and a single lookup would miss.
+  useEffect(() => {
+    let last = window.scrollY
+    let marker = null
+
+    const onScroll = () => {
+      marker = marker?.isConnected ? marker : document.querySelector('[data-nav-autohide]')
+      if (!marker) return
+
+      const y = window.scrollY
+      // A trackpad emits a stream of sub-pixel deltas either side of a
+      // gesture; reacting to those flickers the bar on and off.
+      if (Math.abs(y - last) < 4) return
+      const down = y > last
+      last = y
+
+      const from = marker.getBoundingClientRect().top + y
+      setIsHidden(down && y > from)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [location.pathname])
+
   // Close the mobile menu on navigation. Adjusting state during render
   // (rather than in an effect) avoids a cascading second render, and
   // still catches back/forward navigation that no click handler sees.
@@ -102,6 +134,9 @@ export default function Navbar() {
   if (lastPath !== location.pathname) {
     setLastPath(location.pathname)
     setIsOpen(false)
+    // Leaving /barbados with the bar parked off-screen would carry a
+    // hidden header onto the next page.
+    setIsHidden(false)
   }
 
   useEffect(() => {
@@ -115,6 +150,8 @@ export default function Navbar() {
         'navbar',
         isTransparent ? '' : 'is-scrolled',
         isOpen ? 'is-open' : '',
+        // Never out of reach while the menu it opens is on screen.
+        isHidden && !isOpen ? 'is-hidden' : '',
       ].filter(Boolean).join(' ')}
     >
       <div className="navbar__inner">
