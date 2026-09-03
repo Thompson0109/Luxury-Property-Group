@@ -103,12 +103,17 @@
 // Salient's `.portfolio-filters`: a 200x40 accent block above the grid
 // reading "Sort Portfolio", opening onto All plus one entry per
 // category. Measured on the live grid at 200x40 on the accent, 17px.
+// measured on the live grid: `margin: 30px auto 24px` on a 600px column,
+// so the block is centred over the grid rather than ranged left with it,
+// and the label is 12px/21px Open Sans at the body weight — not the 17px
+// body size, which was rendering it half again too large.
 .portfolio-filters {
   position: relative;
   z-index: 20;
   width: 200px;
-  margin: 0 0 20px;
-  font-size: v.$body-size;
+  margin: 30px auto 24px;
+  font-size: 12px;
+  line-height: 21px;
 }
 
 .portfolio-filters__toggle {
@@ -118,13 +123,18 @@
   gap: 12px;
   width: 100%;
   height: 40px;
-  padding: 0 14px;
+  // measured: `padding: 9px 40px 10px 15px` with a 2px radius — the copy
+  // starts 15px in and the chevron keeps the right-hand 40px to itself.
+  padding: 0 15px;
   border: 0;
+  border-radius: 2px;
   background: v.$accent;
   color: v.$white;
   cursor: pointer;
   font-family: v.$font-body;
   font-size: inherit;
+  font-weight: 400;
+  line-height: inherit;
   text-align: left;
 
   &:hover { background: v.$accent-hover; }
@@ -162,7 +172,9 @@
   button {
     display: block;
     width: 100%;
-    padding: 11px 14px;
+    padding: 9px 15px;
+    font-weight: 400;
+    line-height: inherit;
     border: 0;
     background: none;
     color: rgba(255, 255, 255, 0.85);
