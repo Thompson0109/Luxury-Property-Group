@@ -66,7 +66,17 @@
   @media (max-width: v.$bp-tablet) { height: v.$logo-height-mob; }
 }
 
-.navbar.is-scrolled .navbar__logo img { height: v.$logo-height-small; }  // measured: 74px
+// measured: 74px at the desktop ramp. Below the nav breakpoint the mark
+// is already at its small size, and this rule — which carried no media
+// query — was overriding that and growing it from 60px to 74px at the
+// exact moment the bar collapsed to 80px, so the logo overflowed its own
+// header and sat 3px from the top. The live install holds 139x60 in both
+// states at this width; so does this now.
+.navbar.is-scrolled .navbar__logo img {
+  height: v.$logo-height-small;
+
+  @include v.below-tablet { height: v.$logo-height-mob; }
+}
 
 // ── Links ────────────────────────────────────────────────────────────
 .navbar__links {

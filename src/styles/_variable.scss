@@ -159,8 +159,11 @@ $logo-height-mob:      60px;
 // Sized from the logo rather than measured: the target's mobile bar is a
 // good deal shorter than its desktop one, and the port was holding the
 // full 140px behind a 60px mark. 20px of air either side of the logo.
-$header-height-mob:       100px;
-$header-height-mob-small: 80px;
+// measured on the live install at a 958px viewport: the header holds 84px
+// whether or not the page has been scrolled — 60px of logo with 12px above
+// and below — and does not collapse the way the desktop ramp does.
+$header-height-mob:       84px;
+$header-height-mob-small: 84px;
 $nav-breakpoint:       $bp-tablet;
 
 // ── Buttons ──────────────────────────────────────────────────────────
