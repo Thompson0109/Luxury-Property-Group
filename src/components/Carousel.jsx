@@ -154,6 +154,10 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
   }
   if (peek) style['--carousel-cell'] = `${peek}%`
   if (height) style['--carousel-height'] = `${height}px`
+  // The active bullet's arc sweeps once round over exactly one rotation,
+  // so the ring is the countdown to the next slide rather than a
+  // decoration that happens to spin.
+  if (interval) style['--carousel-ring'] = `${interval}ms`
 
   return (
     <div
@@ -164,6 +168,8 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
         bulletsInside ? 'carousel--bullets-inside' : '',
         overflow === 'visible' ? 'carousel--bleed' : '',
         inverse ? 'carousel--inverse' : '',
+        interval ? '' : 'carousel--static',
+        paused ? 'is-paused' : '',
       ].filter(Boolean).join(' ')}
       style={style}
       onMouseEnter={() => setPaused(true)}
@@ -240,7 +246,20 @@ export default function Carousel({ images = [], config = {}, inverse = false }) 
                 aria-label={`Slide ${i + 1} of ${count}`}
                 aria-current={index % pages === i || undefined}
                 onClick={() => setIndex(i)}
-              />
+              >
+                {/* Inactive slides are a plain filled dot; the active one
+                    swaps to the ring below. */}
+                <span className="carousel__bullet-dot" />
+                <svg
+                  className="carousel__bullet-ring"
+                  viewBox="0 0 72 72"
+                  aria-hidden="true"
+                  focusable="false"
+                >
+                  <circle className="carousel__bullet-track" cx="36" cy="36" r="28" />
+                  <circle className="carousel__bullet-time" cx="36" cy="36" r="28" />
+                </svg>
+              </button>
             </li>
           ))}
         </ul>
