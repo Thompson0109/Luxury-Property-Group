@@ -283,7 +283,11 @@ export const sectionOverrides = {
     // 457px of top padding is not a design decision — it is the room the
     // card above needs after its -25% margin has pulled it down. Keeping
     // both reproduces the 131px of real gap the live site shows.
-    1: { padBottom: 6 },
+    //
+    // "Why choose Elegant Address" is centred on the live page — heading,
+    // copy and both buttons — the same treatment the other closing bands
+    // get. It was the only one ranged left.
+    1: { center: true, padBottom: 6 },
   },
 }
 
