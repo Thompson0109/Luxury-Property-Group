@@ -337,7 +337,13 @@ export const insertedSections = {
         background: {},
         // measured: the row itself is unpadded and the column inside
         // it carries `padding-4-percent`.
-        layout: { pad: 4, cols: [12], fill: 'both' },
+        //
+        // The foot of the row needs more than the head: Salient's 4% is
+        // 4% of the 1245px row, not of the viewport, and there is another
+        // 26px of row gap under it before the closing band. Measured at
+        // 1440: 49.8 + 26 = 75.8px of air below the last card, where a
+        // symmetric 4vw was leaving 58.
+        layout: { pad: 4, padBottom: 5.25, cols: [12], fill: 'both' },
         groups: [[
           {
             type: 'portfolio',
