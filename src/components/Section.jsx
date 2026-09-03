@@ -9,6 +9,30 @@ const PAD_CLASS = {
   0: 'none', 4: 'sm', 5: 'base', 6: 'md', 9: 'lg', 13: 'xl', 24: 'xxl',
 }
 
+/**
+ * Salient paints a colour scrim over a background video or photo. The
+ * stylesheet fixes that at `opacity: .5`, which is right for the rows
+ * whose overlay the extractor recorded as a bare hex — but the two video
+ * heroes carry their own alpha, and it came out of the extractor as
+ * `rgba(0,0,0,1.78)`. CSS clamps that alpha to 1, the stylesheet's 0.5
+ * then halved it, and the heroes landed at 50% black against the 70% the
+ * live rows actually run — the "WordPress looks darker" of it.
+ *
+ * So an overlay that states an alpha drives the element's opacity itself,
+ * clamped; the stylesheet default is left to the values that state none.
+ */
+const RGBA = /^rgba?\(\s*([\d.]+)[\s,]+([\d.]+)[\s,]+([\d.]+)(?:[\s,/]+([\d.]+))?\s*\)$/i
+
+function overlayStyle(overlay) {
+  const parts = RGBA.exec(overlay)
+  if (!parts || parts[4] === undefined) return { backgroundColor: overlay }
+  const [, r, g, b, a] = parts
+  return {
+    backgroundColor: `rgb(${r}, ${g}, ${b})`,
+    opacity: Math.min(1, Math.max(0, Number(a))),
+  }
+}
+
 function renderBlocks(blocks, keyPrefix, onDark, carousel) {
   return withTextPairs(blocks).map((item, i) => (
     item.pair ? (
@@ -36,6 +60,14 @@ export default function Section({ section, index, isHero }) {
 
   // Text inverts on dark and photographic backgrounds.
   const onDark = Boolean(video || image || (color && color !== '#ffffff'))
+
+  // Every row with a background video carries Salient's black scrim at
+  // 0.7 — measured on the live install, on the heroes and on all six
+  // closing call-to-action bands alike. The extractor records the row
+  // colour and the video id but never the scrim, so the default lives
+  // here rather than being restated in seven overrides; a row that names
+  // its own overlay still wins.
+  const scrim = overlay ?? (video ? 'rgba(0, 0, 0, 0.7)' : undefined)
 
   const style = {}
   if (color) style.backgroundColor = color
@@ -87,8 +119,8 @@ export default function Section({ section, index, isHero }) {
       )}
 
       {video && <VideoBackdrop id={video} poster={image ? assetUrl(image) : undefined} />}
-      {overlay && (
-        <div className="section__overlay" style={{ backgroundColor: overlay }} aria-hidden="true" />
+      {scrim && (
+        <div className="section__overlay" style={overlayStyle(scrim)} aria-hidden="true" />
       )}
 
       <div

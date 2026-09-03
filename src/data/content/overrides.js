@@ -92,6 +92,12 @@ const closingBand = {
 
 export const sectionOverrides = {
   home: {
+    // measured on the local install: the hero's `.video-color-overlay`
+    // runs at 0.7 over the #2b323a row. The extractor recorded it as
+    // `rgba(0,0,0,1.78)`, which CSS clamps — see `overlayStyle` in
+    // Section.jsx — so the value is restated here at the opacity the
+    // live row carries.
+    0: { background: { overlay: 'rgba(0, 0, 0, 0.7)' } },
     // Both destination blocks run Salient's swiper-backed slider rather
     // than a stack of images: a fixed 400px frame, `classic` controls —
     // a 50x60 chevron on rgba(0,0,0,.4) either side and a row of bullets
@@ -139,8 +145,10 @@ export const sectionOverrides = {
     5: { boldLead: [0] },
     // Louis's call rather than a match: the live row is an 8|4 with its
     // copy ranged left, but the wave footage behind it runs bright in
-    // places and the type was getting lost. Centred, on a scrim.
-    6: { center: true, background: { overlay: '#000000' } },
+    // places and the type was getting lost. Centred. The scrim it used to
+    // name here is now the shared default every video row gets — see
+    // Section.jsx — so it is no longer restated.
+    6: { center: true },
   },
 
   'south-of-france': {
@@ -221,7 +229,9 @@ export const sectionOverrides = {
     // The display heading is 5vw/5.5vw and centred, with the 22px
     // uppercase kicker under it. The whole column enters on
     // `fade-in-from-bottom` at a 300ms delay — the only 300 on the site.
+    // Same 0.7 video scrim as the home hero.
     0: {
+      background: { overlay: 'rgba(0, 0, 0, 0.7)' },
       center: true,
       hero: true,
       fullWidth: true,
