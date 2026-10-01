@@ -11,7 +11,7 @@
  * Everything here was read off the running install at
  * luxury-property-group.local with `tools/wp-audit`, and is keyed by
  * page slug then section index so it stays legible against a re-run of
- * the extractor. `pages.json` remains generated and unedited.
+ * the extractor. `pages.json` is the content model; copy edits are now made in it directly.
  *
  * Section keys:
  *   padTop / padBottom  override the symmetric `layout.pad` where the
@@ -159,7 +159,14 @@ export const sectionOverrides = {
     // flattener walks past. The four paragraphs under it are a
     // "Key: value" list.
     2: {
-      prepend: [{ type: 'heading', level: 'h3', text: 'Why Choose Elegant Address' }],
+      // Client wording (Suzan, 23 Sep 2026). Barbados's equivalent heading
+      // lives in pages.json, without "or Corporate Venue" — that omission is
+      // assumed, not stated, and is worth confirming with her.
+      prepend: [{
+        type: 'heading',
+        level: 'h3',
+        text: 'Why choose the Luxury Property Group to find your ideal Luxurious Villa or Corporate Venue',
+      }],
       keyValue: [0],
       // measured: 47px of white below the last row of cards at 958px.
       padBottom: 5,

@@ -22,22 +22,19 @@ export const site = {
 }
 
 export const contact = {
-  // TODO:DB — confirm against the live footer / Contact Form 7 recipient
-  offices: [
-    { label: 'Head Office', tel: '+44 (0) 1244 62 99 63', href: 'tel:+441244629963' },
-    { label: 'London Office', tel: '+44 (0) 2037 57 66 09', href: 'tel:+442037576609' },
-  ],
+  // Confirmed by the client (Suzan, email of 23 Sep 2026): one number and
+  // one address for the whole site. The WordPress install had separate
+  // Head Office / London Office numbers and enquiries@ — all retired.
+  // If this changes, `phone.href` is what every "Call us" button and the
+  // footer link to; page buttons in content/pages.json carry their own copy.
+  phone: { tel: '+44 (0)751 408 8223', href: 'tel:+447514088223' },
 
-  email: 'enquiries@elegant-address.com',
+  email: 'suzan@elegant-address.com',
 
   address: {
     company: 'Elegant Address Luxury Property Group',
     lines: ['Egerton House', '55 Hoole Road', 'Chester', 'CH2 3NJ', 'United Kingdom'],
   },
-
-  openingHours: [
-    { days: 'Monday – Friday', hours: '9.00am – 5.30pm' },
-  ],
 
   companyNumber: '5931566',
 }

@@ -75,11 +75,30 @@
 // live site has no footer widget content at all, so there is nothing it
 // was matching.
 
+// Awards strip — client request (Suzan, 23 Sep 2026): "make the awards bit
+// clearer". A deliberate departure from the WordPress original, which
+// squeezed the strip into the brand column at 260px, 65% opacity.
+//
+// It now takes its own full-width row under the four columns and renders
+// at the file's native 771px (any larger and the PNG softens — a
+// higher-resolution export from the client would let this grow further).
+// The source art is grey marks on opaque white, so it is inverted to light
+// marks and `screen`-blended: the inverted white becomes black, which
+// screen drops out entirely, leaving the badges floating on the footer
+// ground instead of sitting in a dark box.
+.footer__awards {
+  grid-column: 1 / -1;
+
+  @media (min-width: v.$bp-tablet) { padding-top: 45px; }
+}
+
 .footer__badges {
-  max-width: 260px;
-  margin-top: 24px;
-  opacity: 0.65;
-  filter: grayscale(1) invert(1);
+  display: block;
+  width: 100%;
+  max-width: 771px;
+  height: auto;
+  filter: grayscale(1) invert(1) brightness(1.2);
+  mix-blend-mode: screen;
 }
 
 // measured on an injected `h4.widgettitle`: Merriweather 700, 15px/32px,
@@ -118,26 +137,11 @@
   a { display: block; }
 }
 
-// A phone number sits under its own label, so those items need the extra
-// air the 4px rhythm doesn't give them.
-.footer__list--spaced li { padding-bottom: 12px; }
-
-.footer__label {
-  display: block;
-  color: v.$footer-secondary;
-  font-size: 13px;
-}
-
 .footer__address {
   margin-bottom: 20px;
   font-style: normal;
 
   span { display: block; }
-}
-
-.footer__hours {
-  color: v.$footer-secondary;
-  font-size: 14px;
 }
 
 // ── Copyright ────────────────────────────────────────────────────────

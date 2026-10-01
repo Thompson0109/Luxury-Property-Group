@@ -1,9 +1,10 @@
 /**
  * Content extracted from the WordPress database by scripts/extract.py.
  *
- * pages.json is generated — do not hand-edit it. Re-run the extractor
- * against a fresh SQL dump to pick up content changes, then review the
- * diff.
+ * pages.json began life as generated output, and the WordPress source is
+ * now retired: since the first delivery (28 Sep 2026) copy changes from the
+ * client are made directly in pages.json / posts.json. Don't re-run
+ * scripts/extract.py over it — that would overwrite them.
  */
 import rawPages from './content/pages.json'
 import { applyOverrides } from './content/overrides'

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import EnquiryForm from '../EnquiryForm'
 import SplitHeading from '../SplitHeading'
 import Carousel from '../Carousel'
@@ -82,11 +82,25 @@ function emphasise(text, { lead, keyValue, first }) {
   )
 }
 
+/**
+ * A text block may carry `variants`: alternative paragraphs keyed by the
+ * `?destination=` query parameter. Used by the /contact intro, which the
+ * South of France and Barbados buttons share but which the client words
+ * differently per destination. No parameter (or an unknown one) falls back
+ * to `paragraphs`.
+ */
 function Text({ block }) {
-  const { lead, keyValue, leadAt = 0 } = block
+  const { lead, keyValue, leadAt = 0, variants } = block
+  const [params] = useSearchParams()
+  const destination = params.get('destination')
+  const paragraphs =
+    variants && destination && Object.hasOwn(variants, destination)
+      ? variants[destination]
+      : block.paragraphs
+
   return (
     <div className="section__text">
-      {block.paragraphs.map((p, i) => (
+      {paragraphs.map((p, i) => (
         <p key={i}>{emphasise(p, { lead, keyValue, first: i === leadAt })}</p>
       ))}
     </div>
