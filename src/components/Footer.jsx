@@ -19,12 +19,6 @@ export default function Footer() {
             className="footer__logo"
             width="601" height="260" loading="lazy"
           />
-          <img
-            src={awardBadges}
-            alt="Awards and accreditations"
-            className="footer__badges"
-            loading="lazy"
-          />
         </div>
 
         <div className="footer__column">
@@ -38,19 +32,11 @@ export default function Footer() {
         </div>
 
         <div className="footer__column">
-          <h2 className="footer__heading">Speak to a consultant</h2>
-          <ul className="footer__list footer__list--spaced">
-            {contact.offices.map(({ label, tel, href }) => (
-              <li key={label}>
-                <span className="footer__label">{label}</span>
-                <a href={href}>{tel}</a>
-              </li>
-            ))}
+          <h2 className="footer__heading">Let us assist you</h2>
+          <ul className="footer__list">
+            <li><a href={contact.phone.href}>{contact.phone.tel}</a></li>
             <li><a href={`mailto:${contact.email}`}>{contact.email}</a></li>
           </ul>
-          {contact.openingHours.map(({ days, hours }) => (
-            <p key={days} className="footer__hours">{days}<br />{hours}</p>
-          ))}
         </div>
 
         <div className="footer__column">
@@ -63,6 +49,15 @@ export default function Footer() {
               <li key={to}><Link to={to}>{label}</Link></li>
             ))}
           </ul>
+        </div>
+
+        <div className="footer__awards">
+          <img
+            src={awardBadges}
+            alt="Awards and accreditations"
+            className="footer__badges"
+            width="771" height="120" loading="lazy"
+          />
         </div>
       </div>
 
