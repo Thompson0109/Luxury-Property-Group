@@ -199,7 +199,7 @@
               "type": "text",
               "paragraphs": [
                 "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
-                "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday experiences in some of the most magnificent properties in the world."
+                "Our Founder Suzie Thompson set out to create a unique, bespoke property consultancy, The Luxury Property Group, which would specialise in the most desirable locations in the French Riviera. Her aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday and corporate experiences in some of the most magnificent properties in the world."
               ]
             },
             {
@@ -220,7 +220,7 @@
             "type": "text",
             "paragraphs": [
               "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
-              "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday experiences in some of the most magnificent properties in the world."
+              "Our Founder Suzie Thompson set out to create a unique, bespoke property consultancy, The Luxury Property Group, which would specialise in the most desirable locations in the French Riviera. Her aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday and corporate experiences in some of the most magnificent properties in the world."
             ]
           },
           {
@@ -265,8 +265,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -291,8 +291,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -434,8 +434,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -459,8 +459,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -505,7 +505,7 @@
             {
               "type": "button",
               "label": "Arrange a consultation",
-              "href": "/contact"
+              "href": "/contact?destination=south-of-france"
             }
           ]
         ],
@@ -525,7 +525,7 @@
           {
             "type": "button",
             "label": "Arrange a consultation",
-            "href": "/contact"
+            "href": "/contact?destination=south-of-france"
           }
         ],
         "layout": {
@@ -562,13 +562,13 @@
             {
               "type": "text",
               "paragraphs": [
-                "Whether you desire a villa perched on a hillside overlooking the Mediterranean or a historic estate in the heart of a charming Provençal village, our portfolio of 1200+ properties offers an array of choices that cater to your every whim."
+                "Whether you desire a villa perched on a hillside, with stunning views of the sea, or if you are looking for a venue to host clients at a corporate event in Cannes, contact us today to discuss your requirements. Elegant Address have a vast portfolio of on and off market private properties for rental."
               ]
             },
             {
               "type": "button",
               "label": "Arrange a consultation",
-              "href": "/contact"
+              "href": "/contact?destination=south-of-france"
             }
           ]
         ],
@@ -591,13 +591,13 @@
           {
             "type": "text",
             "paragraphs": [
-              "Whether you desire a villa perched on a hillside overlooking the Mediterranean or a historic estate in the heart of a charming Provençal village, our portfolio of 1200+ properties offers an array of choices that cater to your every whim."
+              "Whether you desire a villa perched on a hillside, with stunning views of the sea, or if you are looking for a venue to host clients at a corporate event in Cannes, contact us today to discuss your requirements. Elegant Address have a vast portfolio of on and off market private properties for rental."
             ]
           },
           {
             "type": "button",
             "label": "Arrange a consultation",
-            "href": "/contact"
+            "href": "/contact?destination=south-of-france"
           }
         ],
         "layout": {
@@ -619,14 +619,14 @@
             {
               "type": "text",
               "paragraphs": [
-                "Expertise: With over 14 years of experience, our team possesses an intimate knowledge of the South of France, ensuring your property needs are meticulously planned to exceed all expectations.",
+                "Expertise: With over 20 years of experience, we possess an intimate knowledge of the South of France, ensuring your property needs are meticulously planned to exceed all expectations.",
                 "Personalization: We understand that every trip is unique. Our tailor-made approach ensures your South of France experience is precisely tailored to your preferences, desires, and expectations."
               ]
             },
             {
               "type": "text",
               "paragraphs": [
-                "Exclusive Access: Through our local partnerships and connections, we can give you access to the most coveted experiences, whether it's securing reservations at renowned restaurants or arranging private tours of historic sites.",
+                "Exclusive Access: We are able to offer you access to the most coveted villas and locations to host corporate events with our vast portfolio of private and off market properties.",
                 "Exceptional Service: From the moment you reach out to us, you'll experience our unwavering commitment to providing unparalleled service."
               ]
             }
@@ -680,14 +680,14 @@
           {
             "type": "text",
             "paragraphs": [
-              "Expertise: With over 14 years of experience, our team possesses an intimate knowledge of the South of France, ensuring your property needs are meticulously planned to exceed all expectations.",
+              "Expertise: With over 20 years of experience, we possess an intimate knowledge of the South of France, ensuring your property needs are meticulously planned to exceed all expectations.",
               "Personalization: We understand that every trip is unique. Our tailor-made approach ensures your South of France experience is precisely tailored to your preferences, desires, and expectations."
             ]
           },
           {
             "type": "text",
             "paragraphs": [
-              "Exclusive Access: Through our local partnerships and connections, we can give you access to the most coveted experiences, whether it's securing reservations at renowned restaurants or arranging private tours of historic sites.",
+              "Exclusive Access: We are able to offer you access to the most coveted villas and locations to host corporate events with our vast portfolio of private and off market properties.",
               "Exceptional Service: From the moment you reach out to us, you'll experience our unwavering commitment to providing unparalleled service."
             ]
           },
@@ -767,8 +767,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -793,8 +793,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -864,13 +864,13 @@
               "type": "text",
               "paragraphs": [
                 "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
-                "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday experiences in some of the most magnificent properties in the world."
+                "Our Founder Suzie Thompson set out to create a unique, bespoke property consultancy, The Luxury Property Group, which would specialise in the most desirable locations in the French Riviera. Her aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday and corporate experiences in some of the most magnificent properties in the world."
               ]
             },
             {
               "type": "button",
               "label": "Arrange a consultation",
-              "href": "/contact"
+              "href": "/contact?destination=south-of-france"
             }
           ],
           [
@@ -889,12 +889,12 @@
             {
               "type": "button",
               "label": "Contact Us",
-              "href": "/contact"
+              "href": "/contact?destination=south-of-france"
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -909,13 +909,13 @@
             "type": "text",
             "paragraphs": [
               "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
-              "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday experiences in some of the most magnificent properties in the world."
+              "Our Founder Suzie Thompson set out to create a unique, bespoke property consultancy, The Luxury Property Group, which would specialise in the most desirable locations in the French Riviera. Her aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor made holiday and corporate experiences in some of the most magnificent properties in the world."
             ]
           },
           {
             "type": "button",
             "label": "Arrange a consultation",
-            "href": "/contact"
+            "href": "/contact?destination=south-of-france"
           },
           {
             "type": "heading",
@@ -932,12 +932,12 @@
           {
             "type": "button",
             "label": "Contact Us",
-            "href": "/contact"
+            "href": "/contact?destination=south-of-france"
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -1097,20 +1097,20 @@
             {
               "type": "heading",
               "level": "h3",
-              "text": "Why Choose Elegant Address",
+              "text": "Why choose the Luxury Property Group to find your ideal Luxurious Villa",
               "color": "#5185a1"
             },
             {
               "type": "text",
               "paragraphs": [
-                "Local Expertise: With over 14 years of experience, our team possesses an intimate understanding of the island's treasures, ensuring your time in Barbados is filled with the finest experiences.",
+                "Local Expertise: With over 20 years of experience, we possess an intimate understanding of the island's treasures, ensuring your time in Barbados is filled with the finest experiences.",
                 "Personalized Luxury: We believe that the property should reflect your individual preferences and style. Our tailored approach ensures your property precisely suits your desires and expectations."
               ]
             },
             {
               "type": "text",
               "paragraphs": [
-                "Exclusive Privileges: Through our local connections, we offer you access to the most coveted experiences on the island.",
+                "Exclusive Privileges: We are able to offer you access to the most coveted villas with our vast portfolio of private and off market properties.",
                 "Unmatched Service: We pride ourselves on delivering exceptional service from the moment you get in touch with us, making your Barbados vacation seamless and unforgettable."
               ]
             }
@@ -1120,20 +1120,20 @@
           {
             "type": "heading",
             "level": "h3",
-            "text": "Why Choose Elegant Address",
+            "text": "Why choose the Luxury Property Group to find your ideal Luxurious Villa",
             "color": "#5185a1"
           },
           {
             "type": "text",
             "paragraphs": [
-              "Local Expertise: With over 14 years of experience, our team possesses an intimate understanding of the island's treasures, ensuring your time in Barbados is filled with the finest experiences.",
+              "Local Expertise: With over 20 years of experience, we possess an intimate understanding of the island's treasures, ensuring your time in Barbados is filled with the finest experiences.",
               "Personalized Luxury: We believe that the property should reflect your individual preferences and style. Our tailored approach ensures your property precisely suits your desires and expectations."
             ]
           },
           {
             "type": "text",
             "paragraphs": [
-              "Exclusive Privileges: Through our local connections, we offer you access to the most coveted experiences on the island.",
+              "Exclusive Privileges: We are able to offer you access to the most coveted villas with our vast portfolio of private and off market properties.",
               "Unmatched Service: We pride ourselves on delivering exceptional service from the moment you get in touch with us, making your Barbados vacation seamless and unforgettable."
             ]
           }
@@ -1173,8 +1173,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -1199,8 +1199,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -1269,8 +1269,8 @@
             {
               "type": "text",
               "paragraphs": [
-                "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in Barbados and the French Riviera.",
-                "The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+                "Our Founder Suzie Thompson set out to create a unique, bespoke property consultancy, The Luxury Property Group, which would specialise in the most desirable locations in Barbados and the French Riviera.",
+                "Her aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday and corporate experiences in some of the most magnificent properties in the world."
               ]
             },
             {
@@ -1299,8 +1299,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -1314,8 +1314,8 @@
           {
             "type": "text",
             "paragraphs": [
-              "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in Barbados and the French Riviera.",
-              "The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+              "Our Founder Suzie Thompson set out to create a unique, bespoke property consultancy, The Luxury Property Group, which would specialise in the most desirable locations in Barbados and the French Riviera.",
+              "Her aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday and corporate experiences in some of the most magnificent properties in the world."
             ]
           },
           {
@@ -1342,8 +1342,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -1445,8 +1445,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -1466,8 +1466,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -1495,8 +1495,8 @@
             {
               "type": "text",
               "paragraphs": [
-                "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera.",
-                "The aim was simple, to provide clients in the prestigious property market with an unrivalled service that offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+                "Our Founder Suzie Thompson set out to create a unique, bespoke property consultancy, The Luxury Property Group, which would specialise in the most desirable locations in the French Riviera.",
+                "Her aim was simple, to provide clients in the prestigious property market with an unrivalled service that offers tailor-made holiday and corporate experiences in some of the most magnificent properties in the world."
               ]
             },
             {
@@ -1520,8 +1520,8 @@
           {
             "type": "text",
             "paragraphs": [
-              "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera.",
-              "The aim was simple, to provide clients in the prestigious property market with an unrivalled service that offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+              "Our Founder Suzie Thompson set out to create a unique, bespoke property consultancy, The Luxury Property Group, which would specialise in the most desirable locations in the French Riviera.",
+              "Her aim was simple, to provide clients in the prestigious property market with an unrivalled service that offers tailor-made holiday and corporate experiences in some of the most magnificent properties in the world."
             ]
           },
           {
@@ -1570,8 +1570,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -1595,8 +1595,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -1643,7 +1643,12 @@
               "type": "text",
               "paragraphs": [
                 "As our services are completely bespoke to deliver the ideal holiday villa for you, it's important we really get to know you and understand your requirements. Fill in your details and we'll get back to you shortly to arrange a call. Thank you."
-              ]
+              ],
+              "variants": {
+                "south-of-france": [
+                  "As our services are completely bespoke to deliver the ideal villa or corporate venue for you, it's important we really get to know you and understand your requirements. Fill in your details and we'll get back to you shortly to arrange a call. Thank you."
+                ]
+              }
             },
             {
               "type": "form",
@@ -1667,7 +1672,12 @@
             "type": "text",
             "paragraphs": [
               "As our services are completely bespoke to deliver the ideal holiday villa for you, it's important we really get to know you and understand your requirements. Fill in your details and we'll get back to you shortly to arrange a call. Thank you."
-            ]
+            ],
+            "variants": {
+              "south-of-france": [
+                "As our services are completely bespoke to deliver the ideal villa or corporate venue for you, it's important we really get to know you and understand your requirements. Fill in your details and we'll get back to you shortly to arrange a call. Thank you."
+              ]
+            }
           },
           {
             "type": "form",
@@ -1704,12 +1714,12 @@
             {
               "type": "button",
               "label": "Email Us",
-              "href": "#"
+              "href": "mailto:suzan@elegant-address.com"
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -1729,12 +1739,12 @@
           {
             "type": "button",
             "label": "Email Us",
-            "href": "#"
+            "href": "mailto:suzan@elegant-address.com"
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -1841,8 +1851,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -1871,8 +1881,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -2280,8 +2290,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -2305,8 +2315,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -2354,8 +2364,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -2380,8 +2390,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -2419,8 +2429,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -2444,8 +2454,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -2547,7 +2557,9 @@
             {
               "type": "text",
               "paragraphs": [
-                "Our collection of Cannes properties includes opulent villas, elegant apartments, and exclusive estates, all chosen to provide you with the utmost comfort, convenience, and style during your Cannes stay. Whether you prefer a beachfront retreat or a penthouse with panoramic views of the city, our collection of luxury villa rentals cater to your needs."
+                "Elegant Address Luxury Property Consultancy are the UK's market leaders for corporate event locations in Cannes, helping our clients find the best venue for all of the major congress held here.",
+                "We have particular experience in the highly acclaimed Cannes Lions Congress with access to some very special private and off market properties hosting up to 250 guests, as well as being able to offer penthouses and apartments for smaller events. We also are able to offer over 150 apartments for accommodation and smaller round table meetings.",
+                "We will help our Corporate Clients every step of the way, from Product Launches, Cocktail Events, Welcome Parties and Private Business Meeting rooms, our aim is to find not only the most perfect location, but also to ensure you are connected to the best concierge services to guarantee that every detail is in place to make your event a huge success."
               ]
             },
             {
@@ -2576,7 +2588,9 @@
           {
             "type": "text",
             "paragraphs": [
-              "Our collection of Cannes properties includes opulent villas, elegant apartments, and exclusive estates, all chosen to provide you with the utmost comfort, convenience, and style during your Cannes stay. Whether you prefer a beachfront retreat or a penthouse with panoramic views of the city, our collection of luxury villa rentals cater to your needs."
+              "Elegant Address Luxury Property Consultancy are the UK's market leaders for corporate event locations in Cannes, helping our clients find the best venue for all of the major congress held here.",
+              "We have particular experience in the highly acclaimed Cannes Lions Congress with access to some very special private and off market properties hosting up to 250 guests, as well as being able to offer penthouses and apartments for smaller events. We also are able to offer over 150 apartments for accommodation and smaller round table meetings.",
+              "We will help our Corporate Clients every step of the way, from Product Launches, Cocktail Events, Welcome Parties and Private Business Meeting rooms, our aim is to find not only the most perfect location, but also to ensure you are connected to the best concierge services to guarantee that every detail is in place to make your event a huge success."
             ]
           },
           {
@@ -2664,8 +2678,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -2690,8 +2704,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
@@ -2761,7 +2775,7 @@
               "type": "text",
               "paragraphs": [
                 "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
-                "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+                "Our Founder Suzie Thompson set out to create a unique, bespoke property consultancy, The Luxury Property Group, which would specialise in the most desirable locations in the French Riviera. Her aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday and corporate experiences in some of the most magnificent properties in the world."
               ]
             },
             {
@@ -2790,8 +2804,8 @@
             },
             {
               "type": "button",
-              "label": "Call us on +44 (0)1244 629 963",
-              "href": "tel:+441244629963"
+              "label": "Call us on +44 (0)751 408 8223",
+              "href": "tel:+447514088223"
             }
           ]
         ],
@@ -2806,7 +2820,7 @@
             "type": "text",
             "paragraphs": [
               "Our Multi-Award Winning luxury property group has grown from strength to strength in its 14 years to now become the United Kingdom’s largest independent property consultancy for the Cote d’Azur.",
-              "Founder, Suzan set out to create a unique, bespoke property consultancy which would specialise in the most desirable locations in the French Riviera. The aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday experiences in some of the most magnificent properties in the world."
+              "Our Founder Suzie Thompson set out to create a unique, bespoke property consultancy, The Luxury Property Group, which would specialise in the most desirable locations in the French Riviera. Her aim was simple, to provide clients in the prestigious property market with an unrivalled service which offers tailor-made holiday and corporate experiences in some of the most magnificent properties in the world."
             ]
           },
           {
@@ -2833,8 +2847,8 @@
           },
           {
             "type": "button",
-            "label": "Call us on +44 (0)1244 629 963",
-            "href": "tel:+441244629963"
+            "label": "Call us on +44 (0)751 408 8223",
+            "href": "tel:+447514088223"
           }
         ],
         "layout": {
