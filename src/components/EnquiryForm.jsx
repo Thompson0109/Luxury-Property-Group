@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { forms } from '@/data/forms'
+import { contact } from '@/data/site'
 import '@/styles/component-styles/enquiry-form.scss'
 
 /**
@@ -135,7 +136,7 @@ export default function EnquiryForm({ formId = '6' }) {
       {status === 'error' && (
         <p className="enquiry-form__notice enquiry-form__notice--error" role="alert">
           That didn&rsquo;t send. Please try again, or call us on{' '}
-          <a href="tel:+441244629963">+44 (0) 1244 629 963</a>.
+          <a href={contact.phone.href}>{contact.phone.tel}</a>.
         </p>
       )}
     </form>
